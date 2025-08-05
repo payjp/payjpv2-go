@@ -1,0 +1,8 @@
+package: payjpv2
+generate:
+  - types
+  - client
+  - spec
+output: client.gen.go
+compatibility:
+  always-prefix-enum-values: true
