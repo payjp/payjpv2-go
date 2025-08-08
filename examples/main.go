@@ -11,14 +11,7 @@ import (
 
 func main() {
 	// Initialize the PAY.JP client
-	client, err := payjpv2.NewClientWithResponses(
-		"https://api.pay.jp",
-		payjpv2.WithRequestEditorFn(func(ctx context.Context, req *http.Request) error {
-			// Set the Authorization header with your API key
-			req.Header.Set("Authorization", "Bearer YOUR_API_KEY_HERE")
-			return nil
-		}),
-	)
+	client, err := payjpv2.NewPayjpClientWithResponses("YOUR_API_KEY_HERE")
 	if err != nil {
 		log.Fatal(err)
 	}
