@@ -26,9 +26,6 @@ func main() {
 
 	// Remove or fix problematic null types and anyOf
 	fixNullTypes(spec)
-	
-	// Change application/problem+json to application/json
-	fixContentTypes(spec)
 
 	// Write the modified spec
 	modifiedData, err := json.MarshalIndent(spec, "", "  ")
@@ -112,30 +109,6 @@ func fixNullTypes(obj interface{}) {
 	case []interface{}:
 		for _, item := range v {
 			fixNullTypes(item)
-		}
-	}
-}
-
-func fixContentTypes(obj interface{}) {
-	switch v := obj.(type) {
-	case map[string]interface{}:
-		for key, value := range v {
-			if key == "content" {
-				if content, ok := value.(map[string]interface{}); ok {
-					// Check if application/problem+json exists
-					if problemJson, exists := content["application/problem+json"]; exists {
-						// Copy to application/json
-						content["application/json"] = problemJson
-						// Remove application/problem+json
-						delete(content, "application/problem+json")
-					}
-				}
-			}
-			fixContentTypes(value)
-		}
-	case []interface{}:
-		for _, item := range v {
-			fixContentTypes(item)
 		}
 	}
 }

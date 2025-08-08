@@ -5,7 +5,7 @@ Go SDK for the PAY.JP v2 API, generated using [oapi-codegen](https://github.com/
 ## Installation
 
 ```bash
-go get github.com/payjp/payjpv2-go-oapi-codegen
+go get github.com/payjp/payjpv2-go
 ```
 
 ## Usage
@@ -19,18 +19,12 @@ import (
     "log"
     "net/http"
 
-    payjpv2 "github.com/payjp/payjpv2-go-oapi-codegen"
+    payjpv2 "github.com/payjp/payjpv2-go"
 )
 
 func main() {
     // Initialize the client
-    client, err := payjpv2.NewClientWithResponses(
-        "https://api.pay.jp",
-        payjpv2.WithRequestEditorFn(func(ctx context.Context, req *http.Request) error {
-            req.Header.Set("Authorization", "Bearer YOUR_API_KEY_HERE")
-            return nil
-        }),
-    )
+    client, err := payjpv2.NewPayjpClientWithResponses("YOUR_API_KEY_HERE")
     if err != nil {
         log.Fatal(err)
     }
@@ -51,7 +45,7 @@ func main() {
 }
 ```
 
-## Working with Union Types (Payment Methods)
+## Working with Union Types
 
 This SDK properly handles discriminated unions for payment methods:
 
@@ -77,20 +71,6 @@ paypayData := payjpv2.PaymentMethodPayPayCreateRequest{
 }
 err = paypayRequest.FromPaymentMethodPayPayCreateRequest(paypayData)
 ```
-
-## Development
-
-To regenerate the SDK from the OpenAPI specification:
-
-```bash
-make go-oapi
-```
-
-This will:
-
-1. Convert the OpenAPI 3.1.0 spec to 3.0.3 for compatibility
-2. Fix null type issues and content types
-3. Generate the Go SDK using oapi-codegen
 
 ## Features
 
