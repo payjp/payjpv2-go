@@ -1,4 +1,4 @@
-# PAY.JP Go SDK v2 (oapi-codegen)
+# PAY.JP Go SDK v2
 
 Go SDK for the PAY.JP v2 API, generated using [oapi-codegen](https://github.com/oapi-codegen/oapi-codegen).
 
@@ -15,39 +15,77 @@ package main
 
 import (
     "context"
+    "errors"
     "fmt"
     "log"
-    "net/http"
+    "os"
 
     payjpv2 "github.com/payjp/payjpv2-go"
 )
 
 func main() {
-    // Initialize the client
-    client, err := payjpv2.NewPayjpClientWithResponses("YOUR_API_KEY_HERE")
+    client, err := payjpv2.NewPayjpClientWithResponses(os.Getenv("PAYJP_API_KEY"))
     if err != nil {
         log.Fatal(err)
     }
 
     ctx := context.Background()
-    
-    // Example: Get all customers
-    response, err := client.GetAllCustomersWithResponse(ctx, &payjpv2.GetAllCustomersParams{
+
+    // Get all customers
+    resp, err := payjpv2.Extract(client.GetAllCustomersWithResponse(ctx, &payjpv2.GetAllCustomersParams{
         Limit: payjpv2.Int(10),
-    })
+    }))
     if err != nil {
+        var apiErr *payjpv2.APIError
+        if errors.As(err, &apiErr) {
+            log.Fatalf("API error %d: %s", apiErr.StatusCode, apiErr.Body.Title)
+        }
         log.Fatal(err)
     }
-    
-    if response.StatusCode() == http.StatusOK {
-        fmt.Printf("Found %d customers\n", len(response.JSON200.Data))
-    }
+
+    fmt.Printf("Found %d customers\n", len(resp.Result.Data))
 }
 ```
 
+## Idempotency Keys
+
+To ensure safe retries of requests, you can use idempotency keys. The `WithIdempotencyKey` function allows you to set an idempotency key on a per-request basis:
+
+```go
+import (
+    "context"
+    "github.com/google/uuid"
+    payjpv2 "github.com/payjp/payjpv2-go"
+    openapi_types "github.com/oapi-codegen/runtime/types"
+)
+
+func createCustomerWithIdempotency() {
+    client, _ := payjpv2.NewPayjpClientWithResponses(os.Getenv("PAYJP_API_KEY"))
+    ctx := context.Background()
+
+    // Generate a unique idempotency key
+    idempotencyKey := uuid.New().String()
+
+    // Create customer with idempotency key
+    email := openapi_types.Email("customer@example.com")
+    resp, err := client.CreateCustomerWithResponse(
+        ctx,
+        payjpv2.CreateCustomerJSONRequestBody{
+            Email: &email,
+        },
+        payjpv2.WithIdempotencyKey(idempotencyKey),
+    )
+
+    // If the request is retried with the same idempotency key,
+    // PAY.JP will return the same response without creating a duplicate
+}
+```
+
+The idempotency key should be unique for each distinct operation. If a request fails due to network issues, you can safely retry it with the same idempotency key.
+
 ## Working with Union Types
 
-This SDK properly handles discriminated unions for payment methods:
+This SDK handles discriminated unions for payment methods:
 
 ```go
 // Create a card payment method
@@ -67,23 +105,24 @@ err := cardRequest.FromPaymentMethodCardCreateRequest(cardData)
 paypayRequest := payjpv2.PaymentMethodCreateRequest{}
 paypayData := payjpv2.PaymentMethodPayPayCreateRequest{
     Type: "paypay",
-    // PayPay-specific fields...
+    // PayPay-specific fields.
 }
 err = paypayRequest.FromPaymentMethodPayPayCreateRequest(paypayData)
 ```
 
 ## Features
 
-- Full support for discriminated unions (oneOf/anyOf with discriminator)
+- Discriminated union support (oneOf/anyOf with discriminator)
 - Type-safe request and response handling
-- Automatic request/response validation
-- Built-in retry and error handling options
 - Support for all PAY.JP v2 API endpoints
 
 ## Requirements
 
-- Go 1.21 or higher
-- oapi-codegen v2.5.0 or higher
+- Go 1.21+
+
+## Documentation
+
+- [PAY.JP v2 Documents](https://docs.pay.jp/v2)
 
 ## License
 

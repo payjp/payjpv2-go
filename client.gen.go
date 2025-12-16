@@ -30,15 +30,9 @@ const (
 
 // Defines values for BalanceState.
 const (
-	BalanceStateEmpty BalanceState = "集計中"
-	BalanceStateN1    BalanceState = "入金"
-	BalanceStateN2    BalanceState = "請求"
-)
-
-// Defines values for BillingAddressCollection.
-const (
-	BillingAddressCollectionAuto     BillingAddressCollection = "auto"
-	BillingAddressCollectionRequired BillingAddressCollection = "required"
+	BalanceStateClaim      BalanceState = "claim"
+	BalanceStateCollecting BalanceState = "collecting"
+	BalanceStateTransfer   BalanceState = "transfer"
 )
 
 // Defines values for CaptureMethod.
@@ -51,6 +45,18 @@ const (
 const (
 	CheckoutSessionModePayment CheckoutSessionMode = "payment"
 	CheckoutSessionModeSetup   CheckoutSessionMode = "setup"
+)
+
+// Defines values for CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorization.
+const (
+	CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorizationIfAvailable CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorization = "if_available"
+	CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorizationNever       CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorization = "never"
+)
+
+// Defines values for CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecure.
+const (
+	CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecureAny       CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecure = "any"
+	CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecureAutomatic CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecure = "automatic"
 )
 
 // Defines values for CheckoutSessionStatus.
@@ -104,16 +110,22 @@ const (
 
 // Defines values for PaymentFlowCancelRequestCancellationReason.
 const (
-	PaymentFlowCancelRequestCancellationReasonAbondoned           PaymentFlowCancelRequestCancellationReason = "abondoned"
+	PaymentFlowCancelRequestCancellationReasonAbandoned           PaymentFlowCancelRequestCancellationReason = "abandoned"
 	PaymentFlowCancelRequestCancellationReasonDuplicate           PaymentFlowCancelRequestCancellationReason = "duplicate"
 	PaymentFlowCancelRequestCancellationReasonFraudulent          PaymentFlowCancelRequestCancellationReason = "fraudulent"
 	PaymentFlowCancelRequestCancellationReasonRequestedByCustomer PaymentFlowCancelRequestCancellationReason = "requested_by_customer"
 )
 
-// Defines values for PaymentFlowDataRequestSetupFutureUsage.
+// Defines values for PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorization.
 const (
-	PaymentFlowDataRequestSetupFutureUsageOffSession PaymentFlowDataRequestSetupFutureUsage = "off_session"
-	PaymentFlowDataRequestSetupFutureUsageOnSession  PaymentFlowDataRequestSetupFutureUsage = "on_session"
+	PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorizationIfAvailable PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorization = "if_available"
+	PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorizationNever       PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorization = "never"
+)
+
+// Defines values for PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecure.
+const (
+	PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecureAny       PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecure = "any"
+	PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecureAutomatic PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecure = "automatic"
 )
 
 // Defines values for PaymentFlowStatus.
@@ -144,25 +156,6 @@ const (
 const (
 	PaymentMethodConfigurationDisplayPreferenceValueOff PaymentMethodConfigurationDisplayPreferenceValue = "off"
 	PaymentMethodConfigurationDisplayPreferenceValueOn  PaymentMethodConfigurationDisplayPreferenceValue = "on"
-)
-
-// Defines values for PaymentMethodOptionsCardRequestRequestExtendedAuthorization.
-const (
-	PaymentMethodOptionsCardRequestRequestExtendedAuthorizationIfAvailable PaymentMethodOptionsCardRequestRequestExtendedAuthorization = "if_available"
-	PaymentMethodOptionsCardRequestRequestExtendedAuthorizationNever       PaymentMethodOptionsCardRequestRequestExtendedAuthorization = "never"
-)
-
-// Defines values for PaymentMethodOptionsCardRequestRequestThreeDSecure.
-const (
-	PaymentMethodOptionsCardRequestRequestThreeDSecureAny       PaymentMethodOptionsCardRequestRequestThreeDSecure = "any"
-	PaymentMethodOptionsCardRequestRequestThreeDSecureAutomatic PaymentMethodOptionsCardRequestRequestThreeDSecure = "automatic"
-	PaymentMethodOptionsCardRequestRequestThreeDSecureChallenge PaymentMethodOptionsCardRequestRequestThreeDSecure = "challenge"
-)
-
-// Defines values for PaymentMethodOptionsCardRequestSetupFutureUsage.
-const (
-	PaymentMethodOptionsCardRequestSetupFutureUsageOffSession PaymentMethodOptionsCardRequestSetupFutureUsage = "off_session"
-	PaymentMethodOptionsCardRequestSetupFutureUsageOnSession  PaymentMethodOptionsCardRequestSetupFutureUsage = "on_session"
 )
 
 // Defines values for PaymentMethodTypes.
@@ -203,7 +196,7 @@ const (
 
 // Defines values for SetupFlowCancellationReason.
 const (
-	SetupFlowCancellationReasonAbondoned           SetupFlowCancellationReason = "abondoned"
+	SetupFlowCancellationReasonAbandoned           SetupFlowCancellationReason = "abandoned"
 	SetupFlowCancellationReasonDuplicate           SetupFlowCancellationReason = "duplicate"
 	SetupFlowCancellationReasonRequestedByCustomer SetupFlowCancellationReason = "requested_by_customer"
 )
@@ -212,6 +205,12 @@ const (
 const (
 	SetupFlowCreateRequestPaymentMethodTypesApplePay SetupFlowCreateRequestPaymentMethodTypes = "apple_pay"
 	SetupFlowCreateRequestPaymentMethodTypesCard     SetupFlowCreateRequestPaymentMethodTypes = "card"
+)
+
+// Defines values for SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecure.
+const (
+	SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecureAny       SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecure = "any"
+	SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecureAutomatic SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecure = "automatic"
 )
 
 // Defines values for SetupFlowStatus.
@@ -232,23 +231,23 @@ const (
 
 // Defines values for StatementSubject.
 const (
-	StatementSubjectEmpty    StatementSubject = "売上"
-	StatementSubjectN1       StatementSubject = "決済手数料"
-	StatementSubjectN10      StatementSubject = "有料プラン料金"
-	StatementSubjectN11      StatementSubject = "残高失効"
-	StatementSubjectN12      StatementSubject = "テナント失効金額の割当て"
-	StatementSubjectN13      StatementSubject = "早期入金サービス利用料"
-	StatementSubjectN14      StatementSubject = "振込手数料"
-	StatementSubjectN15      StatementSubject = "その他"
-	StatementSubjectN2       StatementSubject = "プラットフォーム利用料"
-	StatementSubjectN3       StatementSubject = "返金"
-	StatementSubjectN4       StatementSubject = "返金による手数料返還"
-	StatementSubjectN5       StatementSubject = "返金によるプラットフォーム利用料返還"
-	StatementSubjectN6       StatementSubject = "チャージバック"
-	StatementSubjectN7       StatementSubject = "チャージバックによる手数料返還"
-	StatementSubjectN8       StatementSubject = "チャージバックによるプラットフォーム利用料返還"
-	StatementSubjectN9       StatementSubject = "プロプラン利用料"
-	StatementSubjectYELLBANK StatementSubject = "YELL BANKお支払い"
+	StatementSubjectChargeback                  StatementSubject = "chargeback"
+	StatementSubjectChargebackFeeOffset         StatementSubject = "chargeback_fee_offset"
+	StatementSubjectChargebackPlatformFeeOffset StatementSubject = "chargeback_platform_fee_offset"
+	StatementSubjectFee                         StatementSubject = "fee"
+	StatementSubjectForfeit                     StatementSubject = "forfeit"
+	StatementSubjectGrossRefund                 StatementSubject = "gross_refund"
+	StatementSubjectGrossSales                  StatementSubject = "gross_sales"
+	StatementSubjectOther                       StatementSubject = "other"
+	StatementSubjectPlanFee                     StatementSubject = "plan_fee"
+	StatementSubjectPlatformFee                 StatementSubject = "platform_fee"
+	StatementSubjectProplan                     StatementSubject = "proplan"
+	StatementSubjectPybEarlyDepositServiceFee   StatementSubject = "pyb_early_deposit_service_fee"
+	StatementSubjectReallocation                StatementSubject = "reallocation"
+	StatementSubjectRefundFeeOffset             StatementSubject = "refund_fee_offset"
+	StatementSubjectRefundPlatformFeeOffset     StatementSubject = "refund_platform_fee_offset"
+	StatementSubjectTransferFee                 StatementSubject = "transfer_fee"
+	StatementSubjectYellBankCollection          StatementSubject = "yell_bank_collection"
 )
 
 // Defines values for StatementType.
@@ -260,23 +259,10 @@ const (
 	StatementTypeTransferFee StatementType = "transfer_fee"
 )
 
-// Defines values for TaxType.
-const (
-	TaxTypeJct TaxType = "jct"
-)
-
 // Defines values for Usage.
 const (
 	UsageOffSession Usage = "off_session"
 	UsageOnSession  Usage = "on_session"
-)
-
-// Defines values for GetCheckoutSessionParamsExpand.
-const (
-	GetCheckoutSessionParamsExpandCustomer    GetCheckoutSessionParamsExpand = "customer"
-	GetCheckoutSessionParamsExpandLineItems   GetCheckoutSessionParamsExpand = "line_items"
-	GetCheckoutSessionParamsExpandPaymentFlow GetCheckoutSessionParamsExpand = "payment_flow"
-	GetCheckoutSessionParamsExpandSetupFlow   GetCheckoutSessionParamsExpand = "setup_flow"
 )
 
 // BalanceListResponse defines model for BalanceListResponse.
@@ -293,7 +279,7 @@ type BalanceListResponse struct {
 
 // BalanceResponse defines model for BalanceResponse.
 type BalanceResponse struct {
-	BankInfo *BankInfoResponse `json:"bank_info,omitempty"`
+	BankInfo BankInfoResponse `json:"bank_info"`
 
 	// Closed このBalanceの清算が終了していればtrue
 	//
@@ -375,9 +361,6 @@ type BankInfoResponse struct {
 	BankCode string `json:"bank_code"`
 }
 
-// BillingAddressCollection defines model for BillingAddressCollection.
-type BillingAddressCollection string
-
 // CaptureMethod defines model for CaptureMethod.
 type CaptureMethod string
 
@@ -388,26 +371,24 @@ type CardConfigRequest struct {
 
 // CheckoutSessionCreateRequest defines model for CheckoutSessionCreateRequest.
 type CheckoutSessionCreateRequest struct {
-	BillingAddressCollection *BillingAddressCollection `json:"billing_address_collection,omitempty"`
-
 	// CancelUrl キャンセル時のリダイレクトURL
 	CancelUrl *string `json:"cancel_url,omitempty"`
 
 	// ClientReferenceId ID
-	ClientReferenceId *string   `json:"client_reference_id,omitempty"`
-	Currency          *Currency `json:"currency,omitempty"`
-
-	// Customer 顧客ID
-	Customer         *string           `json:"customer,omitempty"`
-	CustomerCreation *CustomerCreation `json:"customer_creation,omitempty"`
+	ClientReferenceId *string           `json:"client_reference_id,omitempty"`
+	Currency          *Currency         `json:"currency,omitempty"`
+	CustomerCreation  *CustomerCreation `json:"customer_creation,omitempty"`
 
 	// CustomerEmail 顧客オブジェクトを作成する時に使われます。指定されていない場合、顧客にメールアドレスの入力を求めます。すでに顧客のメールアドレスを持っている場合は、このパラメータを使ってあらかじめ情報を入力しておくことが可能です。支払いが完了した後に顧客情報を取得したい場合は、customer属性を使用します。
 	CustomerEmail *openapi_types.Email `json:"customer_email,omitempty"`
 
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id,omitempty"`
+
 	// ExpiresAt Checkout Session の有効期限が失効する日時。
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 
-	// LineItems 顧客が購入する商品のリストです。このパラメータを使用して、1回限りまたは定期的な料金を渡します。
+	// LineItems 顧客が購入する商品のリストです。このパラメーターを使用して、1回限りまたは定期的な料金を渡します。
 	//
 	// `payment` モードの場合、最大100個のラインアイテムを使用できます。
 	// <!-- `subscription` モードの場合、定期的な料金のラインアイテムは最大20個、1回限りの料金のラインアイテムは最大20個です。1回限りの料金のラインアイテムは、最初の請求書にのみ記載されます。 -->
@@ -420,15 +401,12 @@ type CheckoutSessionCreateRequest struct {
 	Metadata             *map[string]CheckoutSessionCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
 	Mode                 CheckoutSessionMode                                                    `json:"mode"`
 	PaymentFlowData      *PaymentFlowDataRequest                                                `json:"payment_flow_data,omitempty"`
-	PaymentMethodOptions *PaymentMethodOptionsRequest                                           `json:"payment_method_options,omitempty"`
+	PaymentMethodOptions *CheckoutSessionPaymentMethodOptionsRequest                            `json:"payment_method_options,omitempty"`
 
 	// PaymentMethodTypes この PaymentFlow で使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合、ダッシュボードで利用可能な状態にしている支払い方法を自動的に表示します。
-	PaymentMethodTypes *[]PaymentMethodTypes `json:"payment_method_types,omitempty"`
-
-	// ReturnUrl 顧客が支払いを行うか、支払いをキャンセルした後にリダイレクトする URL です。
-	ReturnUrl     *string                    `json:"return_url,omitempty"`
-	SetupFlowData *SetupFlowDataRequest      `json:"setup_flow_data,omitempty"`
-	SubmitType    *CheckoutSessionSubmitType `json:"submit_type,omitempty"`
+	PaymentMethodTypes *[]PaymentMethodTypes      `json:"payment_method_types,omitempty"`
+	SetupFlowData      *SetupFlowDataRequest      `json:"setup_flow_data,omitempty"`
+	SubmitType         *CheckoutSessionSubmitType `json:"submit_type,omitempty"`
 
 	// SuccessUrl 支払いや設定が完了した際に、PAY.JP が顧客をリダイレクトするURL。成功したCheckout Sessionからの情報をページで使用したい場合は、成功ページのカスタマイズに関するガイドをお読みください。
 	SuccessUrl *string                `json:"success_url,omitempty"`
@@ -455,49 +433,40 @@ type CheckoutSessionDetailsResponse struct {
 	AmountSubtotal *int `json:"amount_subtotal"`
 
 	// AmountTotal 割引と税金が適用された後のすべての商品の合計金額
-	AmountTotal              *int                      `json:"amount_total"`
-	BillingAddressCollection *BillingAddressCollection `json:"billing_address_collection,omitempty"`
+	AmountTotal *int `json:"amount_total"`
 
 	// CancelUrl キャンセル時のリダイレクトURL
 	CancelUrl *string `json:"cancel_url"`
 
 	// CreatedAt 作成日時 (UTC, ISO 8601 形式)
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Currency  *Currency  `json:"currency,omitempty"`
-
-	// Customer 顧客ID
-	Customer *CheckoutSessionDetailsResponse_Customer `json:"customer,omitempty"`
-
-	// CustomerDetails `expand` パラメーターを指定した場合、顧客の詳細情報を含んだオブジェクトが返却されます。
-	//
-	// | 説明 |
-	// |:---|
-	// | **email**: 顧客のメールアドレス |
-	CustomerDetails *map[string]interface{} `json:"customer_details,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Currency  Currency  `json:"currency"`
 
 	// CustomerEmail 顧客オブジェクトを作成する時に使われます。指定されていない場合、顧客にメールアドレスの入力を求めます。すでに顧客のメールアドレスを持っている場合は、このパラメータを使ってあらかじめ情報を入力しておくことが可能です。支払いが完了した後に顧客情報を取得したい場合は、customer属性を使用します。
 	CustomerEmail *string `json:"customer_email"`
+
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id"`
 
 	// ExpiresAt Checkout Session の有効期限が失効する日時。
 	ExpiresAt *time.Time `json:"expires_at"`
 
 	// Id ID
-	Id        *string                           `json:"id,omitempty"`
-	LineItems *CheckoutSessionLineItemsResponse `json:"line_items,omitempty"`
+	Id string `json:"id"`
 
 	// Livemode 本番環境かどうか
-	Livemode *bool `json:"livemode,omitempty"`
+	Livemode bool `json:"livemode"`
 
 	// Locale IETF language tag (ja, en, ...) or auto
-	Locale *Locale `json:"locale,omitempty"`
+	Locale Locale `json:"locale"`
 
 	// Metadata メタデータ
-	Metadata *map[string]CheckoutSessionDetailsResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-	Mode     *CheckoutSessionMode                                                     `json:"mode,omitempty"`
-	Object   *string                                                                  `json:"object,omitempty"`
+	Metadata map[string]CheckoutSessionDetailsResponse_Metadata_AdditionalProperties `json:"metadata"`
+	Mode     CheckoutSessionMode                                                     `json:"mode"`
+	Object   *string                                                                 `json:"object,omitempty"`
 
-	// PaymentFlow `payment` モードの Checkout Session の PaymentFlow の ID。PaymentFlow を確定 (confirm)、またはキャンセルすることはできません。キャンセルするには、代わりに Checkout Session を期限切れにしてください。
-	PaymentFlow *CheckoutSessionDetailsResponse_PaymentFlow `json:"payment_flow,omitempty"`
+	// PaymentFlowId `payment` モードの Checkout Session の PaymentFlow の ID。PaymentFlow を確定 (confirm)、またはキャンセルすることはできません。キャンセルするには、代わりに Checkout Session を期限切れにしてください。
+	PaymentFlowId *string `json:"payment_flow_id"`
 
 	// PaymentMethodOptions この PaymentFlow の支払い方法の個別設定。
 	PaymentMethodOptions *map[string]interface{} `json:"payment_method_options"`
@@ -505,28 +474,20 @@ type CheckoutSessionDetailsResponse struct {
 	// PaymentMethodTypes この PaymentFlow で使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合、ダッシュボードで利用可能な状態にしている支払い方法を自動的に表示します。
 	PaymentMethodTypes *[]PaymentMethodTypes `json:"payment_method_types"`
 
-	// SetupFlow `setup` モードの Checkout Session の SetupFlow の ID。Checkout Session の SetupFlow を確定 (confirm)、またはキャンセルすることはできません。キャンセルするには、代わりに Checkout Session を期限切れにしてください。
-	SetupFlow  *CheckoutSessionDetailsResponse_SetupFlow `json:"setup_flow,omitempty"`
-	Status     *CheckoutSessionStatus                    `json:"status,omitempty"`
-	SubmitType *CheckoutSessionSubmitType                `json:"submit_type,omitempty"`
+	// SetupFlowId `setup` モードの Checkout Session の SetupFlow の ID。Checkout Session の SetupFlow を確定 (confirm)、またはキャンセルすることはできません。キャンセルするには、代わりに Checkout Session を期限切れにしてください。
+	SetupFlowId *string                   `json:"setup_flow_id"`
+	Status      CheckoutSessionStatus     `json:"status"`
+	SubmitType  CheckoutSessionSubmitType `json:"submit_type"`
 
 	// SuccessUrl 支払いや設定が完了した際に、PAY.JP が顧客をリダイレクトするURL。成功したCheckout Sessionからの情報をページで使用したい場合は、成功ページのカスタマイズに関するガイドをお読みください。
-	SuccessUrl *string                `json:"success_url"`
-	UiMode     *CheckoutSessionUIMode `json:"ui_mode,omitempty"`
+	SuccessUrl *string               `json:"success_url"`
+	UiMode     CheckoutSessionUIMode `json:"ui_mode"`
 
 	// UpdatedAt 更新日時 (UTC, ISO 8601 形式)
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt time.Time `json:"updated_at"`
 
 	// Url URL
-	Url *string `json:"url,omitempty"`
-}
-
-// CheckoutSessionDetailsResponseCustomer0 defines model for .
-type CheckoutSessionDetailsResponseCustomer0 = string
-
-// CheckoutSessionDetailsResponse_Customer 顧客ID
-type CheckoutSessionDetailsResponse_Customer struct {
-	union json.RawMessage
+	Url string `json:"url"`
 }
 
 // CheckoutSessionDetailsResponseMetadata0 defines model for .
@@ -543,57 +504,40 @@ type CheckoutSessionDetailsResponse_Metadata_AdditionalProperties struct {
 	union json.RawMessage
 }
 
-// CheckoutSessionDetailsResponsePaymentFlow0 defines model for .
-type CheckoutSessionDetailsResponsePaymentFlow0 = string
-
-// CheckoutSessionDetailsResponse_PaymentFlow `payment` モードの Checkout Session の PaymentFlow の ID。PaymentFlow を確定 (confirm)、またはキャンセルすることはできません。キャンセルするには、代わりに Checkout Session を期限切れにしてください。
-type CheckoutSessionDetailsResponse_PaymentFlow struct {
-	union json.RawMessage
-}
-
-// CheckoutSessionDetailsResponseSetupFlow0 defines model for .
-type CheckoutSessionDetailsResponseSetupFlow0 = string
-
-// CheckoutSessionDetailsResponse_SetupFlow `setup` モードの Checkout Session の SetupFlow の ID。Checkout Session の SetupFlow を確定 (confirm)、またはキャンセルすることはできません。キャンセルするには、代わりに Checkout Session を期限切れにしてください。
-type CheckoutSessionDetailsResponse_SetupFlow struct {
-	union json.RawMessage
-}
-
 // CheckoutSessionLineItemDataResponse defines model for CheckoutSessionLineItemDataResponse.
 type CheckoutSessionLineItemDataResponse struct {
 	// AmountSubtotal 割引や税金が適用される前のすべての商品の合計金額
-	AmountSubtotal *int `json:"amount_subtotal,omitempty"`
+	AmountSubtotal int `json:"amount_subtotal"`
 
 	// AmountTax 税額
-	AmountTax *int `json:"amount_tax,omitempty"`
+	AmountTax int `json:"amount_tax"`
 
 	// AmountTotal 割引と税金が適用された後のすべての商品の合計金額
-	AmountTotal *int      `json:"amount_total,omitempty"`
-	Currency    *Currency `json:"currency,omitempty"`
+	AmountTotal int      `json:"amount_total"`
+	Currency    Currency `json:"currency"`
 
 	// Description 説明
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 
 	// Id ID
-	Id     *string               `json:"id,omitempty"`
-	Object *string               `json:"object,omitempty"`
-	Price  *PriceDetailsResponse `json:"price,omitempty"`
+	Id     string               `json:"id"`
+	Object *string              `json:"object,omitempty"`
+	Price  PriceDetailsResponse `json:"price"`
 
 	// Quantity 数量
-	Quantity *int `json:"quantity,omitempty"`
+	Quantity int `json:"quantity"`
 }
 
-// CheckoutSessionLineItemsResponse defines model for CheckoutSessionLineItemsResponse.
-type CheckoutSessionLineItemsResponse struct {
-	// Data データ
-	Data *[]CheckoutSessionLineItemDataResponse `json:"data,omitempty"`
+// CheckoutSessionLineItemListResponse defines model for CheckoutSessionLineItemListResponse.
+type CheckoutSessionLineItemListResponse struct {
+	Data []CheckoutSessionLineItemDataResponse `json:"data"`
 
 	// HasMore 次のページがあるかどうか
-	HasMore *bool   `json:"has_more,omitempty"`
+	HasMore bool    `json:"has_more"`
 	Object  *string `json:"object,omitempty"`
 
-	// Url URL
-	Url *string `json:"url,omitempty"`
+	// Url リスト取得URL
+	Url string `json:"url"`
 }
 
 // CheckoutSessionListResponse defines model for CheckoutSessionListResponse.
@@ -610,6 +554,46 @@ type CheckoutSessionListResponse struct {
 
 // CheckoutSessionMode defines model for CheckoutSessionMode.
 type CheckoutSessionMode string
+
+// CheckoutSessionPaymentMethodOptionsCardRequest defines model for CheckoutSessionPaymentMethodOptionsCardRequest.
+type CheckoutSessionPaymentMethodOptionsCardRequest struct {
+	// RequestExtendedAuthorization オーソリ期間の延長要求。
+	//
+	// | 指定できる値 |
+	// |:---|
+	// | **if_available**: オーソリ期間の延長が可能な場合に延長要求を行います。 |
+	// | **never**: オーソリ期間の延長要求を行いません。 |
+	RequestExtendedAuthorization *CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorization `json:"request_extended_authorization,omitempty"`
+
+	// RequestThreeDSecure 3Dセキュア認証の要求方法。
+	//
+	// | 指定できる値 |
+	// |:---|
+	// | **any**: 3Dセキュア認証を要求します。 |
+	// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
+	RequestThreeDSecure *CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecure `json:"request_three_d_secure,omitempty"`
+}
+
+// CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorization オーソリ期間の延長要求。
+//
+// | 指定できる値 |
+// |:---|
+// | **if_available**: オーソリ期間の延長が可能な場合に延長要求を行います。 |
+// | **never**: オーソリ期間の延長要求を行いません。 |
+type CheckoutSessionPaymentMethodOptionsCardRequestRequestExtendedAuthorization string
+
+// CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecure 3Dセキュア認証の要求方法。
+//
+// | 指定できる値 |
+// |:---|
+// | **any**: 3Dセキュア認証を要求します。 |
+// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
+type CheckoutSessionPaymentMethodOptionsCardRequestRequestThreeDSecure string
+
+// CheckoutSessionPaymentMethodOptionsRequest defines model for CheckoutSessionPaymentMethodOptionsRequest.
+type CheckoutSessionPaymentMethodOptionsRequest struct {
+	Card *CheckoutSessionPaymentMethodOptionsCardRequest `json:"card,omitempty"`
+}
 
 // CheckoutSessionStatus defines model for CheckoutSessionStatus.
 type CheckoutSessionStatus string
@@ -659,6 +643,9 @@ type CustomerCreateRequest struct {
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]CustomerCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
+
+	// PaymentMethodId 顧客に紐づける支払い方法ID
+	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 }
 
 // CustomerCreateRequestMetadata0 defines model for .
@@ -695,6 +682,9 @@ type CustomerResponse struct {
 	// CreatedAt 作成日時 (UTC, ISO 8601 形式)
 	CreatedAt time.Time `json:"created_at"`
 
+	// DefaultPaymentMethodId 支払いにデフォルトで使用される支払い方法ID
+	DefaultPaymentMethodId *string `json:"default_payment_method_id"`
+
 	// Description 顧客の説明
 	Description *string `json:"description"`
 
@@ -702,14 +692,14 @@ type CustomerResponse struct {
 	Email *string `json:"email"`
 
 	// Id 顧客ID
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 
 	// Livemode 本番環境かどうか
 	Livemode bool `json:"livemode"`
 
 	// Metadata メタデータ
-	Metadata *map[string]CustomerResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-	Object   *string                                                    `json:"object,omitempty"`
+	Metadata map[string]CustomerResponse_Metadata_AdditionalProperties `json:"metadata"`
+	Object   *string                                                   `json:"object,omitempty"`
 
 	// UpdatedAt 更新日時 (UTC, ISO 8601 形式)
 	UpdatedAt time.Time `json:"updated_at"`
@@ -731,6 +721,9 @@ type CustomerResponse_Metadata_AdditionalProperties struct {
 
 // CustomerUpdateRequest defines model for CustomerUpdateRequest.
 type CustomerUpdateRequest struct {
+	// DefaultPaymentMethodId 支払いにデフォルトで使用される支払い方法ID
+	DefaultPaymentMethodId *string `json:"default_payment_method_id"`
+
 	// Description 顧客オブジェクトに付加できる任意の文字列です。これは、ダッシュボードで顧客と一緒に表示されます。
 	Description *string `json:"description,omitempty"`
 
@@ -824,24 +817,10 @@ type EventResponse struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// LineItemAdjustableQuantityRequest defines model for LineItemAdjustableQuantityRequest.
-type LineItemAdjustableQuantityRequest struct {
-	// Enabled 数量が任意の 0 以上の整数に調整可能であれば、`true` を指定します。
-	Enabled *bool `json:"enabled,omitempty"`
-
-	// Maximum 顧客が Checkout Session で購入できる最大数量です。デフォルトではこの値は 99 です。999,999 までの値を指定できます。
-	Maximum *int `json:"maximum,omitempty"`
-
-	// Minimum 顧客が Checkout Session で購入できる最小数量です。この値はデフォルトで 0 です。
-	Minimum *int `json:"minimum,omitempty"`
-}
-
 // LineItemRequest defines model for LineItemRequest.
 type LineItemRequest struct {
-	AdjustableQuantity *LineItemAdjustableQuantityRequest `json:"adjustable_quantity,omitempty"`
-
-	// Price 料金ID
-	Price *string `json:"price,omitempty"`
+	// PriceId 料金ID
+	PriceId string `json:"price_id"`
 
 	// Quantity 購入する商品の数量
 	Quantity int `json:"quantity"`
@@ -860,20 +839,20 @@ type PayPayConfigRequest struct {
 
 // PaymentFlowCancelRequest defines model for PaymentFlowCancelRequest.
 type PaymentFlowCancelRequest struct {
-	// CancellationReason この PaymentFlow のキャンセル理由。
+	// CancellationReason この PaymentFlow のキャンセル理由
 	// | 指定できる値 |
 	// |:---|
-	// | **duplicate**: 支払い方法が重複している場合。 |
+	// | **duplicate**: 重複した支払いである場合。 |
 	// | **fraudulent**: 不正な利用だと考えられる場合。 |
 	// | **requested_by_customer**: 顧客がキャンセルを要求した場合。 |
 	// | **abandoned**: 顧客が支払いを完了しなかった場合。 |
 	CancellationReason *PaymentFlowCancelRequestCancellationReason `json:"cancellation_reason,omitempty"`
 }
 
-// PaymentFlowCancelRequestCancellationReason この PaymentFlow のキャンセル理由。
+// PaymentFlowCancelRequestCancellationReason この PaymentFlow のキャンセル理由
 // | 指定できる値 |
 // |:---|
-// | **duplicate**: 支払い方法が重複している場合。 |
+// | **duplicate**: 重複した支払いである場合。 |
 // | **fraudulent**: 不正な利用だと考えられる場合。 |
 // | **requested_by_customer**: 顧客がキャンセルを要求した場合。 |
 // | **abandoned**: 顧客が支払いを完了しなかった場合。 |
@@ -892,31 +871,29 @@ type PaymentFlowConfirmRequest struct {
 	// Description オブジェクトにセットする任意の文字列。ユーザーには表示されません。
 	Description *string `json:"description,omitempty"`
 
-	// PaymentMethod 支払い方法ID
-	PaymentMethod        *string                      `json:"payment_method,omitempty"`
-	PaymentMethodOptions *PaymentMethodOptionsRequest `json:"payment_method_options,omitempty"`
+	// PaymentMethodId 支払い方法ID。customer_idの指定が必須です。Customerが所持するPaymentMethodのみ指定できます。payment_method_idを指定せず、Customerにdefault_payment_method_idが設定されている場合はそちらが自動でセットされます。
+	PaymentMethodId      *string                                 `json:"payment_method_id,omitempty"`
+	PaymentMethodOptions *PaymentFlowPaymentMethodOptionsRequest `json:"payment_method_options,omitempty"`
 
-	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
+	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類のリスト。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
 	PaymentMethodTypes *[]PaymentMethodTypes `json:"payment_method_types,omitempty"`
 
-	// ReceiptEmail 請求書の送信先メールアドレス。ライブモードで支払いに対して `receipt_email` を指定すると、メール設定に関係なく領収書が送信されます。
-	ReceiptEmail *string `json:"receipt_email,omitempty"`
-
-	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。confirm=trueの場合のみ指定できます。
+	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。
 	ReturnUrl *string `json:"return_url,omitempty"`
 }
 
 // PaymentFlowCreateRequest defines model for PaymentFlowCreateRequest.
 type PaymentFlowCreateRequest struct {
-	// Amount 支払い予定の金額。50円以上9,999,999円以下である必要があります。支払い手段によって上限金額は異なります。
+	// Amount 支払い予定の金額。50円以上9,999,999円以下である必要があります。
 	Amount        int            `json:"amount"`
 	CaptureMethod *CaptureMethod `json:"capture_method,omitempty"`
 
-	// Confirm 「true」に設定すると、このPaymentFlowを直ちに確定しようと試みます。このパラメーターのデフォルトは「false」です。
-	Confirm *bool `json:"confirm,omitempty"`
+	// Confirm 「true」に設定すると、このPaymentFlowを直ちに確定しようと試みます。
+	Confirm  *bool    `json:"confirm,omitempty"`
+	Currency Currency `json:"currency"`
 
-	// Customer このPaymentFlowに属する顧客のID（存在する場合）。この顧客以外にすでに紐づけられている支払い方法はこのPaymentFlowでは使用できません。
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId このPaymentFlowに関連付ける顧客のID
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Description オブジェクトにセットする任意の文字列。ユーザーには表示されません。
 	Description *string `json:"description,omitempty"`
@@ -924,19 +901,15 @@ type PaymentFlowCreateRequest struct {
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentFlowCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
 
-	// PaymentMethod 支払い方法ID
-	PaymentMethod        *string                      `json:"payment_method,omitempty"`
-	PaymentMethodOptions *PaymentMethodOptionsRequest `json:"payment_method_options,omitempty"`
+	// PaymentMethodId 支払い方法ID。customer_idの指定が必須です。Customerが所持するPaymentMethodのみ指定できます。payment_method_idを指定せず、Customerにdefault_payment_method_idが設定されている場合はそちらが自動でセットされます。
+	PaymentMethodId      *string                                 `json:"payment_method_id,omitempty"`
+	PaymentMethodOptions *PaymentFlowPaymentMethodOptionsRequest `json:"payment_method_options,omitempty"`
 
-	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
+	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類のリスト。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
 	PaymentMethodTypes *[]PaymentMethodTypes `json:"payment_method_types,omitempty"`
 
-	// ReceiptEmail 請求書の送信先メールアドレス。ライブモードで支払いに対して `receipt_email` を指定すると、メール設定に関係なく領収書が送信されます。
-	ReceiptEmail *string `json:"receipt_email,omitempty"`
-
 	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。confirm=trueの場合のみ指定できます。
-	ReturnUrl        *string `json:"return_url,omitempty"`
-	SetupFutureUsage *Usage  `json:"setup_future_usage,omitempty"`
+	ReturnUrl *string `json:"return_url,omitempty"`
 }
 
 // PaymentFlowCreateRequestMetadata0 defines model for .
@@ -959,11 +932,6 @@ type PaymentFlowDataRequest struct {
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentFlowDataRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-
-	// SetupFutureUsage この PaymentFlow に設定されている支払い方法で今後決済を行うかの設定です。<br><br>
-	// PaymentFlow に Customer を指定した場合、このパラメータを使って PaymentFlow を確定できます。
-	// その後、顧客が必要な操作を完了すると、支払い方法を Customer に紐付けることが可能です。また、Customer を指定しない場合でも、取引が完了した後に支払い方法を Customer に紐付けることはできます。
-	SetupFutureUsage *PaymentFlowDataRequestSetupFutureUsage `json:"setup_future_usage,omitempty"`
 }
 
 // PaymentFlowDataRequestMetadata0 defines model for .
@@ -980,14 +948,9 @@ type PaymentFlowDataRequest_Metadata_AdditionalProperties struct {
 	union json.RawMessage
 }
 
-// PaymentFlowDataRequestSetupFutureUsage この PaymentFlow に設定されている支払い方法で今後決済を行うかの設定です。<br><br>
-// PaymentFlow に Customer を指定した場合、このパラメータを使って PaymentFlow を確定できます。
-// その後、顧客が必要な操作を完了すると、支払い方法を Customer に紐付けることが可能です。また、Customer を指定しない場合でも、取引が完了した後に支払い方法を Customer に紐付けることはできます。
-type PaymentFlowDataRequestSetupFutureUsage string
-
 // PaymentFlowListResponse defines model for PaymentFlowListResponse.
 type PaymentFlowListResponse struct {
-	// Data 支払いインテントリスト
+	// Data 支払いフローリスト
 	Data []PaymentFlowResponse `json:"data"`
 
 	// HasMore 次のページがあるかどうか
@@ -998,70 +961,99 @@ type PaymentFlowListResponse struct {
 	Url string `json:"url"`
 }
 
+// PaymentFlowPaymentMethodOptionsCardRequest defines model for PaymentFlowPaymentMethodOptionsCardRequest.
+type PaymentFlowPaymentMethodOptionsCardRequest struct {
+	// RequestExtendedAuthorization オーソリ期間の延長要求
+	//
+	// | 指定できる値 |
+	// |:---|
+	// | **if_available**: オーソリ期間の延長が可能な場合に延長要求を行います。 |
+	// | **never**: オーソリ期間の延長要求を行いません。 |
+	RequestExtendedAuthorization *PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorization `json:"request_extended_authorization,omitempty"`
+
+	// RequestThreeDSecure 3Dセキュア認証の要求方法。
+	//
+	// | 指定できる値 |
+	// |:---|
+	// | **any**: 3Dセキュア認証を要求します。 |
+	// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
+	RequestThreeDSecure *PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecure `json:"request_three_d_secure,omitempty"`
+}
+
+// PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorization オーソリ期間の延長要求
+//
+// | 指定できる値 |
+// |:---|
+// | **if_available**: オーソリ期間の延長が可能な場合に延長要求を行います。 |
+// | **never**: オーソリ期間の延長要求を行いません。 |
+type PaymentFlowPaymentMethodOptionsCardRequestRequestExtendedAuthorization string
+
+// PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecure 3Dセキュア認証の要求方法。
+//
+// | 指定できる値 |
+// |:---|
+// | **any**: 3Dセキュア認証を要求します。 |
+// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
+type PaymentFlowPaymentMethodOptionsCardRequestRequestThreeDSecure string
+
+// PaymentFlowPaymentMethodOptionsRequest defines model for PaymentFlowPaymentMethodOptionsRequest.
+type PaymentFlowPaymentMethodOptionsRequest struct {
+	Card *PaymentFlowPaymentMethodOptionsCardRequest `json:"card,omitempty"`
+}
+
 // PaymentFlowResponse defines model for PaymentFlowResponse.
 type PaymentFlowResponse struct {
-	// Amount 支払い予定の金額。50円以上9,999,999円以下である必要があります。支払い手段によって上限金額は異なります。
+	// Amount 支払い予定の金額
 	Amount int `json:"amount"`
 
-	// AmountCapturable このPaymentFlowの確定可能な金額。
+	// AmountCapturable このPaymentFlowの確定可能な金額
 	AmountCapturable *int `json:"amount_capturable"`
 
-	// AmountReceived このPaymentFlowの `amount` のうち、確定した金額。
+	// AmountReceived このPaymentFlowの `amount` のうち、確定した金額
 	AmountReceived *int          `json:"amount_received"`
 	CaptureMethod  CaptureMethod `json:"capture_method"`
 
 	// ClientSecret このPaymentFlowのクライアントシークレットです。フロントエンドで公開APIキーと合わせて使用しPaymentFlowの情報を取得や支払い処理を行います。**この値はこのPaymentFlowの支払いを行う顧客以外へ公開しないでください。**また保存やログへの記録なども行わないでください。
 	ClientSecret string `json:"client_secret"`
 
-	// ConfirmationMethod このPaymentFlowを自動的に確定できるか、あるいは支払いの確定に顧客による操作が必要かを示します。
-	//
-	// | 指定できる値 |
-	// |:---|
-	// | **automatic**: PaymentFlowは公開キーを使用して確認できます。next_actionsが処理された後は、支払いを完了するために追加の確認は必要ありません。 |
-	// <!-- | **manual**: すべての支払いの確認は秘密鍵を使用して行う必要があります。PaymentFlowは `next_actions` の処理後に `requires_confirmation` 状態に戻り、各支払いはサーバー側で明示的な確認を開始する必要があります。 | -->
-	ConfirmationMethod *string `json:"confirmation_method"`
-
 	// CreatedAt 作成日時 (UTC, ISO 8601 形式)
 	CreatedAt time.Time `json:"created_at"`
+	Currency  Currency  `json:"currency"`
 
-	// Customer このPaymentFlowに属する顧客のID（存在する場合）。この顧客以外にすでに紐づけられている支払い方法はこのPaymentFlowでは使用できません。
-	Customer *string `json:"customer"`
+	// CustomerId このPaymentFlowに関連付けられた顧客のID
+	CustomerId *string `json:"customer_id"`
 
 	// Description オブジェクトにセットする任意の文字列。ユーザーには表示されません。
 	Description *string `json:"description"`
 
-	// Id 支払いインテントID
+	// Id 支払いフローID
 	Id string `json:"id"`
 
-	// LastPaymentError このPaymentFlowで発生した最後の支払いエラーです。
+	// LastPaymentError このPaymentFlowで発生した最後の支払いエラー
 	LastPaymentError *map[string]interface{} `json:"last_payment_error"`
 
 	// Livemode 本番環境かどうか
 	Livemode bool `json:"livemode"`
 
 	// Metadata メタデータ
-	Metadata *map[string]PaymentFlowResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
+	Metadata map[string]PaymentFlowResponse_Metadata_AdditionalProperties `json:"metadata"`
 
 	// NextAction プロパティが存在する場合、顧客が支払い設定を続けるために必要な対応が記載されています。
 	NextAction *map[string]interface{} `json:"next_action"`
 	Object     *string                 `json:"object,omitempty"`
 
-	// PaymentMethod 支払い方法ID
-	PaymentMethod *string `json:"payment_method"`
+	// PaymentMethodId 支払い方法ID
+	PaymentMethodId *string `json:"payment_method_id"`
 
-	// PaymentMethodOptions このPaymentFlowに固有の支払い方法の設定
+	// PaymentMethodOptions このPaymentFlow固有の支払い方法の設定
 	PaymentMethodOptions *map[string]interface{} `json:"payment_method_options"`
 
-	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
-	PaymentMethodTypes []string `json:"payment_method_types"`
+	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類のリスト
+	PaymentMethodTypes []PaymentMethodTypes `json:"payment_method_types"`
 
-	// ReceiptEmail 請求書の送信先メールアドレス。ライブモードで支払いに対して `receipt_email` を指定すると、メール設定に関係なく領収書が送信されます。
-	ReceiptEmail *string `json:"receipt_email"`
-
-	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。confirm=trueの場合のみ指定できます。
-	ReturnUrl        *string           `json:"return_url"`
-	SetupFutureUsage *Usage            `json:"setup_future_usage,omitempty"`
-	Status           PaymentFlowStatus `json:"status"`
+	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL
+	ReturnUrl *string           `json:"return_url"`
+	Status    PaymentFlowStatus `json:"status"`
 
 	// UpdatedAt 更新日時 (UTC, ISO 8601 形式)
 	UpdatedAt time.Time `json:"updated_at"`
@@ -1086,11 +1078,11 @@ type PaymentFlowStatus string
 
 // PaymentFlowUpdateRequest defines model for PaymentFlowUpdateRequest.
 type PaymentFlowUpdateRequest struct {
-	// Amount 支払い予定の金額。50円以上9,999,999円以下である必要があります。支払い手段によって上限金額は異なります。
+	// Amount 支払い予定の金額。50円以上9,999,999円以下である必要があります。
 	Amount *int `json:"amount,omitempty"`
 
-	// Customer このPaymentFlowに属する顧客のID（存在する場合）。この顧客以外にすでに紐づけられている支払い方法はこのPaymentFlowでは使用できません。
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId このPaymentFlowに関連付ける顧客のID
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Description オブジェクトにセットする任意の文字列。ユーザーには表示されません。
 	Description *string `json:"description,omitempty"`
@@ -1098,17 +1090,14 @@ type PaymentFlowUpdateRequest struct {
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentFlowUpdateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
 
-	// PaymentMethod 支払い方法ID
-	PaymentMethod        *string                      `json:"payment_method,omitempty"`
-	PaymentMethodOptions *PaymentMethodOptionsRequest `json:"payment_method_options,omitempty"`
+	// PaymentMethodId 支払い方法ID。customer_idの指定が必須です。Customerが所持するPaymentMethodのみ指定できます。payment_method_idを指定せず、Customerにdefault_payment_method_idが設定されている場合はそちらが自動でセットされます。
+	PaymentMethodId      *string                                 `json:"payment_method_id,omitempty"`
+	PaymentMethodOptions *PaymentFlowPaymentMethodOptionsRequest `json:"payment_method_options,omitempty"`
 
-	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
+	// PaymentMethodTypes このPaymentFlowで使用できる支払い方法の種類のリスト。 指定しない場合は、PAY.JPは支払い方法の設定から利用可能な支払い方法を動的に表示します。
 	PaymentMethodTypes *[]PaymentMethodTypes `json:"payment_method_types,omitempty"`
 
-	// ReceiptEmail 請求書の送信先メールアドレス。ライブモードで支払いに対して `receipt_email` を指定すると、メール設定に関係なく領収書が送信されます。
-	ReceiptEmail *string `json:"receipt_email,omitempty"`
-
-	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。confirm=trueの場合のみ指定できます。
+	// ReturnUrl 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。
 	ReturnUrl *string `json:"return_url,omitempty"`
 }
 
@@ -1130,8 +1119,8 @@ type PaymentFlowUpdateRequest_Metadata_AdditionalProperties struct {
 type PaymentMethodApplePayCreateRequest struct {
 	BillingDetails *PaymentMethodBillingDetailsRequest `json:"billing_details,omitempty"`
 
-	// Customer 顧客ID
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentMethodApplePayCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
@@ -1184,8 +1173,8 @@ type PaymentMethodApplePayUpdateRequest_Metadata_AdditionalProperties struct {
 
 // PaymentMethodAttachRequest defines model for PaymentMethodAttachRequest.
 type PaymentMethodAttachRequest struct {
-	// Customer 顧客ID
-	Customer string `json:"customer"`
+	// CustomerId 顧客ID
+	CustomerId string `json:"customer_id"`
 }
 
 // PaymentMethodBillingAddressRequest defines model for PaymentMethodBillingAddressRequest.
@@ -1278,8 +1267,8 @@ type PaymentMethodCardCreateRequest struct {
 	BillingDetails PaymentMethodCardBillingDetailsRequest `json:"billing_details"`
 	Card           PaymentMethodCreateCardDetailsRequest  `json:"card"`
 
-	// Customer 顧客ID
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentMethodCardCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
@@ -1331,8 +1320,11 @@ type PaymentMethodCardResponse struct {
 	// CreatedAt 作成日時 (UTC, ISO 8601 形式)
 	CreatedAt time.Time `json:"created_at"`
 
-	// Customer 顧客ID
-	Customer *string `json:"customer"`
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id"`
+
+	// DetachedAt 顧客からdetachされた日時 (UTC, ISO 8601 形式)
+	DetachedAt *time.Time `json:"detached_at"`
 
 	// Id ID
 	Id string `json:"id"`
@@ -1341,9 +1333,9 @@ type PaymentMethodCardResponse struct {
 	Livemode bool `json:"livemode"`
 
 	// Metadata メタデータ
-	Metadata *map[string]PaymentMethodCardResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-	Object   *string                                                             `json:"object,omitempty"`
-	Type     *PaymentMethodCardResponseType                                      `json:"type,omitempty"`
+	Metadata map[string]PaymentMethodCardResponse_Metadata_AdditionalProperties `json:"metadata"`
+	Object   *string                                                            `json:"object,omitempty"`
+	Type     PaymentMethodCardResponseType                                      `json:"type"`
 
 	// UpdatedAt 更新日時 (UTC, ISO 8601 形式)
 	UpdatedAt time.Time `json:"updated_at"`
@@ -1394,19 +1386,19 @@ type PaymentMethodCardUpdateRequest_Metadata_AdditionalProperties struct {
 // PaymentMethodConfigurationDetailsResponse defines model for PaymentMethodConfigurationDetailsResponse.
 type PaymentMethodConfigurationDetailsResponse struct {
 	// Active 設定が有効かどうか。
-	Active *bool                                      `json:"active,omitempty"`
-	Card   *PaymentMethodConfigurationSettingResponse `json:"card,omitempty"`
+	Active bool                                      `json:"active"`
+	Card   PaymentMethodConfigurationSettingResponse `json:"card"`
 
 	// Id ID
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 
 	// Livemode 本番環境かどうか
-	Livemode *bool `json:"livemode,omitempty"`
+	Livemode bool `json:"livemode"`
 
 	// Name 設定名
-	Name   *string                                    `json:"name"`
-	Object *string                                    `json:"object,omitempty"`
-	Paypay *PaymentMethodConfigurationSettingResponse `json:"paypay,omitempty"`
+	Name   *string                                   `json:"name"`
+	Object *string                                   `json:"object,omitempty"`
+	Paypay PaymentMethodConfigurationSettingResponse `json:"paypay"`
 }
 
 // PaymentMethodConfigurationDisplayPreference defines model for PaymentMethodConfigurationDisplayPreference.
@@ -1508,70 +1500,12 @@ type PaymentMethodListResponse struct {
 	Url string `json:"url"`
 }
 
-// PaymentMethodOptionsCardRequest defines model for PaymentMethodOptionsCardRequest.
-type PaymentMethodOptionsCardRequest struct {
-	// RequestExtendedAuthorization オーソリ期間の延長要求。
-	//
-	// | 指定できる値 |
-	// |:---|
-	// | **if_available**: オーソリ期間の延長が可能な場合に延長要求を行います。 |
-	// | **never**: オーソリ期間の延長要求を行いません。 |
-	RequestExtendedAuthorization *PaymentMethodOptionsCardRequestRequestExtendedAuthorization `json:"request_extended_authorization,omitempty"`
-
-	// RequestThreeDSecure 3Dセキュア認証の要求方法。
-	//
-	// | 指定できる値 |
-	// |:---|
-	// | **any**: 基本的に3Dセキュア認証を要求します。 |
-	// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
-	// <!-- | **challenge**: 3Dセキュア認証を手動で要求します。 | -->
-	RequestThreeDSecure *PaymentMethodOptionsCardRequestRequestThreeDSecure `json:"request_three_d_secure,omitempty"`
-
-	// SetupFutureUsage セットアップ後の使用方法。
-	//
-	// | 指定できる値 |
-	// |:---|
-	// | **off_session**: 顧客がその場にいない状態（例：定期課金や後日請求など）でも決済したい場合に使用します。事前の同意に基づいて自動的に課金されます。 |
-	// | **on_session**: 顧客が支払い操作中（例：Web画面で「支払う」ボタンを押す）でのみ決済できればいい場合に指定します。リアルタイムに同意が得られている状態です。 |
-	SetupFutureUsage *PaymentMethodOptionsCardRequestSetupFutureUsage `json:"setup_future_usage,omitempty"`
-}
-
-// PaymentMethodOptionsCardRequestRequestExtendedAuthorization オーソリ期間の延長要求。
-//
-// | 指定できる値 |
-// |:---|
-// | **if_available**: オーソリ期間の延長が可能な場合に延長要求を行います。 |
-// | **never**: オーソリ期間の延長要求を行いません。 |
-type PaymentMethodOptionsCardRequestRequestExtendedAuthorization string
-
-// PaymentMethodOptionsCardRequestRequestThreeDSecure 3Dセキュア認証の要求方法。
-//
-// | 指定できる値 |
-// |:---|
-// | **any**: 基本的に3Dセキュア認証を要求します。 |
-// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
-// <!-- | **challenge**: 3Dセキュア認証を手動で要求します。 | -->
-type PaymentMethodOptionsCardRequestRequestThreeDSecure string
-
-// PaymentMethodOptionsCardRequestSetupFutureUsage セットアップ後の使用方法。
-//
-// | 指定できる値 |
-// |:---|
-// | **off_session**: 顧客がその場にいない状態（例：定期課金や後日請求など）でも決済したい場合に使用します。事前の同意に基づいて自動的に課金されます。 |
-// | **on_session**: 顧客が支払い操作中（例：Web画面で「支払う」ボタンを押す）でのみ決済できればいい場合に指定します。リアルタイムに同意が得られている状態です。 |
-type PaymentMethodOptionsCardRequestSetupFutureUsage string
-
-// PaymentMethodOptionsRequest defines model for PaymentMethodOptionsRequest.
-type PaymentMethodOptionsRequest struct {
-	Card PaymentMethodOptionsCardRequest `json:"card"`
-}
-
 // PaymentMethodPayPayCreateRequest defines model for PaymentMethodPayPayCreateRequest.
 type PaymentMethodPayPayCreateRequest struct {
 	BillingDetails *PaymentMethodBillingDetailsRequest `json:"billing_details,omitempty"`
 
-	// Customer 顧客ID
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentMethodPayPayCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
@@ -1601,8 +1535,11 @@ type PaymentMethodPayPayResponse struct {
 	// CreatedAt 作成日時 (UTC, ISO 8601 形式)
 	CreatedAt time.Time `json:"created_at"`
 
-	// Customer 顧客ID
-	Customer *string `json:"customer"`
+	// CustomerId 顧客ID
+	CustomerId *string `json:"customer_id"`
+
+	// DetachedAt 顧客からdetachされた日時 (UTC, ISO 8601 形式)
+	DetachedAt *time.Time `json:"detached_at"`
 
 	// Id ID
 	Id string `json:"id"`
@@ -1611,9 +1548,9 @@ type PaymentMethodPayPayResponse struct {
 	Livemode bool `json:"livemode"`
 
 	// Metadata メタデータ
-	Metadata *map[string]PaymentMethodPayPayResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-	Object   *string                                                               `json:"object,omitempty"`
-	Type     string                                                                `json:"type"`
+	Metadata map[string]PaymentMethodPayPayResponse_Metadata_AdditionalProperties `json:"metadata"`
+	Object   *string                                                              `json:"object,omitempty"`
+	Type     string                                                               `json:"type"`
 
 	// UpdatedAt 更新日時 (UTC, ISO 8601 形式)
 	UpdatedAt time.Time `json:"updated_at"`
@@ -1679,9 +1616,9 @@ type PaymentRefundCreateRequest struct {
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]PaymentRefundCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
 
-	// PaymentFlow 返金対象となる PaymentFlow の ID
-	PaymentFlow string               `json:"payment_flow"`
-	Reason      *PaymentRefundReason `json:"reason,omitempty"`
+	// PaymentFlowId 返金対象となる PaymentFlow の ID
+	PaymentFlowId string               `json:"payment_flow_id"`
+	Reason        *PaymentRefundReason `json:"reason,omitempty"`
 }
 
 // PaymentRefundCreateRequestMetadata0 defines model for .
@@ -1700,7 +1637,7 @@ type PaymentRefundCreateRequest_Metadata_AdditionalProperties struct {
 
 // PaymentRefundListResponse defines model for PaymentRefundListResponse.
 type PaymentRefundListResponse struct {
-	// Data 支払いインテントリスト
+	// Data 返金リスト
 	Data []PaymentRefundResponse `json:"data"`
 
 	// HasMore 次のページがあるかどうか
@@ -1729,13 +1666,13 @@ type PaymentRefundResponse struct {
 	Livemode bool `json:"livemode"`
 
 	// Metadata メタデータ
-	Metadata *map[string]PaymentRefundResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-	Object   *string                                                         `json:"object,omitempty"`
+	Metadata map[string]PaymentRefundResponse_Metadata_AdditionalProperties `json:"metadata"`
+	Object   *string                                                        `json:"object,omitempty"`
 
-	// PaymentFlow 返金対象となる PaymentFlow の ID
-	PaymentFlow string              `json:"payment_flow"`
-	Reason      PaymentRefundReason `json:"reason"`
-	Status      PaymentRefundStatus `json:"status"`
+	// PaymentFlowId 返金対象となる PaymentFlow の ID
+	PaymentFlowId string              `json:"payment_flow_id"`
+	Reason        PaymentRefundReason `json:"reason"`
+	Status        PaymentRefundStatus `json:"status"`
 
 	// UpdatedAt 更新時の日時 (UTC, ISO 8601 形式)
 	UpdatedAt time.Time `json:"updated_at"`
@@ -1817,9 +1754,9 @@ type PaymentTransactionResponse struct {
 	// ResourceId PaymentTransaction生成の元になったリソースのID
 	ResourceId string `json:"resource_id"`
 
-	// Term 期間ID
-	Term string                 `json:"term"`
-	Type PaymentTransactionType `json:"type"`
+	// TermId 期間ID
+	TermId string                 `json:"term_id"`
+	Type   PaymentTransactionType `json:"type"`
 
 	// UpdatedAt 更新日時 (UTC, ISO 8601 形式)
 	UpdatedAt time.Time `json:"updated_at"`
@@ -1846,8 +1783,8 @@ type PriceCreateRequest struct {
 	// Nickname 価格の名称。PAY.JP のダッシュボードで識別するためのもので、顧客には表示されません。
 	Nickname *string `json:"nickname,omitempty"`
 
-	// Product この価格が紐付く商品のID。
-	Product string `json:"product"`
+	// ProductId この価格が紐付く商品のID。
+	ProductId string `json:"product_id"`
 
 	// UnitAmount 価格の単価。0以上の整数となります。
 	UnitAmount int `json:"unit_amount"`
@@ -1870,37 +1807,51 @@ type PriceCreateRequest_Metadata_AdditionalProperties struct {
 // PriceDetailsResponse defines model for PriceDetailsResponse.
 type PriceDetailsResponse struct {
 	// Active 価格が有効かどうか。デフォルトは `true`。
-	Active *bool `json:"active,omitempty"`
+	Active bool `json:"active"`
 
 	// CreatedAt 支払い方法作成時の日時 (UTC, ISO 8601 形式)
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Currency  *Currency  `json:"currency,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Currency  Currency  `json:"currency"`
 
 	// Id 料金ID
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 
 	// Livemode 本番環境かどうか
-	Livemode *bool `json:"livemode,omitempty"`
+	Livemode bool `json:"livemode"`
 
 	// LookupKey この価格を検索するためのキー。
 	LookupKey *string `json:"lookup_key"`
 
 	// Metadata メタデータ
-	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]PriceDetailsResponse_Metadata_AdditionalProperties `json:"metadata"`
 
 	// Nickname 価格の名称。PAY.JP のダッシュボードで識別するためのもので、顧客には表示されません。
 	Nickname *string `json:"nickname"`
 	Object   *string `json:"object,omitempty"`
 
-	// Product この価格が紐付く商品のID。
-	Product *string    `json:"product,omitempty"`
-	Type    *PriceType `json:"type,omitempty"`
+	// ProductId この価格が紐付く商品のID。
+	ProductId string    `json:"product_id"`
+	Type      PriceType `json:"type"`
 
 	// UnitAmount 価格の単価。0以上の整数となります。
-	UnitAmount *int `json:"unit_amount,omitempty"`
+	UnitAmount int `json:"unit_amount"`
 
 	// UpdatedAt 支払い方法更新時の日時 (UTC, ISO 8601 形式)
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
+// PriceDetailsResponseMetadata0 defines model for .
+type PriceDetailsResponseMetadata0 = string
+
+// PriceDetailsResponseMetadata1 defines model for .
+type PriceDetailsResponseMetadata1 = int
+
+// PriceDetailsResponseMetadata2 defines model for .
+type PriceDetailsResponseMetadata2 = bool
+
+// PriceDetailsResponse_Metadata_AdditionalProperties defines model for PriceDetailsResponse.metadata.AdditionalProperties.
+type PriceDetailsResponse_Metadata_AdditionalProperties struct {
+	union json.RawMessage
 }
 
 // PriceListResponse defines model for PriceListResponse.
@@ -1952,8 +1903,8 @@ type ProductCreateRequest struct {
 	// Active 商品が購入可能かどうか。デフォルトは `true`。
 	Active *bool `json:"active,omitempty"`
 
-	// DefaultPrice この商品のデフォルト価格である価格オブジェクトのID。
-	DefaultPrice *string `json:"default_price,omitempty"`
+	// DefaultPriceId この商品のデフォルト価格である価格オブジェクトのID。
+	DefaultPriceId *string `json:"default_price_id,omitempty"`
 
 	// Description Checkoutなどで顧客に表示される商品説明。
 	Description *string `json:"description,omitempty"`
@@ -1986,8 +1937,8 @@ type ProductDetailsResponse struct {
 	// Active 商品が購入可能かどうか。デフォルトは `true`。
 	Active bool `json:"active"`
 
-	// DefaultPrice この商品のデフォルト価格である価格オブジェクトのID。
-	DefaultPrice *string `json:"default_price"`
+	// DefaultPriceId この商品のデフォルト価格である価格オブジェクトのID。
+	DefaultPriceId *string `json:"default_price_id"`
 
 	// Description Checkoutなどで顧客に表示される商品説明。
 	Description *string `json:"description"`
@@ -2023,8 +1974,8 @@ type ProductUpdateRequest struct {
 	// Active 商品が購入可能かどうか。デフォルトは `true`。
 	Active *bool `json:"active,omitempty"`
 
-	// DefaultPrice この商品のデフォルト価格である価格オブジェクトのID。
-	DefaultPrice *string `json:"default_price,omitempty"`
+	// DefaultPriceId この商品のデフォルト価格である価格オブジェクトのID。
+	DefaultPriceId *string `json:"default_price_id,omitempty"`
 
 	// Description Checkoutなどで顧客に表示される商品説明。
 	Description *string `json:"description,omitempty"`
@@ -2047,41 +1998,21 @@ type SetupFlowCancelRequest struct {
 // SetupFlowCancellationReason defines model for SetupFlowCancellationReason.
 type SetupFlowCancellationReason string
 
-// SetupFlowConfirmRequest defines model for SetupFlowConfirmRequest.
-type SetupFlowConfirmRequest struct {
-	// PaymentMethodOptions この SetupFlow の支払い方法の個別設定。
-	PaymentMethodOptions *map[string]interface{} `json:"payment_method_options,omitempty"`
-
-	// ReturnUrl 顧客が支払いを完了後、あるいはキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。`confirm=true` の場合のみ指定できます。
-	ReturnUrl *string `json:"return_url,omitempty"`
-
-	// UsePayjpSdk PAY.JP SDK を使用するかどうか
-	UsePayjpSdk *bool `json:"use_payjp_sdk,omitempty"`
-}
-
 // SetupFlowCreateRequest defines model for SetupFlowCreateRequest.
 type SetupFlowCreateRequest struct {
-	// Confirm SetupFlow をすぐに確定しようとする場合に `true` を設定します。このパラメーターのデフォルト値は `false` です。カードが登録済みの支払い方法である場合は、追加の認証が必要な場合に備えて `return_url` を指定できます。
-	Confirm *bool `json:"confirm,omitempty"`
-
-	// Customer この SetupFlow が属する顧客の ID。SetupFlow に PaymentMethod が設定されている場合、SetupFlow の設定が成功するとその PaymentMethod は顧客に紐付きます。別の顧客に紐付いている PaymentMethod をこの SetupFlow で使用することはできません。
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId この SetupFlow が属する顧客の ID。SetupFlow に PaymentMethod が設定されている場合、SetupFlow の設定が成功するとその PaymentMethod は顧客に紐付きます。別の顧客に紐付いている PaymentMethod をこの SetupFlow で使用することはできません。
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Description 説明。顧客に表示されます。
 	Description *string `json:"description,omitempty"`
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
-	Metadata *map[string]SetupFlowCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-
-	// PaymentMethodOptions この SetupFlow の支払い方法の個別設定。
-	PaymentMethodOptions *map[string]interface{} `json:"payment_method_options,omitempty"`
+	Metadata             *map[string]SetupFlowCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
+	PaymentMethodOptions *SetupFlowPaymentMethodOptionsRequest                            `json:"payment_method_options,omitempty"`
 
 	// PaymentMethodTypes この SetupFlow で使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合、ダッシュボードで利用可能な状態にしている支払い方法が自動的に設定されます。
-	PaymentMethodTypes *[]SetupFlowCreateRequestPaymentMethodTypes `json:"payment_method_types"`
-
-	// ReturnUrl 顧客が支払いを完了後、あるいはキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。`confirm=true` の場合のみ指定できます。
-	ReturnUrl *string `json:"return_url,omitempty"`
-	Usage     *Usage  `json:"usage,omitempty"`
+	PaymentMethodTypes *[]SetupFlowCreateRequestPaymentMethodTypes `json:"payment_method_types,omitempty"`
+	Usage              *Usage                                      `json:"usage,omitempty"`
 }
 
 // SetupFlowCreateRequestMetadata0 defines model for .
@@ -2133,6 +2064,30 @@ type SetupFlowListResponse struct {
 	Url string `json:"url"`
 }
 
+// SetupFlowPaymentMethodOptionsCardRequest defines model for SetupFlowPaymentMethodOptionsCardRequest.
+type SetupFlowPaymentMethodOptionsCardRequest struct {
+	// RequestThreeDSecure 3Dセキュア認証の要求方法。
+	//
+	// | 指定できる値 |
+	// |:---|
+	// | **any**: 3Dセキュア認証を要求します。 |
+	// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
+	RequestThreeDSecure *SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecure `json:"request_three_d_secure,omitempty"`
+}
+
+// SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecure 3Dセキュア認証の要求方法。
+//
+// | 指定できる値 |
+// |:---|
+// | **any**: 3Dセキュア認証を要求します。 |
+// | **automatic**: 必要な場合にのみ3Dセキュア認証を要求します。 |
+type SetupFlowPaymentMethodOptionsCardRequestRequestThreeDSecure string
+
+// SetupFlowPaymentMethodOptionsRequest defines model for SetupFlowPaymentMethodOptionsRequest.
+type SetupFlowPaymentMethodOptionsRequest struct {
+	Card *SetupFlowPaymentMethodOptionsCardRequest `json:"card,omitempty"`
+}
+
 // SetupFlowResponse defines model for SetupFlowResponse.
 type SetupFlowResponse struct {
 	// ClientSecret この SetupFlow のクライアントシークレットです。フロントエンドで公開鍵と合わせて使用し、SetupFlow の取得や支払い処理を行います。**この値はこの SetupFlow の支払いを行う顧客以外へ公開しないでください。
@@ -2141,8 +2096,8 @@ type SetupFlowResponse struct {
 	// CreatedAt 作成日時 (UTC, ISO 8601 形式)
 	CreatedAt time.Time `json:"created_at"`
 
-	// Customer この SetupFlow が属する顧客の ID。SetupFlow に PaymentMethod が設定されている場合、SetupFlow の設定が成功するとその PaymentMethod は顧客に紐付きます。別の顧客に紐付いている PaymentMethod をこの SetupFlow で使用することはできません。
-	Customer *string `json:"customer"`
+	// CustomerId この SetupFlow が属する顧客の ID。SetupFlow に PaymentMethod が設定されている場合、SetupFlow の設定が成功するとその PaymentMethod は顧客に紐付きます。別の顧客に紐付いている PaymentMethod をこの SetupFlow で使用することはできません。
+	CustomerId *string `json:"customer_id"`
 
 	// Description 説明。顧客に表示されます。
 	Description *string `json:"description"`
@@ -2157,20 +2112,20 @@ type SetupFlowResponse struct {
 	Livemode bool `json:"livemode"`
 
 	// Metadata メタデータ
-	Metadata *map[string]SetupFlowResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
+	Metadata map[string]SetupFlowResponse_Metadata_AdditionalProperties `json:"metadata"`
 
 	// NextAction 顧客が支払い設定を続けるために必要な対応がある場合、対応方法が記載されています。
 	NextAction *map[string]interface{} `json:"next_action"`
 	Object     *string                 `json:"object,omitempty"`
 
-	// PaymentMethod この SetupFlow に紐付ける決済方法のID
-	PaymentMethod *string `json:"payment_method"`
+	// PaymentMethodId この SetupFlow に紐付ける決済方法のID
+	PaymentMethodId *string `json:"payment_method_id"`
 
 	// PaymentMethodOptions この SetupFlow の支払い方法の個別設定。
 	PaymentMethodOptions *map[string]interface{} `json:"payment_method_options"`
 
 	// PaymentMethodTypes この SetupFlow で使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合、ダッシュボードで利用可能な状態にしている支払い方法が自動的に設定されます。
-	PaymentMethodTypes []string `json:"payment_method_types"`
+	PaymentMethodTypes []PaymentMethodTypes `json:"payment_method_types"`
 
 	// ReturnUrl 顧客が支払いを完了後、あるいはキャンセルした後にリダイレクトされるURL。アプリにリダイレクトしたい場合は URI Scheme を指定できます。`confirm=true` の場合のみ指定できます。
 	ReturnUrl *string         `json:"return_url"`
@@ -2199,20 +2154,18 @@ type SetupFlowStatus string
 
 // SetupFlowUpdateRequest defines model for SetupFlowUpdateRequest.
 type SetupFlowUpdateRequest struct {
-	// Customer この SetupFlow が属する顧客の ID。SetupFlow に PaymentMethod が設定されている場合、SetupFlow の設定が成功するとその PaymentMethod は顧客に紐付きます。別の顧客に紐付いている PaymentMethod をこの SetupFlow で使用することはできません。
-	Customer *string `json:"customer,omitempty"`
+	// CustomerId この SetupFlow が属する顧客の ID。SetupFlow に PaymentMethod が設定されている場合、SetupFlow の設定が成功するとその PaymentMethod は顧客に紐付きます。別の顧客に紐付いている PaymentMethod をこの SetupFlow で使用することはできません。
+	CustomerId *string `json:"customer_id,omitempty"`
 
 	// Description 説明。顧客に表示されます。
 	Description *string `json:"description,omitempty"`
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
-	Metadata *map[string]SetupFlowUpdateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-
-	// PaymentMethodOptions この SetupFlow の支払い方法の個別設定。
-	PaymentMethodOptions *map[string]interface{} `json:"payment_method_options,omitempty"`
+	Metadata             *map[string]SetupFlowUpdateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
+	PaymentMethodOptions *SetupFlowPaymentMethodOptionsRequest                            `json:"payment_method_options,omitempty"`
 
 	// PaymentMethodTypes この SetupFlow で使用できる支払い方法の種類（カードなど）のリストです。 指定しない場合、ダッシュボードで利用可能な状態にしている支払い方法が自動的に設定されます。
-	PaymentMethodTypes *[]SetupFlowUpdateRequestPaymentMethodTypes `json:"payment_method_types"`
+	PaymentMethodTypes *[]SetupFlowUpdateRequestPaymentMethodTypes `json:"payment_method_types,omitempty"`
 }
 
 // SetupFlowUpdateRequestMetadata0 defines model for .
@@ -2264,8 +2217,8 @@ type StatementListResponse struct {
 
 // StatementResponse defines model for StatementResponse.
 type StatementResponse struct {
-	// Balance 該当する場合の残高ID
-	Balance *string `json:"balance"`
+	// BalanceId 該当する場合の残高ID
+	BalanceId *string `json:"balance_id"`
 
 	// CreatedAt 更新時の日時 (UTC, ISO 8601 形式)
 	CreatedAt time.Time `json:"created_at"`
@@ -2280,12 +2233,9 @@ type StatementResponse struct {
 	Livemode bool `json:"livemode"`
 
 	// Net 含まれるstatement_itemの金額合計
-	Net    int     `json:"net"`
-	Object *string `json:"object,omitempty"`
-
-	// Tenant 該当する場合のテナントID
-	Tenant *string       `json:"tenant"`
-	Term   *TermResponse `json:"term,omitempty"`
+	Net    int          `json:"net"`
+	Object *string      `json:"object,omitempty"`
+	Term   TermResponse `json:"term"`
 
 	// Title 取引明細のタイトル
 	Title *string `json:"title"`
@@ -2354,16 +2304,16 @@ type TaxRateCreateRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// DisplayName 表示名。顧客に表示されます。
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName string `json:"display_name"`
 
 	// Inclusive 税込みかどうか。税込 = `true` 税抜 = `false`
-	Inclusive *bool `json:"inclusive,omitempty"`
+	Inclusive bool `json:"inclusive"`
 
 	// Metadata キーバリューの任意のデータを格納できます。<a href="https://docs.pay.jp/v2/metadata">詳細はメタデータのドキュメントを参照してください。</a>
 	Metadata *map[string]TaxRateCreateRequest_Metadata_AdditionalProperties `json:"metadata,omitempty"`
 
 	// Percentage 税率を % 単位で指定します（例： 10%の場合は「10」と入力）
-	Percentage *float32 `json:"percentage,omitempty"`
+	Percentage float32 `json:"percentage"`
 }
 
 // TaxRateCreateRequestMetadata0 defines model for .
@@ -2383,28 +2333,27 @@ type TaxRateCreateRequest_Metadata_AdditionalProperties struct {
 // TaxRateDetailsResponse defines model for TaxRateDetailsResponse.
 type TaxRateDetailsResponse struct {
 	// Active この税率が有効であるかどうか。無効にした場合でも、すでに設定されている定期課金などでは使用可能です。
-	Active  *bool    `json:"active,omitempty"`
-	Country *Country `json:"country,omitempty"`
+	Active  bool    `json:"active"`
+	Country Country `json:"country"`
 
 	// Description 説明。ダッシュボード内のみで表示され、顧客には表示されません。
 	Description *string `json:"description"`
 
 	// DisplayName 表示名。顧客に表示されます。
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName string `json:"display_name"`
 
 	// Id ID
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 
 	// Inclusive 税込みかどうか。税込 = `true` 税抜 = `false`
-	Inclusive *bool `json:"inclusive,omitempty"`
+	Inclusive bool `json:"inclusive"`
 
 	// Metadata メタデータ
-	Metadata *map[string]TaxRateDetailsResponse_Metadata_AdditionalProperties `json:"metadata,omitempty"`
-	Object   *string                                                          `json:"object,omitempty"`
+	Metadata map[string]TaxRateDetailsResponse_Metadata_AdditionalProperties `json:"metadata"`
+	Object   *string                                                         `json:"object,omitempty"`
 
 	// Percentage 税率を % 単位で指定します（例： 10%の場合は「10」と入力）
-	Percentage *float32 `json:"percentage,omitempty"`
-	TaxType    *TaxType `json:"tax_type,omitempty"`
+	Percentage float32 `json:"percentage"`
 }
 
 // TaxRateDetailsResponseMetadata0 defines model for .
@@ -2462,9 +2411,6 @@ type TaxRateUpdateRequestMetadata2 = bool
 type TaxRateUpdateRequest_Metadata_AdditionalProperties struct {
 	union json.RawMessage
 }
-
-// TaxType defines model for TaxType.
-type TaxType string
 
 // TermListResponse defines model for TermListResponse.
 type TermListResponse struct {
@@ -2545,14 +2491,17 @@ type GetAllCheckoutSessionsParams struct {
 	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 }
 
-// GetCheckoutSessionParams defines parameters for GetCheckoutSession.
-type GetCheckoutSessionParams struct {
-	// Expand レスポンス返却時に展開したいオブジェクト名。指定したオブジェクトを同時に取得し、レスポンスに乗せて返却します。
-	Expand *[]GetCheckoutSessionParamsExpand `form:"expand,omitempty" json:"expand,omitempty"`
-}
+// GetAllCheckoutSessionLineItemsParams defines parameters for GetAllCheckoutSessionLineItems.
+type GetAllCheckoutSessionLineItemsParams struct {
+	// Limit 取得するデータの最大件数
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
-// GetCheckoutSessionParamsExpand defines parameters for GetCheckoutSession.
-type GetCheckoutSessionParamsExpand string
+	// StartingAfter このIDより後のデータを取得
+	StartingAfter *string `form:"starting_after,omitempty" json:"starting_after,omitempty"`
+
+	// EndingBefore このIDより前のデータを取得
+	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
+}
 
 // GetAllCustomersParams defines parameters for GetAllCustomers.
 type GetAllCustomersParams struct {
@@ -2599,8 +2548,8 @@ type GetAllEventsParams struct {
 	Type *string `form:"type,omitempty" json:"type,omitempty"`
 }
 
-// GetAllPaymentFlowParams defines parameters for GetAllPaymentFlow.
-type GetAllPaymentFlowParams struct {
+// GetAllPaymentFlowsParams defines parameters for GetAllPaymentFlows.
+type GetAllPaymentFlowsParams struct {
 	// Limit 取得するデータの最大件数
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
@@ -2612,6 +2561,18 @@ type GetAllPaymentFlowParams struct {
 
 	// CustomerId 指定した顧客のデータのみを取得
 	CustomerId *string `form:"customer_id,omitempty" json:"customer_id,omitempty"`
+}
+
+// GetPaymentFlowRefundsParams defines parameters for GetPaymentFlowRefunds.
+type GetPaymentFlowRefundsParams struct {
+	// Limit 取得するデータの最大件数
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// StartingAfter このIDより後のデータを取得
+	StartingAfter *string `form:"starting_after,omitempty" json:"starting_after,omitempty"`
+
+	// EndingBefore このIDより前のデータを取得
+	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 }
 
 // GetAllPaymentMethodConfigurationsParams defines parameters for GetAllPaymentMethodConfigurations.
@@ -2650,8 +2611,8 @@ type GetAllPaymentRefundsParams struct {
 	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 }
 
-// GetAllPaymentTransactionParams defines parameters for GetAllPaymentTransaction.
-type GetAllPaymentTransactionParams struct {
+// GetAllPaymentTransactionsParams defines parameters for GetAllPaymentTransactions.
+type GetAllPaymentTransactionsParams struct {
 	// Limit 取得するデータの最大件数
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
@@ -2681,6 +2642,9 @@ type GetAllPricesParams struct {
 
 	// EndingBefore このIDより前のデータを取得
 	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
+
+	// LookupKeys 価格を動的に取得するために使用される検索キー。
+	LookupKeys *[]string `form:"lookup_keys,omitempty" json:"lookup_keys,omitempty"`
 }
 
 // GetAllProductsParams defines parameters for GetAllProducts.
@@ -2695,8 +2659,8 @@ type GetAllProductsParams struct {
 	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 }
 
-// GetAllSetupFlowParams defines parameters for GetAllSetupFlow.
-type GetAllSetupFlowParams struct {
+// GetAllSetupFlowsParams defines parameters for GetAllSetupFlows.
+type GetAllSetupFlowsParams struct {
 	// Limit 取得するデータの最大件数
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
@@ -2724,20 +2688,11 @@ type GetAllStatementsParams struct {
 	// EndingBefore このIDより前のデータを取得
 	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 
-	// Owner オーナータイプでフィルタ (merchant または tenant)
-	Owner *string `form:"owner,omitempty" json:"owner,omitempty"`
-
-	// SourceTransfer 送金元IDでフィルタ
-	SourceTransfer *string `form:"source_transfer,omitempty" json:"source_transfer,omitempty"`
-
-	// Tenant テナントIDでフィルタ
-	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
-
 	// Type 明細タイプでフィルタ
 	Type *StatementType `form:"type,omitempty" json:"type,omitempty"`
 
-	// Term 期間IDでフィルタ
-	Term *string `form:"term,omitempty" json:"term,omitempty"`
+	// TermId 期間IDでフィルタ
+	TermId *string `form:"term_id,omitempty" json:"term_id,omitempty"`
 }
 
 // GetAllTaxRatesParams defines parameters for GetAllTaxRates.
@@ -2752,13 +2707,16 @@ type GetAllTaxRatesParams struct {
 	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 }
 
-// GetAllTermParams defines parameters for GetAllTerm.
-type GetAllTermParams struct {
+// GetAllTermsParams defines parameters for GetAllTerms.
+type GetAllTermsParams struct {
 	// Limit 取得するデータの最大件数
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
-	// Offset データ取得を行う開始位置
-	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+	// StartingAfter このIDより後のデータを取得
+	StartingAfter *string `form:"starting_after,omitempty" json:"starting_after,omitempty"`
+
+	// EndingBefore このIDより前のデータを取得
+	EndingBefore *string `form:"ending_before,omitempty" json:"ending_before,omitempty"`
 
 	// SinceStartAt start_atが指定した日付以降のデータを取得
 	SinceStartAt *time.Time `form:"since_start_at,omitempty" json:"since_start_at,omitempty"`
@@ -2832,9 +2790,6 @@ type UpdateSetupFlowJSONRequestBody = SetupFlowUpdateRequest
 
 // CancelSetupFlowJSONRequestBody defines body for CancelSetupFlow for application/json ContentType.
 type CancelSetupFlowJSONRequestBody = SetupFlowCancelRequest
-
-// ConfirmSetupFlowJSONRequestBody defines body for ConfirmSetupFlow for application/json ContentType.
-type ConfirmSetupFlowJSONRequestBody = SetupFlowConfirmRequest
 
 // CreateTaxRateJSONRequestBody defines body for CreateTaxRate for application/json ContentType.
 type CreateTaxRateJSONRequestBody = TaxRateCreateRequest
@@ -2930,68 +2885,6 @@ func (t *CheckoutSessionCreateRequest_Metadata_AdditionalProperties) UnmarshalJS
 	return err
 }
 
-// AsCheckoutSessionDetailsResponseCustomer0 returns the union data inside the CheckoutSessionDetailsResponse_Customer as a CheckoutSessionDetailsResponseCustomer0
-func (t CheckoutSessionDetailsResponse_Customer) AsCheckoutSessionDetailsResponseCustomer0() (CheckoutSessionDetailsResponseCustomer0, error) {
-	var body CheckoutSessionDetailsResponseCustomer0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCheckoutSessionDetailsResponseCustomer0 overwrites any union data inside the CheckoutSessionDetailsResponse_Customer as the provided CheckoutSessionDetailsResponseCustomer0
-func (t *CheckoutSessionDetailsResponse_Customer) FromCheckoutSessionDetailsResponseCustomer0(v CheckoutSessionDetailsResponseCustomer0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCheckoutSessionDetailsResponseCustomer0 performs a merge with any union data inside the CheckoutSessionDetailsResponse_Customer, using the provided CheckoutSessionDetailsResponseCustomer0
-func (t *CheckoutSessionDetailsResponse_Customer) MergeCheckoutSessionDetailsResponseCustomer0(v CheckoutSessionDetailsResponseCustomer0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsCustomerResponse returns the union data inside the CheckoutSessionDetailsResponse_Customer as a CustomerResponse
-func (t CheckoutSessionDetailsResponse_Customer) AsCustomerResponse() (CustomerResponse, error) {
-	var body CustomerResponse
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCustomerResponse overwrites any union data inside the CheckoutSessionDetailsResponse_Customer as the provided CustomerResponse
-func (t *CheckoutSessionDetailsResponse_Customer) FromCustomerResponse(v CustomerResponse) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCustomerResponse performs a merge with any union data inside the CheckoutSessionDetailsResponse_Customer, using the provided CustomerResponse
-func (t *CheckoutSessionDetailsResponse_Customer) MergeCustomerResponse(v CustomerResponse) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CheckoutSessionDetailsResponse_Customer) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CheckoutSessionDetailsResponse_Customer) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsCheckoutSessionDetailsResponseMetadata0 returns the union data inside the CheckoutSessionDetailsResponse_Metadata_AdditionalProperties as a CheckoutSessionDetailsResponseMetadata0
 func (t CheckoutSessionDetailsResponse_Metadata_AdditionalProperties) AsCheckoutSessionDetailsResponseMetadata0() (CheckoutSessionDetailsResponseMetadata0, error) {
 	var body CheckoutSessionDetailsResponseMetadata0
@@ -3076,130 +2969,6 @@ func (t CheckoutSessionDetailsResponse_Metadata_AdditionalProperties) MarshalJSO
 }
 
 func (t *CheckoutSessionDetailsResponse_Metadata_AdditionalProperties) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCheckoutSessionDetailsResponsePaymentFlow0 returns the union data inside the CheckoutSessionDetailsResponse_PaymentFlow as a CheckoutSessionDetailsResponsePaymentFlow0
-func (t CheckoutSessionDetailsResponse_PaymentFlow) AsCheckoutSessionDetailsResponsePaymentFlow0() (CheckoutSessionDetailsResponsePaymentFlow0, error) {
-	var body CheckoutSessionDetailsResponsePaymentFlow0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCheckoutSessionDetailsResponsePaymentFlow0 overwrites any union data inside the CheckoutSessionDetailsResponse_PaymentFlow as the provided CheckoutSessionDetailsResponsePaymentFlow0
-func (t *CheckoutSessionDetailsResponse_PaymentFlow) FromCheckoutSessionDetailsResponsePaymentFlow0(v CheckoutSessionDetailsResponsePaymentFlow0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCheckoutSessionDetailsResponsePaymentFlow0 performs a merge with any union data inside the CheckoutSessionDetailsResponse_PaymentFlow, using the provided CheckoutSessionDetailsResponsePaymentFlow0
-func (t *CheckoutSessionDetailsResponse_PaymentFlow) MergeCheckoutSessionDetailsResponsePaymentFlow0(v CheckoutSessionDetailsResponsePaymentFlow0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsPaymentFlowResponse returns the union data inside the CheckoutSessionDetailsResponse_PaymentFlow as a PaymentFlowResponse
-func (t CheckoutSessionDetailsResponse_PaymentFlow) AsPaymentFlowResponse() (PaymentFlowResponse, error) {
-	var body PaymentFlowResponse
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPaymentFlowResponse overwrites any union data inside the CheckoutSessionDetailsResponse_PaymentFlow as the provided PaymentFlowResponse
-func (t *CheckoutSessionDetailsResponse_PaymentFlow) FromPaymentFlowResponse(v PaymentFlowResponse) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePaymentFlowResponse performs a merge with any union data inside the CheckoutSessionDetailsResponse_PaymentFlow, using the provided PaymentFlowResponse
-func (t *CheckoutSessionDetailsResponse_PaymentFlow) MergePaymentFlowResponse(v PaymentFlowResponse) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CheckoutSessionDetailsResponse_PaymentFlow) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CheckoutSessionDetailsResponse_PaymentFlow) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsCheckoutSessionDetailsResponseSetupFlow0 returns the union data inside the CheckoutSessionDetailsResponse_SetupFlow as a CheckoutSessionDetailsResponseSetupFlow0
-func (t CheckoutSessionDetailsResponse_SetupFlow) AsCheckoutSessionDetailsResponseSetupFlow0() (CheckoutSessionDetailsResponseSetupFlow0, error) {
-	var body CheckoutSessionDetailsResponseSetupFlow0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCheckoutSessionDetailsResponseSetupFlow0 overwrites any union data inside the CheckoutSessionDetailsResponse_SetupFlow as the provided CheckoutSessionDetailsResponseSetupFlow0
-func (t *CheckoutSessionDetailsResponse_SetupFlow) FromCheckoutSessionDetailsResponseSetupFlow0(v CheckoutSessionDetailsResponseSetupFlow0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCheckoutSessionDetailsResponseSetupFlow0 performs a merge with any union data inside the CheckoutSessionDetailsResponse_SetupFlow, using the provided CheckoutSessionDetailsResponseSetupFlow0
-func (t *CheckoutSessionDetailsResponse_SetupFlow) MergeCheckoutSessionDetailsResponseSetupFlow0(v CheckoutSessionDetailsResponseSetupFlow0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsSetupFlowResponse returns the union data inside the CheckoutSessionDetailsResponse_SetupFlow as a SetupFlowResponse
-func (t CheckoutSessionDetailsResponse_SetupFlow) AsSetupFlowResponse() (SetupFlowResponse, error) {
-	var body SetupFlowResponse
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSetupFlowResponse overwrites any union data inside the CheckoutSessionDetailsResponse_SetupFlow as the provided SetupFlowResponse
-func (t *CheckoutSessionDetailsResponse_SetupFlow) FromSetupFlowResponse(v SetupFlowResponse) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSetupFlowResponse performs a merge with any union data inside the CheckoutSessionDetailsResponse_SetupFlow, using the provided SetupFlowResponse
-func (t *CheckoutSessionDetailsResponse_SetupFlow) MergeSetupFlowResponse(v SetupFlowResponse) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CheckoutSessionDetailsResponse_SetupFlow) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CheckoutSessionDetailsResponse_SetupFlow) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -5264,6 +5033,94 @@ func (t *PriceCreateRequest_Metadata_AdditionalProperties) UnmarshalJSON(b []byt
 	return err
 }
 
+// AsPriceDetailsResponseMetadata0 returns the union data inside the PriceDetailsResponse_Metadata_AdditionalProperties as a PriceDetailsResponseMetadata0
+func (t PriceDetailsResponse_Metadata_AdditionalProperties) AsPriceDetailsResponseMetadata0() (PriceDetailsResponseMetadata0, error) {
+	var body PriceDetailsResponseMetadata0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPriceDetailsResponseMetadata0 overwrites any union data inside the PriceDetailsResponse_Metadata_AdditionalProperties as the provided PriceDetailsResponseMetadata0
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) FromPriceDetailsResponseMetadata0(v PriceDetailsResponseMetadata0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePriceDetailsResponseMetadata0 performs a merge with any union data inside the PriceDetailsResponse_Metadata_AdditionalProperties, using the provided PriceDetailsResponseMetadata0
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) MergePriceDetailsResponseMetadata0(v PriceDetailsResponseMetadata0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPriceDetailsResponseMetadata1 returns the union data inside the PriceDetailsResponse_Metadata_AdditionalProperties as a PriceDetailsResponseMetadata1
+func (t PriceDetailsResponse_Metadata_AdditionalProperties) AsPriceDetailsResponseMetadata1() (PriceDetailsResponseMetadata1, error) {
+	var body PriceDetailsResponseMetadata1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPriceDetailsResponseMetadata1 overwrites any union data inside the PriceDetailsResponse_Metadata_AdditionalProperties as the provided PriceDetailsResponseMetadata1
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) FromPriceDetailsResponseMetadata1(v PriceDetailsResponseMetadata1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePriceDetailsResponseMetadata1 performs a merge with any union data inside the PriceDetailsResponse_Metadata_AdditionalProperties, using the provided PriceDetailsResponseMetadata1
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) MergePriceDetailsResponseMetadata1(v PriceDetailsResponseMetadata1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPriceDetailsResponseMetadata2 returns the union data inside the PriceDetailsResponse_Metadata_AdditionalProperties as a PriceDetailsResponseMetadata2
+func (t PriceDetailsResponse_Metadata_AdditionalProperties) AsPriceDetailsResponseMetadata2() (PriceDetailsResponseMetadata2, error) {
+	var body PriceDetailsResponseMetadata2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPriceDetailsResponseMetadata2 overwrites any union data inside the PriceDetailsResponse_Metadata_AdditionalProperties as the provided PriceDetailsResponseMetadata2
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) FromPriceDetailsResponseMetadata2(v PriceDetailsResponseMetadata2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePriceDetailsResponseMetadata2 performs a merge with any union data inside the PriceDetailsResponse_Metadata_AdditionalProperties, using the provided PriceDetailsResponseMetadata2
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) MergePriceDetailsResponseMetadata2(v PriceDetailsResponseMetadata2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PriceDetailsResponse_Metadata_AdditionalProperties) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PriceDetailsResponse_Metadata_AdditionalProperties) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPriceUpdateRequestMetadata0 returns the union data inside the PriceUpdateRequest_Metadata_AdditionalProperties as a PriceUpdateRequestMetadata0
 func (t PriceUpdateRequest_Metadata_AdditionalProperties) AsPriceUpdateRequestMetadata0() (PriceUpdateRequestMetadata0, error) {
 	var body PriceUpdateRequestMetadata0
@@ -6044,11 +5901,11 @@ type ClientInterface interface {
 	// GetAllBalances request
 	GetAllBalances(ctx context.Context, params *GetAllBalancesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrieveBalance request
-	RetrieveBalance(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetBalance request
+	GetBalance(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateBalanceUrl request
-	CreateBalanceUrl(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateBalanceUrl(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllCheckoutSessions request
 	GetAllCheckoutSessions(ctx context.Context, params *GetAllCheckoutSessionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6059,12 +5916,15 @@ type ClientInterface interface {
 	CreateCheckoutSession(ctx context.Context, body CreateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCheckoutSession request
-	GetCheckoutSession(ctx context.Context, checkoutSessionId string, params *GetCheckoutSessionParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetCheckoutSession(ctx context.Context, checkoutSessionID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateCheckoutSessionWithBody request with any body
-	UpdateCheckoutSessionWithBody(ctx context.Context, checkoutSessionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCheckoutSessionWithBody(ctx context.Context, checkoutSessionID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateCheckoutSession(ctx context.Context, checkoutSessionId string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCheckoutSession(ctx context.Context, checkoutSessionID string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetAllCheckoutSessionLineItems request
+	GetAllCheckoutSessionLineItems(ctx context.Context, checkoutSessionID string, params *GetAllCheckoutSessionLineItemsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllCustomers request
 	GetAllCustomers(ctx context.Context, params *GetAllCustomersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6075,66 +5935,69 @@ type ClientInterface interface {
 	CreateCustomer(ctx context.Context, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteCustomer request
-	DeleteCustomer(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteCustomer(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCustomer request
-	GetCustomer(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetCustomer(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateCustomerWithBody request with any body
-	UpdateCustomerWithBody(ctx context.Context, customerId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCustomerWithBody(ctx context.Context, customerID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateCustomer(ctx context.Context, customerId string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCustomer(ctx context.Context, customerID string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCustomerPaymentMethods request
-	GetCustomerPaymentMethods(ctx context.Context, customerId string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetCustomerPaymentMethods(ctx context.Context, customerID string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllEvents request
 	GetAllEvents(ctx context.Context, params *GetAllEventsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetEvent request
-	GetEvent(ctx context.Context, eventId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetEvent(ctx context.Context, eventID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetAllPaymentFlow request
-	GetAllPaymentFlow(ctx context.Context, params *GetAllPaymentFlowParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetAllPaymentFlows request
+	GetAllPaymentFlows(ctx context.Context, params *GetAllPaymentFlowsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreatePaymentFlowWithBody request with any body
 	CreatePaymentFlowWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CreatePaymentFlow(ctx context.Context, body CreatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrievePaymentFlow request
-	RetrievePaymentFlow(ctx context.Context, paymentFlowId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetPaymentFlow request
+	GetPaymentFlow(ctx context.Context, paymentFlowID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatePaymentFlowWithBody request with any body
-	UpdatePaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdatePaymentFlow(ctx context.Context, paymentFlowId string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentFlow(ctx context.Context, paymentFlowID string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CancelPaymentFlowWithBody request with any body
-	CancelPaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CancelPaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CancelPaymentFlow(ctx context.Context, paymentFlowId string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CancelPaymentFlow(ctx context.Context, paymentFlowID string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CapturePaymentFlowWithBody request with any body
-	CapturePaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CapturePaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CapturePaymentFlow(ctx context.Context, paymentFlowId string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CapturePaymentFlow(ctx context.Context, paymentFlowID string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ConfirmPaymentFlowWithBody request with any body
-	ConfirmPaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ConfirmPaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ConfirmPaymentFlow(ctx context.Context, paymentFlowId string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ConfirmPaymentFlow(ctx context.Context, paymentFlowID string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetPaymentFlowRefunds request
+	GetPaymentFlowRefunds(ctx context.Context, paymentFlowID string, params *GetPaymentFlowRefundsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllPaymentMethodConfigurations request
 	GetAllPaymentMethodConfigurations(ctx context.Context, params *GetAllPaymentMethodConfigurationsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetPaymentMethodConfiguration request
-	GetPaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetPaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatePaymentMethodConfigurationWithBody request with any body
-	UpdatePaymentMethodConfigurationWithBody(ctx context.Context, paymentMethodConfigurationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentMethodConfigurationWithBody(ctx context.Context, paymentMethodConfigurationID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdatePaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationId string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationID string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllPaymentMethods request
 	GetAllPaymentMethods(ctx context.Context, params *GetAllPaymentMethodsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6144,21 +6007,24 @@ type ClientInterface interface {
 
 	CreatePaymentMethod(ctx context.Context, body CreatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetPaymentMethodByCard request
+	GetPaymentMethodByCard(ctx context.Context, cardID string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetPaymentMethod request
-	GetPaymentMethod(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetPaymentMethod(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatePaymentMethodWithBody request with any body
-	UpdatePaymentMethodWithBody(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentMethodWithBody(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdatePaymentMethod(ctx context.Context, paymentMethodId string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentMethod(ctx context.Context, paymentMethodID string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AttachPaymentMethodWithBody request with any body
-	AttachPaymentMethodWithBody(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachPaymentMethodWithBody(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AttachPaymentMethod(ctx context.Context, paymentMethodId string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AttachPaymentMethod(ctx context.Context, paymentMethodID string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DetachPaymentMethod request
-	DetachPaymentMethod(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DetachPaymentMethod(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllPaymentRefunds request
 	GetAllPaymentRefunds(ctx context.Context, params *GetAllPaymentRefundsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6168,19 +6034,19 @@ type ClientInterface interface {
 
 	CreatePaymentRefund(ctx context.Context, body CreatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrievePaymentRefund request
-	RetrievePaymentRefund(ctx context.Context, paymentRefundId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetPaymentRefund request
+	GetPaymentRefund(ctx context.Context, paymentRefundID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatePaymentRefundWithBody request with any body
-	UpdatePaymentRefundWithBody(ctx context.Context, paymentRefundId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentRefundWithBody(ctx context.Context, paymentRefundID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdatePaymentRefund(ctx context.Context, paymentRefundId string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePaymentRefund(ctx context.Context, paymentRefundID string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetAllPaymentTransaction request
-	GetAllPaymentTransaction(ctx context.Context, params *GetAllPaymentTransactionParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetAllPaymentTransactions request
+	GetAllPaymentTransactions(ctx context.Context, params *GetAllPaymentTransactionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrievePaymentTransaction request
-	RetrievePaymentTransaction(ctx context.Context, paymentTransactionId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetPaymentTransaction request
+	GetPaymentTransaction(ctx context.Context, paymentTransactionID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllPrices request
 	GetAllPrices(ctx context.Context, params *GetAllPricesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6191,12 +6057,12 @@ type ClientInterface interface {
 	CreatePrice(ctx context.Context, body CreatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetPrice request
-	GetPrice(ctx context.Context, priceId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetPrice(ctx context.Context, priceID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatePriceWithBody request with any body
-	UpdatePriceWithBody(ctx context.Context, priceId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePriceWithBody(ctx context.Context, priceID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdatePrice(ctx context.Context, priceId string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePrice(ctx context.Context, priceID string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllProducts request
 	GetAllProducts(ctx context.Context, params *GetAllProductsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6207,50 +6073,45 @@ type ClientInterface interface {
 	CreateProduct(ctx context.Context, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteProduct request
-	DeleteProduct(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteProduct(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetProduct request
-	GetProduct(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetProduct(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateProductWithBody request with any body
-	UpdateProductWithBody(ctx context.Context, productId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateProductWithBody(ctx context.Context, productID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateProduct(ctx context.Context, productId string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateProduct(ctx context.Context, productID string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetAllSetupFlow request
-	GetAllSetupFlow(ctx context.Context, params *GetAllSetupFlowParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetAllSetupFlows request
+	GetAllSetupFlows(ctx context.Context, params *GetAllSetupFlowsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateSetupFlowWithBody request with any body
 	CreateSetupFlowWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CreateSetupFlow(ctx context.Context, body CreateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrieveSetupFlow request
-	RetrieveSetupFlow(ctx context.Context, setupFlowId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetSetupFlow request
+	GetSetupFlow(ctx context.Context, setupFlowID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateSetupFlowWithBody request with any body
-	UpdateSetupFlowWithBody(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateSetupFlowWithBody(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateSetupFlow(ctx context.Context, setupFlowId string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateSetupFlow(ctx context.Context, setupFlowID string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CancelSetupFlowWithBody request with any body
-	CancelSetupFlowWithBody(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CancelSetupFlowWithBody(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CancelSetupFlow(ctx context.Context, setupFlowId string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ConfirmSetupFlowWithBody request with any body
-	ConfirmSetupFlowWithBody(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ConfirmSetupFlow(ctx context.Context, setupFlowId string, body ConfirmSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CancelSetupFlow(ctx context.Context, setupFlowID string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllStatements request
 	GetAllStatements(ctx context.Context, params *GetAllStatementsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrieveStatement request
-	RetrieveStatement(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetStatement request
+	GetStatement(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateStatementUrl request
-	CreateStatementUrl(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateStatementUrl(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAllTaxRates request
 	GetAllTaxRates(ctx context.Context, params *GetAllTaxRatesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6261,18 +6122,18 @@ type ClientInterface interface {
 	CreateTaxRate(ctx context.Context, body CreateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTaxRate request
-	GetTaxRate(ctx context.Context, taxRateId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetTaxRate(ctx context.Context, taxRateID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateTaxRateWithBody request with any body
-	UpdateTaxRateWithBody(ctx context.Context, taxRateId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateTaxRateWithBody(ctx context.Context, taxRateID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateTaxRate(ctx context.Context, taxRateId string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateTaxRate(ctx context.Context, taxRateID string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetAllTerm request
-	GetAllTerm(ctx context.Context, params *GetAllTermParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetAllTerms request
+	GetAllTerms(ctx context.Context, params *GetAllTermsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RetrieveTerm request
-	RetrieveTerm(ctx context.Context, termId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetTerm request
+	GetTerm(ctx context.Context, termID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) GetAllBalances(ctx context.Context, params *GetAllBalancesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -6287,8 +6148,8 @@ func (c *Client) GetAllBalances(ctx context.Context, params *GetAllBalancesParam
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrieveBalance(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrieveBalanceRequest(c.Server, balanceId)
+func (c *Client) GetBalance(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetBalanceRequest(c.Server, balanceID)
 	if err != nil {
 		return nil, err
 	}
@@ -6299,8 +6160,8 @@ func (c *Client) RetrieveBalance(ctx context.Context, balanceId string, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateBalanceUrl(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateBalanceUrlRequest(c.Server, balanceId)
+func (c *Client) CreateBalanceUrl(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateBalanceUrlRequest(c.Server, balanceID)
 	if err != nil {
 		return nil, err
 	}
@@ -6347,8 +6208,8 @@ func (c *Client) CreateCheckoutSession(ctx context.Context, body CreateCheckoutS
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetCheckoutSession(ctx context.Context, checkoutSessionId string, params *GetCheckoutSessionParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCheckoutSessionRequest(c.Server, checkoutSessionId, params)
+func (c *Client) GetCheckoutSession(ctx context.Context, checkoutSessionID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCheckoutSessionRequest(c.Server, checkoutSessionID)
 	if err != nil {
 		return nil, err
 	}
@@ -6359,8 +6220,8 @@ func (c *Client) GetCheckoutSession(ctx context.Context, checkoutSessionId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateCheckoutSessionWithBody(ctx context.Context, checkoutSessionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCheckoutSessionRequestWithBody(c.Server, checkoutSessionId, contentType, body)
+func (c *Client) UpdateCheckoutSessionWithBody(ctx context.Context, checkoutSessionID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCheckoutSessionRequestWithBody(c.Server, checkoutSessionID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6371,8 +6232,20 @@ func (c *Client) UpdateCheckoutSessionWithBody(ctx context.Context, checkoutSess
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateCheckoutSession(ctx context.Context, checkoutSessionId string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCheckoutSessionRequest(c.Server, checkoutSessionId, body)
+func (c *Client) UpdateCheckoutSession(ctx context.Context, checkoutSessionID string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCheckoutSessionRequest(c.Server, checkoutSessionID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetAllCheckoutSessionLineItems(ctx context.Context, checkoutSessionID string, params *GetAllCheckoutSessionLineItemsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAllCheckoutSessionLineItemsRequest(c.Server, checkoutSessionID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6419,8 +6292,8 @@ func (c *Client) CreateCustomer(ctx context.Context, body CreateCustomerJSONRequ
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteCustomer(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteCustomerRequest(c.Server, customerId)
+func (c *Client) DeleteCustomer(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteCustomerRequest(c.Server, customerID)
 	if err != nil {
 		return nil, err
 	}
@@ -6431,8 +6304,8 @@ func (c *Client) DeleteCustomer(ctx context.Context, customerId string, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetCustomer(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCustomerRequest(c.Server, customerId)
+func (c *Client) GetCustomer(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCustomerRequest(c.Server, customerID)
 	if err != nil {
 		return nil, err
 	}
@@ -6443,8 +6316,8 @@ func (c *Client) GetCustomer(ctx context.Context, customerId string, reqEditors 
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateCustomerWithBody(ctx context.Context, customerId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCustomerRequestWithBody(c.Server, customerId, contentType, body)
+func (c *Client) UpdateCustomerWithBody(ctx context.Context, customerID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCustomerRequestWithBody(c.Server, customerID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6455,8 +6328,8 @@ func (c *Client) UpdateCustomerWithBody(ctx context.Context, customerId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateCustomer(ctx context.Context, customerId string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCustomerRequest(c.Server, customerId, body)
+func (c *Client) UpdateCustomer(ctx context.Context, customerID string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCustomerRequest(c.Server, customerID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6467,8 +6340,8 @@ func (c *Client) UpdateCustomer(ctx context.Context, customerId string, body Upd
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetCustomerPaymentMethods(ctx context.Context, customerId string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCustomerPaymentMethodsRequest(c.Server, customerId, params)
+func (c *Client) GetCustomerPaymentMethods(ctx context.Context, customerID string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCustomerPaymentMethodsRequest(c.Server, customerID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6491,8 +6364,8 @@ func (c *Client) GetAllEvents(ctx context.Context, params *GetAllEventsParams, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetEvent(ctx context.Context, eventId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetEventRequest(c.Server, eventId)
+func (c *Client) GetEvent(ctx context.Context, eventID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEventRequest(c.Server, eventID)
 	if err != nil {
 		return nil, err
 	}
@@ -6503,8 +6376,8 @@ func (c *Client) GetEvent(ctx context.Context, eventId string, reqEditors ...Req
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetAllPaymentFlow(ctx context.Context, params *GetAllPaymentFlowParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAllPaymentFlowRequest(c.Server, params)
+func (c *Client) GetAllPaymentFlows(ctx context.Context, params *GetAllPaymentFlowsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAllPaymentFlowsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6539,8 +6412,8 @@ func (c *Client) CreatePaymentFlow(ctx context.Context, body CreatePaymentFlowJS
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrievePaymentFlow(ctx context.Context, paymentFlowId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrievePaymentFlowRequest(c.Server, paymentFlowId)
+func (c *Client) GetPaymentFlow(ctx context.Context, paymentFlowID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentFlowRequest(c.Server, paymentFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -6551,8 +6424,8 @@ func (c *Client) RetrievePaymentFlow(ctx context.Context, paymentFlowId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentFlowRequestWithBody(c.Server, paymentFlowId, contentType, body)
+func (c *Client) UpdatePaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentFlowRequestWithBody(c.Server, paymentFlowID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6563,8 +6436,8 @@ func (c *Client) UpdatePaymentFlowWithBody(ctx context.Context, paymentFlowId st
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentFlow(ctx context.Context, paymentFlowId string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentFlowRequest(c.Server, paymentFlowId, body)
+func (c *Client) UpdatePaymentFlow(ctx context.Context, paymentFlowID string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentFlowRequest(c.Server, paymentFlowID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6575,8 +6448,8 @@ func (c *Client) UpdatePaymentFlow(ctx context.Context, paymentFlowId string, bo
 	return c.Client.Do(req)
 }
 
-func (c *Client) CancelPaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelPaymentFlowRequestWithBody(c.Server, paymentFlowId, contentType, body)
+func (c *Client) CancelPaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelPaymentFlowRequestWithBody(c.Server, paymentFlowID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6587,8 +6460,8 @@ func (c *Client) CancelPaymentFlowWithBody(ctx context.Context, paymentFlowId st
 	return c.Client.Do(req)
 }
 
-func (c *Client) CancelPaymentFlow(ctx context.Context, paymentFlowId string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelPaymentFlowRequest(c.Server, paymentFlowId, body)
+func (c *Client) CancelPaymentFlow(ctx context.Context, paymentFlowID string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelPaymentFlowRequest(c.Server, paymentFlowID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6599,8 +6472,8 @@ func (c *Client) CancelPaymentFlow(ctx context.Context, paymentFlowId string, bo
 	return c.Client.Do(req)
 }
 
-func (c *Client) CapturePaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCapturePaymentFlowRequestWithBody(c.Server, paymentFlowId, contentType, body)
+func (c *Client) CapturePaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCapturePaymentFlowRequestWithBody(c.Server, paymentFlowID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6611,8 +6484,8 @@ func (c *Client) CapturePaymentFlowWithBody(ctx context.Context, paymentFlowId s
 	return c.Client.Do(req)
 }
 
-func (c *Client) CapturePaymentFlow(ctx context.Context, paymentFlowId string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCapturePaymentFlowRequest(c.Server, paymentFlowId, body)
+func (c *Client) CapturePaymentFlow(ctx context.Context, paymentFlowID string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCapturePaymentFlowRequest(c.Server, paymentFlowID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6623,8 +6496,8 @@ func (c *Client) CapturePaymentFlow(ctx context.Context, paymentFlowId string, b
 	return c.Client.Do(req)
 }
 
-func (c *Client) ConfirmPaymentFlowWithBody(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewConfirmPaymentFlowRequestWithBody(c.Server, paymentFlowId, contentType, body)
+func (c *Client) ConfirmPaymentFlowWithBody(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewConfirmPaymentFlowRequestWithBody(c.Server, paymentFlowID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6635,8 +6508,20 @@ func (c *Client) ConfirmPaymentFlowWithBody(ctx context.Context, paymentFlowId s
 	return c.Client.Do(req)
 }
 
-func (c *Client) ConfirmPaymentFlow(ctx context.Context, paymentFlowId string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewConfirmPaymentFlowRequest(c.Server, paymentFlowId, body)
+func (c *Client) ConfirmPaymentFlow(ctx context.Context, paymentFlowID string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewConfirmPaymentFlowRequest(c.Server, paymentFlowID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetPaymentFlowRefunds(ctx context.Context, paymentFlowID string, params *GetPaymentFlowRefundsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentFlowRefundsRequest(c.Server, paymentFlowID, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6659,8 +6544,8 @@ func (c *Client) GetAllPaymentMethodConfigurations(ctx context.Context, params *
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetPaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetPaymentMethodConfigurationRequest(c.Server, paymentMethodConfigurationId)
+func (c *Client) GetPaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentMethodConfigurationRequest(c.Server, paymentMethodConfigurationID)
 	if err != nil {
 		return nil, err
 	}
@@ -6671,8 +6556,8 @@ func (c *Client) GetPaymentMethodConfiguration(ctx context.Context, paymentMetho
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentMethodConfigurationWithBody(ctx context.Context, paymentMethodConfigurationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentMethodConfigurationRequestWithBody(c.Server, paymentMethodConfigurationId, contentType, body)
+func (c *Client) UpdatePaymentMethodConfigurationWithBody(ctx context.Context, paymentMethodConfigurationID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentMethodConfigurationRequestWithBody(c.Server, paymentMethodConfigurationID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6683,8 +6568,8 @@ func (c *Client) UpdatePaymentMethodConfigurationWithBody(ctx context.Context, p
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationId string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentMethodConfigurationRequest(c.Server, paymentMethodConfigurationId, body)
+func (c *Client) UpdatePaymentMethodConfiguration(ctx context.Context, paymentMethodConfigurationID string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentMethodConfigurationRequest(c.Server, paymentMethodConfigurationID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6731,8 +6616,8 @@ func (c *Client) CreatePaymentMethod(ctx context.Context, body CreatePaymentMeth
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetPaymentMethod(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetPaymentMethodRequest(c.Server, paymentMethodId)
+func (c *Client) GetPaymentMethodByCard(ctx context.Context, cardID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentMethodByCardRequest(c.Server, cardID)
 	if err != nil {
 		return nil, err
 	}
@@ -6743,8 +6628,8 @@ func (c *Client) GetPaymentMethod(ctx context.Context, paymentMethodId string, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentMethodWithBody(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentMethodRequestWithBody(c.Server, paymentMethodId, contentType, body)
+func (c *Client) GetPaymentMethod(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentMethodRequest(c.Server, paymentMethodID)
 	if err != nil {
 		return nil, err
 	}
@@ -6755,8 +6640,8 @@ func (c *Client) UpdatePaymentMethodWithBody(ctx context.Context, paymentMethodI
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentMethod(ctx context.Context, paymentMethodId string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentMethodRequest(c.Server, paymentMethodId, body)
+func (c *Client) UpdatePaymentMethodWithBody(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentMethodRequestWithBody(c.Server, paymentMethodID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6767,8 +6652,8 @@ func (c *Client) UpdatePaymentMethod(ctx context.Context, paymentMethodId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachPaymentMethodWithBody(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachPaymentMethodRequestWithBody(c.Server, paymentMethodId, contentType, body)
+func (c *Client) UpdatePaymentMethod(ctx context.Context, paymentMethodID string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentMethodRequest(c.Server, paymentMethodID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6779,8 +6664,8 @@ func (c *Client) AttachPaymentMethodWithBody(ctx context.Context, paymentMethodI
 	return c.Client.Do(req)
 }
 
-func (c *Client) AttachPaymentMethod(ctx context.Context, paymentMethodId string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAttachPaymentMethodRequest(c.Server, paymentMethodId, body)
+func (c *Client) AttachPaymentMethodWithBody(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachPaymentMethodRequestWithBody(c.Server, paymentMethodID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6791,8 +6676,20 @@ func (c *Client) AttachPaymentMethod(ctx context.Context, paymentMethodId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) DetachPaymentMethod(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDetachPaymentMethodRequest(c.Server, paymentMethodId)
+func (c *Client) AttachPaymentMethod(ctx context.Context, paymentMethodID string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAttachPaymentMethodRequest(c.Server, paymentMethodID, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DetachPaymentMethod(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDetachPaymentMethodRequest(c.Server, paymentMethodID)
 	if err != nil {
 		return nil, err
 	}
@@ -6839,8 +6736,8 @@ func (c *Client) CreatePaymentRefund(ctx context.Context, body CreatePaymentRefu
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrievePaymentRefund(ctx context.Context, paymentRefundId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrievePaymentRefundRequest(c.Server, paymentRefundId)
+func (c *Client) GetPaymentRefund(ctx context.Context, paymentRefundID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentRefundRequest(c.Server, paymentRefundID)
 	if err != nil {
 		return nil, err
 	}
@@ -6851,8 +6748,8 @@ func (c *Client) RetrievePaymentRefund(ctx context.Context, paymentRefundId stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentRefundWithBody(ctx context.Context, paymentRefundId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentRefundRequestWithBody(c.Server, paymentRefundId, contentType, body)
+func (c *Client) UpdatePaymentRefundWithBody(ctx context.Context, paymentRefundID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentRefundRequestWithBody(c.Server, paymentRefundID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6863,8 +6760,8 @@ func (c *Client) UpdatePaymentRefundWithBody(ctx context.Context, paymentRefundI
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePaymentRefund(ctx context.Context, paymentRefundId string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePaymentRefundRequest(c.Server, paymentRefundId, body)
+func (c *Client) UpdatePaymentRefund(ctx context.Context, paymentRefundID string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePaymentRefundRequest(c.Server, paymentRefundID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6875,8 +6772,8 @@ func (c *Client) UpdatePaymentRefund(ctx context.Context, paymentRefundId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetAllPaymentTransaction(ctx context.Context, params *GetAllPaymentTransactionParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAllPaymentTransactionRequest(c.Server, params)
+func (c *Client) GetAllPaymentTransactions(ctx context.Context, params *GetAllPaymentTransactionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAllPaymentTransactionsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6887,8 +6784,8 @@ func (c *Client) GetAllPaymentTransaction(ctx context.Context, params *GetAllPay
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrievePaymentTransaction(ctx context.Context, paymentTransactionId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrievePaymentTransactionRequest(c.Server, paymentTransactionId)
+func (c *Client) GetPaymentTransaction(ctx context.Context, paymentTransactionID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPaymentTransactionRequest(c.Server, paymentTransactionID)
 	if err != nil {
 		return nil, err
 	}
@@ -6935,8 +6832,8 @@ func (c *Client) CreatePrice(ctx context.Context, body CreatePriceJSONRequestBod
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetPrice(ctx context.Context, priceId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetPriceRequest(c.Server, priceId)
+func (c *Client) GetPrice(ctx context.Context, priceID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPriceRequest(c.Server, priceID)
 	if err != nil {
 		return nil, err
 	}
@@ -6947,8 +6844,8 @@ func (c *Client) GetPrice(ctx context.Context, priceId string, reqEditors ...Req
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePriceWithBody(ctx context.Context, priceId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePriceRequestWithBody(c.Server, priceId, contentType, body)
+func (c *Client) UpdatePriceWithBody(ctx context.Context, priceID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePriceRequestWithBody(c.Server, priceID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -6959,8 +6856,8 @@ func (c *Client) UpdatePriceWithBody(ctx context.Context, priceId string, conten
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatePrice(ctx context.Context, priceId string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdatePriceRequest(c.Server, priceId, body)
+func (c *Client) UpdatePrice(ctx context.Context, priceID string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePriceRequest(c.Server, priceID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7007,8 +6904,8 @@ func (c *Client) CreateProduct(ctx context.Context, body CreateProductJSONReques
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteProduct(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteProductRequest(c.Server, productId)
+func (c *Client) DeleteProduct(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteProductRequest(c.Server, productID)
 	if err != nil {
 		return nil, err
 	}
@@ -7019,8 +6916,8 @@ func (c *Client) DeleteProduct(ctx context.Context, productId string, reqEditors
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetProduct(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProductRequest(c.Server, productId)
+func (c *Client) GetProduct(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetProductRequest(c.Server, productID)
 	if err != nil {
 		return nil, err
 	}
@@ -7031,8 +6928,8 @@ func (c *Client) GetProduct(ctx context.Context, productId string, reqEditors ..
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateProductWithBody(ctx context.Context, productId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateProductRequestWithBody(c.Server, productId, contentType, body)
+func (c *Client) UpdateProductWithBody(ctx context.Context, productID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateProductRequestWithBody(c.Server, productID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7043,8 +6940,8 @@ func (c *Client) UpdateProductWithBody(ctx context.Context, productId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateProduct(ctx context.Context, productId string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateProductRequest(c.Server, productId, body)
+func (c *Client) UpdateProduct(ctx context.Context, productID string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateProductRequest(c.Server, productID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7055,8 +6952,8 @@ func (c *Client) UpdateProduct(ctx context.Context, productId string, body Updat
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetAllSetupFlow(ctx context.Context, params *GetAllSetupFlowParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAllSetupFlowRequest(c.Server, params)
+func (c *Client) GetAllSetupFlows(ctx context.Context, params *GetAllSetupFlowsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAllSetupFlowsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7091,8 +6988,8 @@ func (c *Client) CreateSetupFlow(ctx context.Context, body CreateSetupFlowJSONRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrieveSetupFlow(ctx context.Context, setupFlowId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrieveSetupFlowRequest(c.Server, setupFlowId)
+func (c *Client) GetSetupFlow(ctx context.Context, setupFlowID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSetupFlowRequest(c.Server, setupFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -7103,8 +7000,8 @@ func (c *Client) RetrieveSetupFlow(ctx context.Context, setupFlowId string, reqE
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateSetupFlowWithBody(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateSetupFlowRequestWithBody(c.Server, setupFlowId, contentType, body)
+func (c *Client) UpdateSetupFlowWithBody(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateSetupFlowRequestWithBody(c.Server, setupFlowID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7115,8 +7012,8 @@ func (c *Client) UpdateSetupFlowWithBody(ctx context.Context, setupFlowId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateSetupFlow(ctx context.Context, setupFlowId string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateSetupFlowRequest(c.Server, setupFlowId, body)
+func (c *Client) UpdateSetupFlow(ctx context.Context, setupFlowID string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateSetupFlowRequest(c.Server, setupFlowID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7127,8 +7024,8 @@ func (c *Client) UpdateSetupFlow(ctx context.Context, setupFlowId string, body U
 	return c.Client.Do(req)
 }
 
-func (c *Client) CancelSetupFlowWithBody(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelSetupFlowRequestWithBody(c.Server, setupFlowId, contentType, body)
+func (c *Client) CancelSetupFlowWithBody(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelSetupFlowRequestWithBody(c.Server, setupFlowID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7139,32 +7036,8 @@ func (c *Client) CancelSetupFlowWithBody(ctx context.Context, setupFlowId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) CancelSetupFlow(ctx context.Context, setupFlowId string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCancelSetupFlowRequest(c.Server, setupFlowId, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ConfirmSetupFlowWithBody(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewConfirmSetupFlowRequestWithBody(c.Server, setupFlowId, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ConfirmSetupFlow(ctx context.Context, setupFlowId string, body ConfirmSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewConfirmSetupFlowRequest(c.Server, setupFlowId, body)
+func (c *Client) CancelSetupFlow(ctx context.Context, setupFlowID string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelSetupFlowRequest(c.Server, setupFlowID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7187,8 +7060,8 @@ func (c *Client) GetAllStatements(ctx context.Context, params *GetAllStatementsP
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrieveStatement(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrieveStatementRequest(c.Server, statementId)
+func (c *Client) GetStatement(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetStatementRequest(c.Server, statementID)
 	if err != nil {
 		return nil, err
 	}
@@ -7199,8 +7072,8 @@ func (c *Client) RetrieveStatement(ctx context.Context, statementId string, reqE
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateStatementUrl(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateStatementUrlRequest(c.Server, statementId)
+func (c *Client) CreateStatementUrl(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateStatementUrlRequest(c.Server, statementID)
 	if err != nil {
 		return nil, err
 	}
@@ -7247,8 +7120,8 @@ func (c *Client) CreateTaxRate(ctx context.Context, body CreateTaxRateJSONReques
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetTaxRate(ctx context.Context, taxRateId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTaxRateRequest(c.Server, taxRateId)
+func (c *Client) GetTaxRate(ctx context.Context, taxRateID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTaxRateRequest(c.Server, taxRateID)
 	if err != nil {
 		return nil, err
 	}
@@ -7259,8 +7132,8 @@ func (c *Client) GetTaxRate(ctx context.Context, taxRateId string, reqEditors ..
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateTaxRateWithBody(ctx context.Context, taxRateId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateTaxRateRequestWithBody(c.Server, taxRateId, contentType, body)
+func (c *Client) UpdateTaxRateWithBody(ctx context.Context, taxRateID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateTaxRateRequestWithBody(c.Server, taxRateID, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7271,8 +7144,8 @@ func (c *Client) UpdateTaxRateWithBody(ctx context.Context, taxRateId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateTaxRate(ctx context.Context, taxRateId string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateTaxRateRequest(c.Server, taxRateId, body)
+func (c *Client) UpdateTaxRate(ctx context.Context, taxRateID string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateTaxRateRequest(c.Server, taxRateID, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7283,8 +7156,8 @@ func (c *Client) UpdateTaxRate(ctx context.Context, taxRateId string, body Updat
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetAllTerm(ctx context.Context, params *GetAllTermParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAllTermRequest(c.Server, params)
+func (c *Client) GetAllTerms(ctx context.Context, params *GetAllTermsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAllTermsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7295,8 +7168,8 @@ func (c *Client) GetAllTerm(ctx context.Context, params *GetAllTermParams, reqEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) RetrieveTerm(ctx context.Context, termId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRetrieveTermRequest(c.Server, termId)
+func (c *Client) GetTerm(ctx context.Context, termID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTermRequest(c.Server, termID)
 	if err != nil {
 		return nil, err
 	}
@@ -7484,13 +7357,13 @@ func NewGetAllBalancesRequest(server string, params *GetAllBalancesParams) (*htt
 	return req, nil
 }
 
-// NewRetrieveBalanceRequest generates requests for RetrieveBalance
-func NewRetrieveBalanceRequest(server string, balanceId string) (*http.Request, error) {
+// NewGetBalanceRequest generates requests for GetBalance
+func NewGetBalanceRequest(server string, balanceID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "balance_id", runtime.ParamLocationPath, balanceId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "balance_id", runtime.ParamLocationPath, balanceID)
 	if err != nil {
 		return nil, err
 	}
@@ -7519,12 +7392,12 @@ func NewRetrieveBalanceRequest(server string, balanceId string) (*http.Request, 
 }
 
 // NewCreateBalanceUrlRequest generates requests for CreateBalanceUrl
-func NewCreateBalanceUrlRequest(server string, balanceId string) (*http.Request, error) {
+func NewCreateBalanceUrlRequest(server string, balanceID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "balance_id", runtime.ParamLocationPath, balanceId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "balance_id", runtime.ParamLocationPath, balanceID)
 	if err != nil {
 		return nil, err
 	}
@@ -7674,12 +7547,12 @@ func NewCreateCheckoutSessionRequestWithBody(server string, contentType string, 
 }
 
 // NewGetCheckoutSessionRequest generates requests for GetCheckoutSession
-func NewGetCheckoutSessionRequest(server string, checkoutSessionId string, params *GetCheckoutSessionParams) (*http.Request, error) {
+func NewGetCheckoutSessionRequest(server string, checkoutSessionID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checkout_session_id", runtime.ParamLocationPath, checkoutSessionId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checkout_session_id", runtime.ParamLocationPath, checkoutSessionID)
 	if err != nil {
 		return nil, err
 	}
@@ -7699,28 +7572,6 @@ func NewGetCheckoutSessionRequest(server string, checkoutSessionId string, param
 		return nil, err
 	}
 
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Expand != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "expand", runtime.ParamLocationQuery, *params.Expand); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
@@ -7730,23 +7581,23 @@ func NewGetCheckoutSessionRequest(server string, checkoutSessionId string, param
 }
 
 // NewUpdateCheckoutSessionRequest calls the generic UpdateCheckoutSession builder with application/json body
-func NewUpdateCheckoutSessionRequest(server string, checkoutSessionId string, body UpdateCheckoutSessionJSONRequestBody) (*http.Request, error) {
+func NewUpdateCheckoutSessionRequest(server string, checkoutSessionID string, body UpdateCheckoutSessionJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateCheckoutSessionRequestWithBody(server, checkoutSessionId, "application/json", bodyReader)
+	return NewUpdateCheckoutSessionRequestWithBody(server, checkoutSessionID, "application/json", bodyReader)
 }
 
 // NewUpdateCheckoutSessionRequestWithBody generates requests for UpdateCheckoutSession with any type of body
-func NewUpdateCheckoutSessionRequestWithBody(server string, checkoutSessionId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateCheckoutSessionRequestWithBody(server string, checkoutSessionID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checkout_session_id", runtime.ParamLocationPath, checkoutSessionId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checkout_session_id", runtime.ParamLocationPath, checkoutSessionID)
 	if err != nil {
 		return nil, err
 	}
@@ -7772,6 +7623,94 @@ func NewUpdateCheckoutSessionRequestWithBody(server string, checkoutSessionId st
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetAllCheckoutSessionLineItemsRequest generates requests for GetAllCheckoutSessionLineItems
+func NewGetAllCheckoutSessionLineItemsRequest(server string, checkoutSessionID string, params *GetAllCheckoutSessionLineItemsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checkout_session_id", runtime.ParamLocationPath, checkoutSessionID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/checkout/sessions/%s/line_items", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StartingAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "starting_after", runtime.ParamLocationQuery, *params.StartingAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EndingBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "ending_before", runtime.ParamLocationQuery, *params.EndingBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -7898,12 +7837,12 @@ func NewCreateCustomerRequestWithBody(server string, contentType string, body io
 }
 
 // NewDeleteCustomerRequest generates requests for DeleteCustomer
-func NewDeleteCustomerRequest(server string, customerId string) (*http.Request, error) {
+func NewDeleteCustomerRequest(server string, customerID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerID)
 	if err != nil {
 		return nil, err
 	}
@@ -7932,12 +7871,12 @@ func NewDeleteCustomerRequest(server string, customerId string) (*http.Request, 
 }
 
 // NewGetCustomerRequest generates requests for GetCustomer
-func NewGetCustomerRequest(server string, customerId string) (*http.Request, error) {
+func NewGetCustomerRequest(server string, customerID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerID)
 	if err != nil {
 		return nil, err
 	}
@@ -7966,23 +7905,23 @@ func NewGetCustomerRequest(server string, customerId string) (*http.Request, err
 }
 
 // NewUpdateCustomerRequest calls the generic UpdateCustomer builder with application/json body
-func NewUpdateCustomerRequest(server string, customerId string, body UpdateCustomerJSONRequestBody) (*http.Request, error) {
+func NewUpdateCustomerRequest(server string, customerID string, body UpdateCustomerJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateCustomerRequestWithBody(server, customerId, "application/json", bodyReader)
+	return NewUpdateCustomerRequestWithBody(server, customerID, "application/json", bodyReader)
 }
 
 // NewUpdateCustomerRequestWithBody generates requests for UpdateCustomer with any type of body
-func NewUpdateCustomerRequestWithBody(server string, customerId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateCustomerRequestWithBody(server string, customerID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerID)
 	if err != nil {
 		return nil, err
 	}
@@ -8013,12 +7952,12 @@ func NewUpdateCustomerRequestWithBody(server string, customerId string, contentT
 }
 
 // NewGetCustomerPaymentMethodsRequest generates requests for GetCustomerPaymentMethods
-func NewGetCustomerPaymentMethodsRequest(server string, customerId string, params *GetCustomerPaymentMethodsParams) (*http.Request, error) {
+func NewGetCustomerPaymentMethodsRequest(server string, customerID string, params *GetCustomerPaymentMethodsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_id", runtime.ParamLocationPath, customerID)
 	if err != nil {
 		return nil, err
 	}
@@ -8230,12 +8169,12 @@ func NewGetAllEventsRequest(server string, params *GetAllEventsParams) (*http.Re
 }
 
 // NewGetEventRequest generates requests for GetEvent
-func NewGetEventRequest(server string, eventId string) (*http.Request, error) {
+func NewGetEventRequest(server string, eventID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "event_id", runtime.ParamLocationPath, eventId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "event_id", runtime.ParamLocationPath, eventID)
 	if err != nil {
 		return nil, err
 	}
@@ -8263,8 +8202,8 @@ func NewGetEventRequest(server string, eventId string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetAllPaymentFlowRequest generates requests for GetAllPaymentFlow
-func NewGetAllPaymentFlowRequest(server string, params *GetAllPaymentFlowParams) (*http.Request, error) {
+// NewGetAllPaymentFlowsRequest generates requests for GetAllPaymentFlows
+func NewGetAllPaymentFlowsRequest(server string, params *GetAllPaymentFlowsParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -8400,13 +8339,13 @@ func NewCreatePaymentFlowRequestWithBody(server string, contentType string, body
 	return req, nil
 }
 
-// NewRetrievePaymentFlowRequest generates requests for RetrievePaymentFlow
-func NewRetrievePaymentFlowRequest(server string, paymentFlowId string) (*http.Request, error) {
+// NewGetPaymentFlowRequest generates requests for GetPaymentFlow
+func NewGetPaymentFlowRequest(server string, paymentFlowID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -8435,23 +8374,23 @@ func NewRetrievePaymentFlowRequest(server string, paymentFlowId string) (*http.R
 }
 
 // NewUpdatePaymentFlowRequest calls the generic UpdatePaymentFlow builder with application/json body
-func NewUpdatePaymentFlowRequest(server string, paymentFlowId string, body UpdatePaymentFlowJSONRequestBody) (*http.Request, error) {
+func NewUpdatePaymentFlowRequest(server string, paymentFlowID string, body UpdatePaymentFlowJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdatePaymentFlowRequestWithBody(server, paymentFlowId, "application/json", bodyReader)
+	return NewUpdatePaymentFlowRequestWithBody(server, paymentFlowID, "application/json", bodyReader)
 }
 
 // NewUpdatePaymentFlowRequestWithBody generates requests for UpdatePaymentFlow with any type of body
-func NewUpdatePaymentFlowRequestWithBody(server string, paymentFlowId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatePaymentFlowRequestWithBody(server string, paymentFlowID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -8482,23 +8421,23 @@ func NewUpdatePaymentFlowRequestWithBody(server string, paymentFlowId string, co
 }
 
 // NewCancelPaymentFlowRequest calls the generic CancelPaymentFlow builder with application/json body
-func NewCancelPaymentFlowRequest(server string, paymentFlowId string, body CancelPaymentFlowJSONRequestBody) (*http.Request, error) {
+func NewCancelPaymentFlowRequest(server string, paymentFlowID string, body CancelPaymentFlowJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCancelPaymentFlowRequestWithBody(server, paymentFlowId, "application/json", bodyReader)
+	return NewCancelPaymentFlowRequestWithBody(server, paymentFlowID, "application/json", bodyReader)
 }
 
 // NewCancelPaymentFlowRequestWithBody generates requests for CancelPaymentFlow with any type of body
-func NewCancelPaymentFlowRequestWithBody(server string, paymentFlowId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCancelPaymentFlowRequestWithBody(server string, paymentFlowID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -8529,23 +8468,23 @@ func NewCancelPaymentFlowRequestWithBody(server string, paymentFlowId string, co
 }
 
 // NewCapturePaymentFlowRequest calls the generic CapturePaymentFlow builder with application/json body
-func NewCapturePaymentFlowRequest(server string, paymentFlowId string, body CapturePaymentFlowJSONRequestBody) (*http.Request, error) {
+func NewCapturePaymentFlowRequest(server string, paymentFlowID string, body CapturePaymentFlowJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCapturePaymentFlowRequestWithBody(server, paymentFlowId, "application/json", bodyReader)
+	return NewCapturePaymentFlowRequestWithBody(server, paymentFlowID, "application/json", bodyReader)
 }
 
 // NewCapturePaymentFlowRequestWithBody generates requests for CapturePaymentFlow with any type of body
-func NewCapturePaymentFlowRequestWithBody(server string, paymentFlowId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCapturePaymentFlowRequestWithBody(server string, paymentFlowID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -8576,23 +8515,23 @@ func NewCapturePaymentFlowRequestWithBody(server string, paymentFlowId string, c
 }
 
 // NewConfirmPaymentFlowRequest calls the generic ConfirmPaymentFlow builder with application/json body
-func NewConfirmPaymentFlowRequest(server string, paymentFlowId string, body ConfirmPaymentFlowJSONRequestBody) (*http.Request, error) {
+func NewConfirmPaymentFlowRequest(server string, paymentFlowID string, body ConfirmPaymentFlowJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewConfirmPaymentFlowRequestWithBody(server, paymentFlowId, "application/json", bodyReader)
+	return NewConfirmPaymentFlowRequestWithBody(server, paymentFlowID, "application/json", bodyReader)
 }
 
 // NewConfirmPaymentFlowRequestWithBody generates requests for ConfirmPaymentFlow with any type of body
-func NewConfirmPaymentFlowRequestWithBody(server string, paymentFlowId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewConfirmPaymentFlowRequestWithBody(server string, paymentFlowID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -8618,6 +8557,94 @@ func NewConfirmPaymentFlowRequestWithBody(server string, paymentFlowId string, c
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetPaymentFlowRefundsRequest generates requests for GetPaymentFlowRefunds
+func NewGetPaymentFlowRefundsRequest(server string, paymentFlowID string, params *GetPaymentFlowRefundsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_flow_id", runtime.ParamLocationPath, paymentFlowID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/payment_flows/%s/refunds", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StartingAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "starting_after", runtime.ParamLocationQuery, *params.StartingAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EndingBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "ending_before", runtime.ParamLocationQuery, *params.EndingBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -8704,12 +8731,12 @@ func NewGetAllPaymentMethodConfigurationsRequest(server string, params *GetAllPa
 }
 
 // NewGetPaymentMethodConfigurationRequest generates requests for GetPaymentMethodConfiguration
-func NewGetPaymentMethodConfigurationRequest(server string, paymentMethodConfigurationId string) (*http.Request, error) {
+func NewGetPaymentMethodConfigurationRequest(server string, paymentMethodConfigurationID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_configuration_id", runtime.ParamLocationPath, paymentMethodConfigurationId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_configuration_id", runtime.ParamLocationPath, paymentMethodConfigurationID)
 	if err != nil {
 		return nil, err
 	}
@@ -8738,23 +8765,23 @@ func NewGetPaymentMethodConfigurationRequest(server string, paymentMethodConfigu
 }
 
 // NewUpdatePaymentMethodConfigurationRequest calls the generic UpdatePaymentMethodConfiguration builder with application/json body
-func NewUpdatePaymentMethodConfigurationRequest(server string, paymentMethodConfigurationId string, body UpdatePaymentMethodConfigurationJSONRequestBody) (*http.Request, error) {
+func NewUpdatePaymentMethodConfigurationRequest(server string, paymentMethodConfigurationID string, body UpdatePaymentMethodConfigurationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdatePaymentMethodConfigurationRequestWithBody(server, paymentMethodConfigurationId, "application/json", bodyReader)
+	return NewUpdatePaymentMethodConfigurationRequestWithBody(server, paymentMethodConfigurationID, "application/json", bodyReader)
 }
 
 // NewUpdatePaymentMethodConfigurationRequestWithBody generates requests for UpdatePaymentMethodConfiguration with any type of body
-func NewUpdatePaymentMethodConfigurationRequestWithBody(server string, paymentMethodConfigurationId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatePaymentMethodConfigurationRequestWithBody(server string, paymentMethodConfigurationID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_configuration_id", runtime.ParamLocationPath, paymentMethodConfigurationId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_configuration_id", runtime.ParamLocationPath, paymentMethodConfigurationID)
 	if err != nil {
 		return nil, err
 	}
@@ -8905,13 +8932,47 @@ func NewCreatePaymentMethodRequestWithBody(server string, contentType string, bo
 	return req, nil
 }
 
-// NewGetPaymentMethodRequest generates requests for GetPaymentMethod
-func NewGetPaymentMethodRequest(server string, paymentMethodId string) (*http.Request, error) {
+// NewGetPaymentMethodByCardRequest generates requests for GetPaymentMethodByCard
+func NewGetPaymentMethodByCardRequest(server string, cardID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "card_id", runtime.ParamLocationPath, cardID)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/payment_methods/cards/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetPaymentMethodRequest generates requests for GetPaymentMethod
+func NewGetPaymentMethodRequest(server string, paymentMethodID string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodID)
 	if err != nil {
 		return nil, err
 	}
@@ -8940,23 +9001,23 @@ func NewGetPaymentMethodRequest(server string, paymentMethodId string) (*http.Re
 }
 
 // NewUpdatePaymentMethodRequest calls the generic UpdatePaymentMethod builder with application/json body
-func NewUpdatePaymentMethodRequest(server string, paymentMethodId string, body UpdatePaymentMethodJSONRequestBody) (*http.Request, error) {
+func NewUpdatePaymentMethodRequest(server string, paymentMethodID string, body UpdatePaymentMethodJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdatePaymentMethodRequestWithBody(server, paymentMethodId, "application/json", bodyReader)
+	return NewUpdatePaymentMethodRequestWithBody(server, paymentMethodID, "application/json", bodyReader)
 }
 
 // NewUpdatePaymentMethodRequestWithBody generates requests for UpdatePaymentMethod with any type of body
-func NewUpdatePaymentMethodRequestWithBody(server string, paymentMethodId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatePaymentMethodRequestWithBody(server string, paymentMethodID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodID)
 	if err != nil {
 		return nil, err
 	}
@@ -8987,23 +9048,23 @@ func NewUpdatePaymentMethodRequestWithBody(server string, paymentMethodId string
 }
 
 // NewAttachPaymentMethodRequest calls the generic AttachPaymentMethod builder with application/json body
-func NewAttachPaymentMethodRequest(server string, paymentMethodId string, body AttachPaymentMethodJSONRequestBody) (*http.Request, error) {
+func NewAttachPaymentMethodRequest(server string, paymentMethodID string, body AttachPaymentMethodJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAttachPaymentMethodRequestWithBody(server, paymentMethodId, "application/json", bodyReader)
+	return NewAttachPaymentMethodRequestWithBody(server, paymentMethodID, "application/json", bodyReader)
 }
 
 // NewAttachPaymentMethodRequestWithBody generates requests for AttachPaymentMethod with any type of body
-func NewAttachPaymentMethodRequestWithBody(server string, paymentMethodId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewAttachPaymentMethodRequestWithBody(server string, paymentMethodID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodID)
 	if err != nil {
 		return nil, err
 	}
@@ -9034,12 +9095,12 @@ func NewAttachPaymentMethodRequestWithBody(server string, paymentMethodId string
 }
 
 // NewDetachPaymentMethodRequest generates requests for DetachPaymentMethod
-func NewDetachPaymentMethodRequest(server string, paymentMethodId string) (*http.Request, error) {
+func NewDetachPaymentMethodRequest(server string, paymentMethodID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_method_id", runtime.ParamLocationPath, paymentMethodID)
 	if err != nil {
 		return nil, err
 	}
@@ -9188,13 +9249,13 @@ func NewCreatePaymentRefundRequestWithBody(server string, contentType string, bo
 	return req, nil
 }
 
-// NewRetrievePaymentRefundRequest generates requests for RetrievePaymentRefund
-func NewRetrievePaymentRefundRequest(server string, paymentRefundId string) (*http.Request, error) {
+// NewGetPaymentRefundRequest generates requests for GetPaymentRefund
+func NewGetPaymentRefundRequest(server string, paymentRefundID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_refund_id", runtime.ParamLocationPath, paymentRefundId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_refund_id", runtime.ParamLocationPath, paymentRefundID)
 	if err != nil {
 		return nil, err
 	}
@@ -9223,23 +9284,23 @@ func NewRetrievePaymentRefundRequest(server string, paymentRefundId string) (*ht
 }
 
 // NewUpdatePaymentRefundRequest calls the generic UpdatePaymentRefund builder with application/json body
-func NewUpdatePaymentRefundRequest(server string, paymentRefundId string, body UpdatePaymentRefundJSONRequestBody) (*http.Request, error) {
+func NewUpdatePaymentRefundRequest(server string, paymentRefundID string, body UpdatePaymentRefundJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdatePaymentRefundRequestWithBody(server, paymentRefundId, "application/json", bodyReader)
+	return NewUpdatePaymentRefundRequestWithBody(server, paymentRefundID, "application/json", bodyReader)
 }
 
 // NewUpdatePaymentRefundRequestWithBody generates requests for UpdatePaymentRefund with any type of body
-func NewUpdatePaymentRefundRequestWithBody(server string, paymentRefundId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatePaymentRefundRequestWithBody(server string, paymentRefundID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_refund_id", runtime.ParamLocationPath, paymentRefundId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_refund_id", runtime.ParamLocationPath, paymentRefundID)
 	if err != nil {
 		return nil, err
 	}
@@ -9269,8 +9330,8 @@ func NewUpdatePaymentRefundRequestWithBody(server string, paymentRefundId string
 	return req, nil
 }
 
-// NewGetAllPaymentTransactionRequest generates requests for GetAllPaymentTransaction
-func NewGetAllPaymentTransactionRequest(server string, params *GetAllPaymentTransactionParams) (*http.Request, error) {
+// NewGetAllPaymentTransactionsRequest generates requests for GetAllPaymentTransactions
+func NewGetAllPaymentTransactionsRequest(server string, params *GetAllPaymentTransactionsParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -9398,13 +9459,13 @@ func NewGetAllPaymentTransactionRequest(server string, params *GetAllPaymentTran
 	return req, nil
 }
 
-// NewRetrievePaymentTransactionRequest generates requests for RetrievePaymentTransaction
-func NewRetrievePaymentTransactionRequest(server string, paymentTransactionId string) (*http.Request, error) {
+// NewGetPaymentTransactionRequest generates requests for GetPaymentTransaction
+func NewGetPaymentTransactionRequest(server string, paymentTransactionID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_transaction_id", runtime.ParamLocationPath, paymentTransactionId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "payment_transaction_id", runtime.ParamLocationPath, paymentTransactionID)
 	if err != nil {
 		return nil, err
 	}
@@ -9502,6 +9563,22 @@ func NewGetAllPricesRequest(server string, params *GetAllPricesParams) (*http.Re
 
 		}
 
+		if params.LookupKeys != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lookup_keys", runtime.ParamLocationQuery, *params.LookupKeys); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -9554,12 +9631,12 @@ func NewCreatePriceRequestWithBody(server string, contentType string, body io.Re
 }
 
 // NewGetPriceRequest generates requests for GetPrice
-func NewGetPriceRequest(server string, priceId string) (*http.Request, error) {
+func NewGetPriceRequest(server string, priceID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "price_id", runtime.ParamLocationPath, priceId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "price_id", runtime.ParamLocationPath, priceID)
 	if err != nil {
 		return nil, err
 	}
@@ -9588,23 +9665,23 @@ func NewGetPriceRequest(server string, priceId string) (*http.Request, error) {
 }
 
 // NewUpdatePriceRequest calls the generic UpdatePrice builder with application/json body
-func NewUpdatePriceRequest(server string, priceId string, body UpdatePriceJSONRequestBody) (*http.Request, error) {
+func NewUpdatePriceRequest(server string, priceID string, body UpdatePriceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdatePriceRequestWithBody(server, priceId, "application/json", bodyReader)
+	return NewUpdatePriceRequestWithBody(server, priceID, "application/json", bodyReader)
 }
 
 // NewUpdatePriceRequestWithBody generates requests for UpdatePrice with any type of body
-func NewUpdatePriceRequestWithBody(server string, priceId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatePriceRequestWithBody(server string, priceID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "price_id", runtime.ParamLocationPath, priceId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "price_id", runtime.ParamLocationPath, priceID)
 	if err != nil {
 		return nil, err
 	}
@@ -9756,12 +9833,12 @@ func NewCreateProductRequestWithBody(server string, contentType string, body io.
 }
 
 // NewDeleteProductRequest generates requests for DeleteProduct
-func NewDeleteProductRequest(server string, productId string) (*http.Request, error) {
+func NewDeleteProductRequest(server string, productID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product_id", runtime.ParamLocationPath, productId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product_id", runtime.ParamLocationPath, productID)
 	if err != nil {
 		return nil, err
 	}
@@ -9790,12 +9867,12 @@ func NewDeleteProductRequest(server string, productId string) (*http.Request, er
 }
 
 // NewGetProductRequest generates requests for GetProduct
-func NewGetProductRequest(server string, productId string) (*http.Request, error) {
+func NewGetProductRequest(server string, productID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product_id", runtime.ParamLocationPath, productId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product_id", runtime.ParamLocationPath, productID)
 	if err != nil {
 		return nil, err
 	}
@@ -9824,23 +9901,23 @@ func NewGetProductRequest(server string, productId string) (*http.Request, error
 }
 
 // NewUpdateProductRequest calls the generic UpdateProduct builder with application/json body
-func NewUpdateProductRequest(server string, productId string, body UpdateProductJSONRequestBody) (*http.Request, error) {
+func NewUpdateProductRequest(server string, productID string, body UpdateProductJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateProductRequestWithBody(server, productId, "application/json", bodyReader)
+	return NewUpdateProductRequestWithBody(server, productID, "application/json", bodyReader)
 }
 
 // NewUpdateProductRequestWithBody generates requests for UpdateProduct with any type of body
-func NewUpdateProductRequestWithBody(server string, productId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateProductRequestWithBody(server string, productID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product_id", runtime.ParamLocationPath, productId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product_id", runtime.ParamLocationPath, productID)
 	if err != nil {
 		return nil, err
 	}
@@ -9870,8 +9947,8 @@ func NewUpdateProductRequestWithBody(server string, productId string, contentTyp
 	return req, nil
 }
 
-// NewGetAllSetupFlowRequest generates requests for GetAllSetupFlow
-func NewGetAllSetupFlowRequest(server string, params *GetAllSetupFlowParams) (*http.Request, error) {
+// NewGetAllSetupFlowsRequest generates requests for GetAllSetupFlows
+func NewGetAllSetupFlowsRequest(server string, params *GetAllSetupFlowsParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -9991,13 +10068,13 @@ func NewCreateSetupFlowRequestWithBody(server string, contentType string, body i
 	return req, nil
 }
 
-// NewRetrieveSetupFlowRequest generates requests for RetrieveSetupFlow
-func NewRetrieveSetupFlowRequest(server string, setupFlowId string) (*http.Request, error) {
+// NewGetSetupFlowRequest generates requests for GetSetupFlow
+func NewGetSetupFlowRequest(server string, setupFlowID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -10026,23 +10103,23 @@ func NewRetrieveSetupFlowRequest(server string, setupFlowId string) (*http.Reque
 }
 
 // NewUpdateSetupFlowRequest calls the generic UpdateSetupFlow builder with application/json body
-func NewUpdateSetupFlowRequest(server string, setupFlowId string, body UpdateSetupFlowJSONRequestBody) (*http.Request, error) {
+func NewUpdateSetupFlowRequest(server string, setupFlowID string, body UpdateSetupFlowJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateSetupFlowRequestWithBody(server, setupFlowId, "application/json", bodyReader)
+	return NewUpdateSetupFlowRequestWithBody(server, setupFlowID, "application/json", bodyReader)
 }
 
 // NewUpdateSetupFlowRequestWithBody generates requests for UpdateSetupFlow with any type of body
-func NewUpdateSetupFlowRequestWithBody(server string, setupFlowId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateSetupFlowRequestWithBody(server string, setupFlowID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -10073,23 +10150,23 @@ func NewUpdateSetupFlowRequestWithBody(server string, setupFlowId string, conten
 }
 
 // NewCancelSetupFlowRequest calls the generic CancelSetupFlow builder with application/json body
-func NewCancelSetupFlowRequest(server string, setupFlowId string, body CancelSetupFlowJSONRequestBody) (*http.Request, error) {
+func NewCancelSetupFlowRequest(server string, setupFlowID string, body CancelSetupFlowJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCancelSetupFlowRequestWithBody(server, setupFlowId, "application/json", bodyReader)
+	return NewCancelSetupFlowRequestWithBody(server, setupFlowID, "application/json", bodyReader)
 }
 
 // NewCancelSetupFlowRequestWithBody generates requests for CancelSetupFlow with any type of body
-func NewCancelSetupFlowRequestWithBody(server string, setupFlowId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCancelSetupFlowRequestWithBody(server string, setupFlowID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowID)
 	if err != nil {
 		return nil, err
 	}
@@ -10100,53 +10177,6 @@ func NewCancelSetupFlowRequestWithBody(server string, setupFlowId string, conten
 	}
 
 	operationPath := fmt.Sprintf("/v2/setup_flows/%s/cancel", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewConfirmSetupFlowRequest calls the generic ConfirmSetupFlow builder with application/json body
-func NewConfirmSetupFlowRequest(server string, setupFlowId string, body ConfirmSetupFlowJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewConfirmSetupFlowRequestWithBody(server, setupFlowId, "application/json", bodyReader)
-}
-
-// NewConfirmSetupFlowRequestWithBody generates requests for ConfirmSetupFlow with any type of body
-func NewConfirmSetupFlowRequestWithBody(server string, setupFlowId string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "setup_flow_id", runtime.ParamLocationPath, setupFlowId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v2/setup_flows/%s/confirm", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -10268,54 +10298,6 @@ func NewGetAllStatementsRequest(server string, params *GetAllStatementsParams) (
 
 		}
 
-		if params.Owner != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "owner", runtime.ParamLocationQuery, *params.Owner); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.SourceTransfer != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "source_transfer", runtime.ParamLocationQuery, *params.SourceTransfer); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Tenant != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant", runtime.ParamLocationQuery, *params.Tenant); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -10332,9 +10314,9 @@ func NewGetAllStatementsRequest(server string, params *GetAllStatementsParams) (
 
 		}
 
-		if params.Term != nil {
+		if params.TermId != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "term", runtime.ParamLocationQuery, *params.Term); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "term_id", runtime.ParamLocationQuery, *params.TermId); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -10359,13 +10341,13 @@ func NewGetAllStatementsRequest(server string, params *GetAllStatementsParams) (
 	return req, nil
 }
 
-// NewRetrieveStatementRequest generates requests for RetrieveStatement
-func NewRetrieveStatementRequest(server string, statementId string) (*http.Request, error) {
+// NewGetStatementRequest generates requests for GetStatement
+func NewGetStatementRequest(server string, statementID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "statement_id", runtime.ParamLocationPath, statementId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "statement_id", runtime.ParamLocationPath, statementID)
 	if err != nil {
 		return nil, err
 	}
@@ -10394,12 +10376,12 @@ func NewRetrieveStatementRequest(server string, statementId string) (*http.Reque
 }
 
 // NewCreateStatementUrlRequest generates requests for CreateStatementUrl
-func NewCreateStatementUrlRequest(server string, statementId string) (*http.Request, error) {
+func NewCreateStatementUrlRequest(server string, statementID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "statement_id", runtime.ParamLocationPath, statementId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "statement_id", runtime.ParamLocationPath, statementID)
 	if err != nil {
 		return nil, err
 	}
@@ -10549,12 +10531,12 @@ func NewCreateTaxRateRequestWithBody(server string, contentType string, body io.
 }
 
 // NewGetTaxRateRequest generates requests for GetTaxRate
-func NewGetTaxRateRequest(server string, taxRateId string) (*http.Request, error) {
+func NewGetTaxRateRequest(server string, taxRateID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "tax_rate_id", runtime.ParamLocationPath, taxRateId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "tax_rate_id", runtime.ParamLocationPath, taxRateID)
 	if err != nil {
 		return nil, err
 	}
@@ -10583,23 +10565,23 @@ func NewGetTaxRateRequest(server string, taxRateId string) (*http.Request, error
 }
 
 // NewUpdateTaxRateRequest calls the generic UpdateTaxRate builder with application/json body
-func NewUpdateTaxRateRequest(server string, taxRateId string, body UpdateTaxRateJSONRequestBody) (*http.Request, error) {
+func NewUpdateTaxRateRequest(server string, taxRateID string, body UpdateTaxRateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateTaxRateRequestWithBody(server, taxRateId, "application/json", bodyReader)
+	return NewUpdateTaxRateRequestWithBody(server, taxRateID, "application/json", bodyReader)
 }
 
 // NewUpdateTaxRateRequestWithBody generates requests for UpdateTaxRate with any type of body
-func NewUpdateTaxRateRequestWithBody(server string, taxRateId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateTaxRateRequestWithBody(server string, taxRateID string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "tax_rate_id", runtime.ParamLocationPath, taxRateId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "tax_rate_id", runtime.ParamLocationPath, taxRateID)
 	if err != nil {
 		return nil, err
 	}
@@ -10629,8 +10611,8 @@ func NewUpdateTaxRateRequestWithBody(server string, taxRateId string, contentTyp
 	return req, nil
 }
 
-// NewGetAllTermRequest generates requests for GetAllTerm
-func NewGetAllTermRequest(server string, params *GetAllTermParams) (*http.Request, error) {
+// NewGetAllTermsRequest generates requests for GetAllTerms
+func NewGetAllTermsRequest(server string, params *GetAllTermsParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -10667,9 +10649,25 @@ func NewGetAllTermRequest(server string, params *GetAllTermParams) (*http.Reques
 
 		}
 
-		if params.Offset != nil {
+		if params.StartingAfter != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offset", runtime.ParamLocationQuery, *params.Offset); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "starting_after", runtime.ParamLocationQuery, *params.StartingAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EndingBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "ending_before", runtime.ParamLocationQuery, *params.EndingBefore); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -10726,13 +10724,13 @@ func NewGetAllTermRequest(server string, params *GetAllTermParams) (*http.Reques
 	return req, nil
 }
 
-// NewRetrieveTermRequest generates requests for RetrieveTerm
-func NewRetrieveTermRequest(server string, termId string) (*http.Request, error) {
+// NewGetTermRequest generates requests for GetTerm
+func NewGetTermRequest(server string, termID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "term_id", runtime.ParamLocationPath, termId)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "term_id", runtime.ParamLocationPath, termID)
 	if err != nil {
 		return nil, err
 	}
@@ -10806,11 +10804,11 @@ type ClientWithResponsesInterface interface {
 	// GetAllBalancesWithResponse request
 	GetAllBalancesWithResponse(ctx context.Context, params *GetAllBalancesParams, reqEditors ...RequestEditorFn) (*GetAllBalancesResponse, error)
 
-	// RetrieveBalanceWithResponse request
-	RetrieveBalanceWithResponse(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*RetrieveBalanceResponse, error)
+	// GetBalanceWithResponse request
+	GetBalanceWithResponse(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*GetBalanceResponse, error)
 
 	// CreateBalanceUrlWithResponse request
-	CreateBalanceUrlWithResponse(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*CreateBalanceUrlResponse, error)
+	CreateBalanceUrlWithResponse(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*CreateBalanceUrlResponse, error)
 
 	// GetAllCheckoutSessionsWithResponse request
 	GetAllCheckoutSessionsWithResponse(ctx context.Context, params *GetAllCheckoutSessionsParams, reqEditors ...RequestEditorFn) (*GetAllCheckoutSessionsResponse, error)
@@ -10821,12 +10819,15 @@ type ClientWithResponsesInterface interface {
 	CreateCheckoutSessionWithResponse(ctx context.Context, body CreateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCheckoutSessionResponse, error)
 
 	// GetCheckoutSessionWithResponse request
-	GetCheckoutSessionWithResponse(ctx context.Context, checkoutSessionId string, params *GetCheckoutSessionParams, reqEditors ...RequestEditorFn) (*GetCheckoutSessionResponse, error)
+	GetCheckoutSessionWithResponse(ctx context.Context, checkoutSessionID string, reqEditors ...RequestEditorFn) (*GetCheckoutSessionResponse, error)
 
 	// UpdateCheckoutSessionWithBodyWithResponse request with any body
-	UpdateCheckoutSessionWithBodyWithResponse(ctx context.Context, checkoutSessionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error)
+	UpdateCheckoutSessionWithBodyWithResponse(ctx context.Context, checkoutSessionID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error)
 
-	UpdateCheckoutSessionWithResponse(ctx context.Context, checkoutSessionId string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error)
+	UpdateCheckoutSessionWithResponse(ctx context.Context, checkoutSessionID string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error)
+
+	// GetAllCheckoutSessionLineItemsWithResponse request
+	GetAllCheckoutSessionLineItemsWithResponse(ctx context.Context, checkoutSessionID string, params *GetAllCheckoutSessionLineItemsParams, reqEditors ...RequestEditorFn) (*GetAllCheckoutSessionLineItemsResponse, error)
 
 	// GetAllCustomersWithResponse request
 	GetAllCustomersWithResponse(ctx context.Context, params *GetAllCustomersParams, reqEditors ...RequestEditorFn) (*GetAllCustomersResponse, error)
@@ -10837,66 +10838,69 @@ type ClientWithResponsesInterface interface {
 	CreateCustomerWithResponse(ctx context.Context, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error)
 
 	// DeleteCustomerWithResponse request
-	DeleteCustomerWithResponse(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*DeleteCustomerResponse, error)
+	DeleteCustomerWithResponse(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*DeleteCustomerResponse, error)
 
 	// GetCustomerWithResponse request
-	GetCustomerWithResponse(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*GetCustomerResponse, error)
+	GetCustomerWithResponse(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*GetCustomerResponse, error)
 
 	// UpdateCustomerWithBodyWithResponse request with any body
-	UpdateCustomerWithBodyWithResponse(ctx context.Context, customerId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
+	UpdateCustomerWithBodyWithResponse(ctx context.Context, customerID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
 
-	UpdateCustomerWithResponse(ctx context.Context, customerId string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
+	UpdateCustomerWithResponse(ctx context.Context, customerID string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
 
 	// GetCustomerPaymentMethodsWithResponse request
-	GetCustomerPaymentMethodsWithResponse(ctx context.Context, customerId string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*GetCustomerPaymentMethodsResponse, error)
+	GetCustomerPaymentMethodsWithResponse(ctx context.Context, customerID string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*GetCustomerPaymentMethodsResponse, error)
 
 	// GetAllEventsWithResponse request
 	GetAllEventsWithResponse(ctx context.Context, params *GetAllEventsParams, reqEditors ...RequestEditorFn) (*GetAllEventsResponse, error)
 
 	// GetEventWithResponse request
-	GetEventWithResponse(ctx context.Context, eventId string, reqEditors ...RequestEditorFn) (*GetEventResponse, error)
+	GetEventWithResponse(ctx context.Context, eventID string, reqEditors ...RequestEditorFn) (*GetEventResponse, error)
 
-	// GetAllPaymentFlowWithResponse request
-	GetAllPaymentFlowWithResponse(ctx context.Context, params *GetAllPaymentFlowParams, reqEditors ...RequestEditorFn) (*GetAllPaymentFlowResponse, error)
+	// GetAllPaymentFlowsWithResponse request
+	GetAllPaymentFlowsWithResponse(ctx context.Context, params *GetAllPaymentFlowsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentFlowsResponse, error)
 
 	// CreatePaymentFlowWithBodyWithResponse request with any body
 	CreatePaymentFlowWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePaymentFlowResponse, error)
 
 	CreatePaymentFlowWithResponse(ctx context.Context, body CreatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePaymentFlowResponse, error)
 
-	// RetrievePaymentFlowWithResponse request
-	RetrievePaymentFlowWithResponse(ctx context.Context, paymentFlowId string, reqEditors ...RequestEditorFn) (*RetrievePaymentFlowResponse, error)
+	// GetPaymentFlowWithResponse request
+	GetPaymentFlowWithResponse(ctx context.Context, paymentFlowID string, reqEditors ...RequestEditorFn) (*GetPaymentFlowResponse, error)
 
 	// UpdatePaymentFlowWithBodyWithResponse request with any body
-	UpdatePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error)
+	UpdatePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error)
 
-	UpdatePaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error)
+	UpdatePaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error)
 
 	// CancelPaymentFlowWithBodyWithResponse request with any body
-	CancelPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error)
+	CancelPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error)
 
-	CancelPaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error)
+	CancelPaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error)
 
 	// CapturePaymentFlowWithBodyWithResponse request with any body
-	CapturePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error)
+	CapturePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error)
 
-	CapturePaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error)
+	CapturePaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error)
 
 	// ConfirmPaymentFlowWithBodyWithResponse request with any body
-	ConfirmPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error)
+	ConfirmPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error)
 
-	ConfirmPaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error)
+	ConfirmPaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error)
+
+	// GetPaymentFlowRefundsWithResponse request
+	GetPaymentFlowRefundsWithResponse(ctx context.Context, paymentFlowID string, params *GetPaymentFlowRefundsParams, reqEditors ...RequestEditorFn) (*GetPaymentFlowRefundsResponse, error)
 
 	// GetAllPaymentMethodConfigurationsWithResponse request
 	GetAllPaymentMethodConfigurationsWithResponse(ctx context.Context, params *GetAllPaymentMethodConfigurationsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentMethodConfigurationsResponse, error)
 
 	// GetPaymentMethodConfigurationWithResponse request
-	GetPaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationId string, reqEditors ...RequestEditorFn) (*GetPaymentMethodConfigurationResponse, error)
+	GetPaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationID string, reqEditors ...RequestEditorFn) (*GetPaymentMethodConfigurationResponse, error)
 
 	// UpdatePaymentMethodConfigurationWithBodyWithResponse request with any body
-	UpdatePaymentMethodConfigurationWithBodyWithResponse(ctx context.Context, paymentMethodConfigurationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error)
+	UpdatePaymentMethodConfigurationWithBodyWithResponse(ctx context.Context, paymentMethodConfigurationID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error)
 
-	UpdatePaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationId string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error)
+	UpdatePaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationID string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error)
 
 	// GetAllPaymentMethodsWithResponse request
 	GetAllPaymentMethodsWithResponse(ctx context.Context, params *GetAllPaymentMethodsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentMethodsResponse, error)
@@ -10906,21 +10910,24 @@ type ClientWithResponsesInterface interface {
 
 	CreatePaymentMethodWithResponse(ctx context.Context, body CreatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePaymentMethodResponse, error)
 
+	// GetPaymentMethodByCardWithResponse request
+	GetPaymentMethodByCardWithResponse(ctx context.Context, cardID string, reqEditors ...RequestEditorFn) (*GetPaymentMethodByCardResponse, error)
+
 	// GetPaymentMethodWithResponse request
-	GetPaymentMethodWithResponse(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*GetPaymentMethodResponse, error)
+	GetPaymentMethodWithResponse(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*GetPaymentMethodResponse, error)
 
 	// UpdatePaymentMethodWithBodyWithResponse request with any body
-	UpdatePaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error)
+	UpdatePaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error)
 
-	UpdatePaymentMethodWithResponse(ctx context.Context, paymentMethodId string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error)
+	UpdatePaymentMethodWithResponse(ctx context.Context, paymentMethodID string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error)
 
 	// AttachPaymentMethodWithBodyWithResponse request with any body
-	AttachPaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error)
+	AttachPaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error)
 
-	AttachPaymentMethodWithResponse(ctx context.Context, paymentMethodId string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error)
+	AttachPaymentMethodWithResponse(ctx context.Context, paymentMethodID string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error)
 
 	// DetachPaymentMethodWithResponse request
-	DetachPaymentMethodWithResponse(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*DetachPaymentMethodResponse, error)
+	DetachPaymentMethodWithResponse(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*DetachPaymentMethodResponse, error)
 
 	// GetAllPaymentRefundsWithResponse request
 	GetAllPaymentRefundsWithResponse(ctx context.Context, params *GetAllPaymentRefundsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentRefundsResponse, error)
@@ -10930,19 +10937,19 @@ type ClientWithResponsesInterface interface {
 
 	CreatePaymentRefundWithResponse(ctx context.Context, body CreatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePaymentRefundResponse, error)
 
-	// RetrievePaymentRefundWithResponse request
-	RetrievePaymentRefundWithResponse(ctx context.Context, paymentRefundId string, reqEditors ...RequestEditorFn) (*RetrievePaymentRefundResponse, error)
+	// GetPaymentRefundWithResponse request
+	GetPaymentRefundWithResponse(ctx context.Context, paymentRefundID string, reqEditors ...RequestEditorFn) (*GetPaymentRefundResponse, error)
 
 	// UpdatePaymentRefundWithBodyWithResponse request with any body
-	UpdatePaymentRefundWithBodyWithResponse(ctx context.Context, paymentRefundId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error)
+	UpdatePaymentRefundWithBodyWithResponse(ctx context.Context, paymentRefundID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error)
 
-	UpdatePaymentRefundWithResponse(ctx context.Context, paymentRefundId string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error)
+	UpdatePaymentRefundWithResponse(ctx context.Context, paymentRefundID string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error)
 
-	// GetAllPaymentTransactionWithResponse request
-	GetAllPaymentTransactionWithResponse(ctx context.Context, params *GetAllPaymentTransactionParams, reqEditors ...RequestEditorFn) (*GetAllPaymentTransactionResponse, error)
+	// GetAllPaymentTransactionsWithResponse request
+	GetAllPaymentTransactionsWithResponse(ctx context.Context, params *GetAllPaymentTransactionsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentTransactionsResponse, error)
 
-	// RetrievePaymentTransactionWithResponse request
-	RetrievePaymentTransactionWithResponse(ctx context.Context, paymentTransactionId string, reqEditors ...RequestEditorFn) (*RetrievePaymentTransactionResponse, error)
+	// GetPaymentTransactionWithResponse request
+	GetPaymentTransactionWithResponse(ctx context.Context, paymentTransactionID string, reqEditors ...RequestEditorFn) (*GetPaymentTransactionResponse, error)
 
 	// GetAllPricesWithResponse request
 	GetAllPricesWithResponse(ctx context.Context, params *GetAllPricesParams, reqEditors ...RequestEditorFn) (*GetAllPricesResponse, error)
@@ -10953,12 +10960,12 @@ type ClientWithResponsesInterface interface {
 	CreatePriceWithResponse(ctx context.Context, body CreatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePriceResponse, error)
 
 	// GetPriceWithResponse request
-	GetPriceWithResponse(ctx context.Context, priceId string, reqEditors ...RequestEditorFn) (*GetPriceResponse, error)
+	GetPriceWithResponse(ctx context.Context, priceID string, reqEditors ...RequestEditorFn) (*GetPriceResponse, error)
 
 	// UpdatePriceWithBodyWithResponse request with any body
-	UpdatePriceWithBodyWithResponse(ctx context.Context, priceId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error)
+	UpdatePriceWithBodyWithResponse(ctx context.Context, priceID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error)
 
-	UpdatePriceWithResponse(ctx context.Context, priceId string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error)
+	UpdatePriceWithResponse(ctx context.Context, priceID string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error)
 
 	// GetAllProductsWithResponse request
 	GetAllProductsWithResponse(ctx context.Context, params *GetAllProductsParams, reqEditors ...RequestEditorFn) (*GetAllProductsResponse, error)
@@ -10969,50 +10976,45 @@ type ClientWithResponsesInterface interface {
 	CreateProductWithResponse(ctx context.Context, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProductResponse, error)
 
 	// DeleteProductWithResponse request
-	DeleteProductWithResponse(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error)
+	DeleteProductWithResponse(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error)
 
 	// GetProductWithResponse request
-	GetProductWithResponse(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*GetProductResponse, error)
+	GetProductWithResponse(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*GetProductResponse, error)
 
 	// UpdateProductWithBodyWithResponse request with any body
-	UpdateProductWithBodyWithResponse(ctx context.Context, productId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
+	UpdateProductWithBodyWithResponse(ctx context.Context, productID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
 
-	UpdateProductWithResponse(ctx context.Context, productId string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
+	UpdateProductWithResponse(ctx context.Context, productID string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
 
-	// GetAllSetupFlowWithResponse request
-	GetAllSetupFlowWithResponse(ctx context.Context, params *GetAllSetupFlowParams, reqEditors ...RequestEditorFn) (*GetAllSetupFlowResponse, error)
+	// GetAllSetupFlowsWithResponse request
+	GetAllSetupFlowsWithResponse(ctx context.Context, params *GetAllSetupFlowsParams, reqEditors ...RequestEditorFn) (*GetAllSetupFlowsResponse, error)
 
 	// CreateSetupFlowWithBodyWithResponse request with any body
 	CreateSetupFlowWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSetupFlowResponse, error)
 
 	CreateSetupFlowWithResponse(ctx context.Context, body CreateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSetupFlowResponse, error)
 
-	// RetrieveSetupFlowWithResponse request
-	RetrieveSetupFlowWithResponse(ctx context.Context, setupFlowId string, reqEditors ...RequestEditorFn) (*RetrieveSetupFlowResponse, error)
+	// GetSetupFlowWithResponse request
+	GetSetupFlowWithResponse(ctx context.Context, setupFlowID string, reqEditors ...RequestEditorFn) (*GetSetupFlowResponse, error)
 
 	// UpdateSetupFlowWithBodyWithResponse request with any body
-	UpdateSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error)
+	UpdateSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error)
 
-	UpdateSetupFlowWithResponse(ctx context.Context, setupFlowId string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error)
+	UpdateSetupFlowWithResponse(ctx context.Context, setupFlowID string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error)
 
 	// CancelSetupFlowWithBodyWithResponse request with any body
-	CancelSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error)
+	CancelSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error)
 
-	CancelSetupFlowWithResponse(ctx context.Context, setupFlowId string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error)
-
-	// ConfirmSetupFlowWithBodyWithResponse request with any body
-	ConfirmSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConfirmSetupFlowResponse, error)
-
-	ConfirmSetupFlowWithResponse(ctx context.Context, setupFlowId string, body ConfirmSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*ConfirmSetupFlowResponse, error)
+	CancelSetupFlowWithResponse(ctx context.Context, setupFlowID string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error)
 
 	// GetAllStatementsWithResponse request
 	GetAllStatementsWithResponse(ctx context.Context, params *GetAllStatementsParams, reqEditors ...RequestEditorFn) (*GetAllStatementsResponse, error)
 
-	// RetrieveStatementWithResponse request
-	RetrieveStatementWithResponse(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*RetrieveStatementResponse, error)
+	// GetStatementWithResponse request
+	GetStatementWithResponse(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*GetStatementResponse, error)
 
 	// CreateStatementUrlWithResponse request
-	CreateStatementUrlWithResponse(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*CreateStatementUrlResponse, error)
+	CreateStatementUrlWithResponse(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*CreateStatementUrlResponse, error)
 
 	// GetAllTaxRatesWithResponse request
 	GetAllTaxRatesWithResponse(ctx context.Context, params *GetAllTaxRatesParams, reqEditors ...RequestEditorFn) (*GetAllTaxRatesResponse, error)
@@ -11023,26 +11025,26 @@ type ClientWithResponsesInterface interface {
 	CreateTaxRateWithResponse(ctx context.Context, body CreateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateTaxRateResponse, error)
 
 	// GetTaxRateWithResponse request
-	GetTaxRateWithResponse(ctx context.Context, taxRateId string, reqEditors ...RequestEditorFn) (*GetTaxRateResponse, error)
+	GetTaxRateWithResponse(ctx context.Context, taxRateID string, reqEditors ...RequestEditorFn) (*GetTaxRateResponse, error)
 
 	// UpdateTaxRateWithBodyWithResponse request with any body
-	UpdateTaxRateWithBodyWithResponse(ctx context.Context, taxRateId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error)
+	UpdateTaxRateWithBodyWithResponse(ctx context.Context, taxRateID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error)
 
-	UpdateTaxRateWithResponse(ctx context.Context, taxRateId string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error)
+	UpdateTaxRateWithResponse(ctx context.Context, taxRateID string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error)
 
-	// GetAllTermWithResponse request
-	GetAllTermWithResponse(ctx context.Context, params *GetAllTermParams, reqEditors ...RequestEditorFn) (*GetAllTermResponse, error)
+	// GetAllTermsWithResponse request
+	GetAllTermsWithResponse(ctx context.Context, params *GetAllTermsParams, reqEditors ...RequestEditorFn) (*GetAllTermsResponse, error)
 
-	// RetrieveTermWithResponse request
-	RetrieveTermWithResponse(ctx context.Context, termId string, reqEditors ...RequestEditorFn) (*RetrieveTermResponse, error)
+	// GetTermWithResponse request
+	GetTermWithResponse(ctx context.Context, termID string, reqEditors ...RequestEditorFn) (*GetTermResponse, error)
 }
 
 type GetAllBalancesResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *BalanceListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *BalanceListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11061,16 +11063,16 @@ func (r GetAllBalancesResponse) StatusCode() int {
 	return 0
 }
 
-type RetrieveBalanceResponse struct {
+type GetBalanceResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *BalanceResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *BalanceResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrieveBalanceResponse) Status() string {
+func (r GetBalanceResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11078,7 +11080,7 @@ func (r RetrieveBalanceResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrieveBalanceResponse) StatusCode() int {
+func (r GetBalanceResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11088,9 +11090,9 @@ func (r RetrieveBalanceResponse) StatusCode() int {
 type CreateBalanceUrlResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *BalanceURLResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *BalanceURLResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11112,9 +11114,9 @@ func (r CreateBalanceUrlResponse) StatusCode() int {
 type GetAllCheckoutSessionsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CheckoutSessionListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CheckoutSessionListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11136,9 +11138,9 @@ func (r GetAllCheckoutSessionsResponse) StatusCode() int {
 type CreateCheckoutSessionResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CheckoutSessionDetailsResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CheckoutSessionDetailsResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11160,9 +11162,9 @@ func (r CreateCheckoutSessionResponse) StatusCode() int {
 type GetCheckoutSessionResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CheckoutSessionDetailsResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CheckoutSessionDetailsResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11184,9 +11186,9 @@ func (r GetCheckoutSessionResponse) StatusCode() int {
 type UpdateCheckoutSessionResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CheckoutSessionDetailsResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CheckoutSessionDetailsResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11205,12 +11207,37 @@ func (r UpdateCheckoutSessionResponse) StatusCode() int {
 	return 0
 }
 
+type GetAllCheckoutSessionLineItemsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	Result                   *CheckoutSessionLineItemListResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetAllCheckoutSessionLineItemsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetAllCheckoutSessionLineItemsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetAllCustomersResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CustomerListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CustomerListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11232,9 +11259,10 @@ func (r GetAllCustomersResponse) StatusCode() int {
 type CreateCustomerResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CustomerResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CustomerResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11256,9 +11284,9 @@ func (r CreateCustomerResponse) StatusCode() int {
 type DeleteCustomerResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CustomerResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CustomerResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11280,9 +11308,9 @@ func (r DeleteCustomerResponse) StatusCode() int {
 type GetCustomerResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CustomerResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CustomerResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11304,9 +11332,9 @@ func (r GetCustomerResponse) StatusCode() int {
 type UpdateCustomerResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *CustomerResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *CustomerResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11328,10 +11356,10 @@ func (r UpdateCustomerResponse) StatusCode() int {
 type GetCustomerPaymentMethodsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodListResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11353,8 +11381,9 @@ func (r GetCustomerPaymentMethodsResponse) StatusCode() int {
 type GetAllEventsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *EventListResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *EventListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11376,9 +11405,9 @@ func (r GetAllEventsResponse) StatusCode() int {
 type GetEventResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *EventResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *EventResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11397,16 +11426,16 @@ func (r GetEventResponse) StatusCode() int {
 	return 0
 }
 
-type GetAllPaymentFlowResponse struct {
+type GetAllPaymentFlowsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r GetAllPaymentFlowResponse) Status() string {
+func (r GetAllPaymentFlowsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11414,7 +11443,7 @@ func (r GetAllPaymentFlowResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetAllPaymentFlowResponse) StatusCode() int {
+func (r GetAllPaymentFlowsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11424,10 +11453,10 @@ func (r GetAllPaymentFlowResponse) StatusCode() int {
 type CreatePaymentFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11446,16 +11475,16 @@ func (r CreatePaymentFlowResponse) StatusCode() int {
 	return 0
 }
 
-type RetrievePaymentFlowResponse struct {
+type GetPaymentFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrievePaymentFlowResponse) Status() string {
+func (r GetPaymentFlowResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11463,7 +11492,7 @@ func (r RetrievePaymentFlowResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrievePaymentFlowResponse) StatusCode() int {
+func (r GetPaymentFlowResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11473,10 +11502,10 @@ func (r RetrievePaymentFlowResponse) StatusCode() int {
 type UpdatePaymentFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11498,10 +11527,10 @@ func (r UpdatePaymentFlowResponse) StatusCode() int {
 type CancelPaymentFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11523,10 +11552,10 @@ func (r CancelPaymentFlowResponse) StatusCode() int {
 type CapturePaymentFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11548,10 +11577,10 @@ func (r CapturePaymentFlowResponse) StatusCode() int {
 type ConfirmPaymentFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11570,12 +11599,37 @@ func (r ConfirmPaymentFlowResponse) StatusCode() int {
 	return 0
 }
 
+type GetPaymentFlowRefundsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	Result                   *PaymentRefundListResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetPaymentFlowRefundsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetPaymentFlowRefundsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetAllPaymentMethodConfigurationsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodConfigurationListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodConfigurationListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11597,8 +11651,8 @@ func (r GetAllPaymentMethodConfigurationsResponse) StatusCode() int {
 type GetPaymentMethodConfigurationResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodConfigurationDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodConfigurationDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11620,8 +11674,8 @@ func (r GetPaymentMethodConfigurationResponse) StatusCode() int {
 type UpdatePaymentMethodConfigurationResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodConfigurationDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodConfigurationDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11643,9 +11697,9 @@ func (r UpdatePaymentMethodConfigurationResponse) StatusCode() int {
 type GetAllPaymentMethodsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11667,9 +11721,9 @@ func (r GetAllPaymentMethodsResponse) StatusCode() int {
 type CreatePaymentMethodResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11688,11 +11742,36 @@ func (r CreatePaymentMethodResponse) StatusCode() int {
 	return 0
 }
 
+type GetPaymentMethodByCardResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	Result                   *PaymentMethodResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetPaymentMethodByCardResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetPaymentMethodByCardResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetPaymentMethodResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11714,8 +11793,9 @@ func (r GetPaymentMethodResponse) StatusCode() int {
 type UpdatePaymentMethodResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11737,10 +11817,10 @@ func (r UpdatePaymentMethodResponse) StatusCode() int {
 type AttachPaymentMethodResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11762,9 +11842,9 @@ func (r AttachPaymentMethodResponse) StatusCode() int {
 type DetachPaymentMethodResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentMethodResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentMethodResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11786,8 +11866,9 @@ func (r DetachPaymentMethodResponse) StatusCode() int {
 type GetAllPaymentRefundsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentRefundListResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentRefundListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11809,10 +11890,10 @@ func (r GetAllPaymentRefundsResponse) StatusCode() int {
 type CreatePaymentRefundResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentRefundResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentRefundResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11831,16 +11912,16 @@ func (r CreatePaymentRefundResponse) StatusCode() int {
 	return 0
 }
 
-type RetrievePaymentRefundResponse struct {
+type GetPaymentRefundResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentRefundResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentRefundResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrievePaymentRefundResponse) Status() string {
+func (r GetPaymentRefundResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11848,7 +11929,7 @@ func (r RetrievePaymentRefundResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrievePaymentRefundResponse) StatusCode() int {
+func (r GetPaymentRefundResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11858,9 +11939,9 @@ func (r RetrievePaymentRefundResponse) StatusCode() int {
 type UpdatePaymentRefundResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentRefundResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentRefundResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11879,15 +11960,16 @@ func (r UpdatePaymentRefundResponse) StatusCode() int {
 	return 0
 }
 
-type GetAllPaymentTransactionResponse struct {
+type GetAllPaymentTransactionsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentTransactionListResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentTransactionListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r GetAllPaymentTransactionResponse) Status() string {
+func (r GetAllPaymentTransactionsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11895,23 +11977,23 @@ func (r GetAllPaymentTransactionResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetAllPaymentTransactionResponse) StatusCode() int {
+func (r GetAllPaymentTransactionsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type RetrievePaymentTransactionResponse struct {
+type GetPaymentTransactionResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PaymentTransactionResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PaymentTransactionResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrievePaymentTransactionResponse) Status() string {
+func (r GetPaymentTransactionResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -11919,7 +12001,7 @@ func (r RetrievePaymentTransactionResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrievePaymentTransactionResponse) StatusCode() int {
+func (r GetPaymentTransactionResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11929,9 +12011,9 @@ func (r RetrievePaymentTransactionResponse) StatusCode() int {
 type GetAllPricesResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PriceListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PriceListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11953,8 +12035,8 @@ func (r GetAllPricesResponse) StatusCode() int {
 type CreatePriceResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PriceDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PriceDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11976,8 +12058,8 @@ func (r CreatePriceResponse) StatusCode() int {
 type GetPriceResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PriceDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PriceDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -11999,8 +12081,8 @@ func (r GetPriceResponse) StatusCode() int {
 type UpdatePriceResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PriceDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *PriceDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12022,9 +12104,9 @@ func (r UpdatePriceResponse) StatusCode() int {
 type GetAllProductsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *ProductListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *ProductListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12046,8 +12128,8 @@ func (r GetAllProductsResponse) StatusCode() int {
 type CreateProductResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *ProductDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *ProductDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12069,8 +12151,8 @@ func (r CreateProductResponse) StatusCode() int {
 type DeleteProductResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *ProductDeletedResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *ProductDeletedResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12092,8 +12174,8 @@ func (r DeleteProductResponse) StatusCode() int {
 type GetProductResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *ProductDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *ProductDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12115,8 +12197,8 @@ func (r GetProductResponse) StatusCode() int {
 type UpdateProductResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *ProductDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *ProductDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12135,15 +12217,16 @@ func (r UpdateProductResponse) StatusCode() int {
 	return 0
 }
 
-type GetAllSetupFlowResponse struct {
+type GetAllSetupFlowsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *SetupFlowListResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *SetupFlowListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r GetAllSetupFlowResponse) Status() string {
+func (r GetAllSetupFlowsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12151,7 +12234,7 @@ func (r GetAllSetupFlowResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetAllSetupFlowResponse) StatusCode() int {
+func (r GetAllSetupFlowsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -12161,10 +12244,10 @@ func (r GetAllSetupFlowResponse) StatusCode() int {
 type CreateSetupFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *SetupFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *SetupFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12183,16 +12266,16 @@ func (r CreateSetupFlowResponse) StatusCode() int {
 	return 0
 }
 
-type RetrieveSetupFlowResponse struct {
+type GetSetupFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *SetupFlowResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *SetupFlowResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrieveSetupFlowResponse) Status() string {
+func (r GetSetupFlowResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12200,7 +12283,7 @@ func (r RetrieveSetupFlowResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrieveSetupFlowResponse) StatusCode() int {
+func (r GetSetupFlowResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -12210,10 +12293,10 @@ func (r RetrieveSetupFlowResponse) StatusCode() int {
 type UpdateSetupFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *SetupFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *SetupFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12235,10 +12318,10 @@ func (r UpdateSetupFlowResponse) StatusCode() int {
 type CancelSetupFlowResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *SetupFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *SetupFlowResponse
+	BadRequest *ErrorResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12257,37 +12340,12 @@ func (r CancelSetupFlowResponse) StatusCode() int {
 	return 0
 }
 
-type ConfirmSetupFlowResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SetupFlowResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
-}
-
-// Status returns HTTPResponse.Status
-func (r ConfirmSetupFlowResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ConfirmSetupFlowResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetAllStatementsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *StatementListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *StatementListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12306,16 +12364,16 @@ func (r GetAllStatementsResponse) StatusCode() int {
 	return 0
 }
 
-type RetrieveStatementResponse struct {
+type GetStatementResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *StatementResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *StatementResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrieveStatementResponse) Status() string {
+func (r GetStatementResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12323,7 +12381,7 @@ func (r RetrieveStatementResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrieveStatementResponse) StatusCode() int {
+func (r GetStatementResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -12333,9 +12391,9 @@ func (r RetrieveStatementResponse) StatusCode() int {
 type CreateStatementUrlResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *StatementURLResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *StatementURLResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12357,9 +12415,9 @@ func (r CreateStatementUrlResponse) StatusCode() int {
 type GetAllTaxRatesResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *TaxRateListResponse
-	ApplicationproblemJSON400 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *TaxRateListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12381,8 +12439,8 @@ func (r GetAllTaxRatesResponse) StatusCode() int {
 type CreateTaxRateResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *TaxRateDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *TaxRateDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12404,8 +12462,8 @@ func (r CreateTaxRateResponse) StatusCode() int {
 type GetTaxRateResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *TaxRateDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *TaxRateDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12427,8 +12485,8 @@ func (r GetTaxRateResponse) StatusCode() int {
 type UpdateTaxRateResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *TaxRateDetailsResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *TaxRateDetailsResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -12447,15 +12505,16 @@ func (r UpdateTaxRateResponse) StatusCode() int {
 	return 0
 }
 
-type GetAllTermResponse struct {
+type GetAllTermsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *TermListResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *TermListResponse
+	BadRequest *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r GetAllTermResponse) Status() string {
+func (r GetAllTermsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12463,23 +12522,23 @@ func (r GetAllTermResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetAllTermResponse) StatusCode() int {
+func (r GetAllTermsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type RetrieveTermResponse struct {
+type GetTermResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *TermResponse
-	ApplicationproblemJSON404 *ErrorResponse
-	ApplicationproblemJSON422 *ErrorResponse
+	Result                   *TermResponse
+	NotFound *ErrorResponse
+	UnprocessableEntity *ErrorResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r RetrieveTermResponse) Status() string {
+func (r GetTermResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -12487,7 +12546,7 @@ func (r RetrieveTermResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RetrieveTermResponse) StatusCode() int {
+func (r GetTermResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -12503,18 +12562,18 @@ func (c *ClientWithResponses) GetAllBalancesWithResponse(ctx context.Context, pa
 	return ParseGetAllBalancesResponse(rsp)
 }
 
-// RetrieveBalanceWithResponse request returning *RetrieveBalanceResponse
-func (c *ClientWithResponses) RetrieveBalanceWithResponse(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*RetrieveBalanceResponse, error) {
-	rsp, err := c.RetrieveBalance(ctx, balanceId, reqEditors...)
+// GetBalanceWithResponse request returning *GetBalanceResponse
+func (c *ClientWithResponses) GetBalanceWithResponse(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*GetBalanceResponse, error) {
+	rsp, err := c.GetBalance(ctx, balanceID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrieveBalanceResponse(rsp)
+	return ParseGetBalanceResponse(rsp)
 }
 
 // CreateBalanceUrlWithResponse request returning *CreateBalanceUrlResponse
-func (c *ClientWithResponses) CreateBalanceUrlWithResponse(ctx context.Context, balanceId string, reqEditors ...RequestEditorFn) (*CreateBalanceUrlResponse, error) {
-	rsp, err := c.CreateBalanceUrl(ctx, balanceId, reqEditors...)
+func (c *ClientWithResponses) CreateBalanceUrlWithResponse(ctx context.Context, balanceID string, reqEditors ...RequestEditorFn) (*CreateBalanceUrlResponse, error) {
+	rsp, err := c.CreateBalanceUrl(ctx, balanceID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12548,8 +12607,8 @@ func (c *ClientWithResponses) CreateCheckoutSessionWithResponse(ctx context.Cont
 }
 
 // GetCheckoutSessionWithResponse request returning *GetCheckoutSessionResponse
-func (c *ClientWithResponses) GetCheckoutSessionWithResponse(ctx context.Context, checkoutSessionId string, params *GetCheckoutSessionParams, reqEditors ...RequestEditorFn) (*GetCheckoutSessionResponse, error) {
-	rsp, err := c.GetCheckoutSession(ctx, checkoutSessionId, params, reqEditors...)
+func (c *ClientWithResponses) GetCheckoutSessionWithResponse(ctx context.Context, checkoutSessionID string, reqEditors ...RequestEditorFn) (*GetCheckoutSessionResponse, error) {
+	rsp, err := c.GetCheckoutSession(ctx, checkoutSessionID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12557,20 +12616,29 @@ func (c *ClientWithResponses) GetCheckoutSessionWithResponse(ctx context.Context
 }
 
 // UpdateCheckoutSessionWithBodyWithResponse request with arbitrary body returning *UpdateCheckoutSessionResponse
-func (c *ClientWithResponses) UpdateCheckoutSessionWithBodyWithResponse(ctx context.Context, checkoutSessionId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error) {
-	rsp, err := c.UpdateCheckoutSessionWithBody(ctx, checkoutSessionId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCheckoutSessionWithBodyWithResponse(ctx context.Context, checkoutSessionID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error) {
+	rsp, err := c.UpdateCheckoutSessionWithBody(ctx, checkoutSessionID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateCheckoutSessionResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateCheckoutSessionWithResponse(ctx context.Context, checkoutSessionId string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error) {
-	rsp, err := c.UpdateCheckoutSession(ctx, checkoutSessionId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCheckoutSessionWithResponse(ctx context.Context, checkoutSessionID string, body UpdateCheckoutSessionJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCheckoutSessionResponse, error) {
+	rsp, err := c.UpdateCheckoutSession(ctx, checkoutSessionID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateCheckoutSessionResponse(rsp)
+}
+
+// GetAllCheckoutSessionLineItemsWithResponse request returning *GetAllCheckoutSessionLineItemsResponse
+func (c *ClientWithResponses) GetAllCheckoutSessionLineItemsWithResponse(ctx context.Context, checkoutSessionID string, params *GetAllCheckoutSessionLineItemsParams, reqEditors ...RequestEditorFn) (*GetAllCheckoutSessionLineItemsResponse, error) {
+	rsp, err := c.GetAllCheckoutSessionLineItems(ctx, checkoutSessionID, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAllCheckoutSessionLineItemsResponse(rsp)
 }
 
 // GetAllCustomersWithResponse request returning *GetAllCustomersResponse
@@ -12600,8 +12668,8 @@ func (c *ClientWithResponses) CreateCustomerWithResponse(ctx context.Context, bo
 }
 
 // DeleteCustomerWithResponse request returning *DeleteCustomerResponse
-func (c *ClientWithResponses) DeleteCustomerWithResponse(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*DeleteCustomerResponse, error) {
-	rsp, err := c.DeleteCustomer(ctx, customerId, reqEditors...)
+func (c *ClientWithResponses) DeleteCustomerWithResponse(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*DeleteCustomerResponse, error) {
+	rsp, err := c.DeleteCustomer(ctx, customerID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12609,8 +12677,8 @@ func (c *ClientWithResponses) DeleteCustomerWithResponse(ctx context.Context, cu
 }
 
 // GetCustomerWithResponse request returning *GetCustomerResponse
-func (c *ClientWithResponses) GetCustomerWithResponse(ctx context.Context, customerId string, reqEditors ...RequestEditorFn) (*GetCustomerResponse, error) {
-	rsp, err := c.GetCustomer(ctx, customerId, reqEditors...)
+func (c *ClientWithResponses) GetCustomerWithResponse(ctx context.Context, customerID string, reqEditors ...RequestEditorFn) (*GetCustomerResponse, error) {
+	rsp, err := c.GetCustomer(ctx, customerID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12618,16 +12686,16 @@ func (c *ClientWithResponses) GetCustomerWithResponse(ctx context.Context, custo
 }
 
 // UpdateCustomerWithBodyWithResponse request with arbitrary body returning *UpdateCustomerResponse
-func (c *ClientWithResponses) UpdateCustomerWithBodyWithResponse(ctx context.Context, customerId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
-	rsp, err := c.UpdateCustomerWithBody(ctx, customerId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCustomerWithBodyWithResponse(ctx context.Context, customerID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
+	rsp, err := c.UpdateCustomerWithBody(ctx, customerID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateCustomerResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateCustomerWithResponse(ctx context.Context, customerId string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
-	rsp, err := c.UpdateCustomer(ctx, customerId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCustomerWithResponse(ctx context.Context, customerID string, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
+	rsp, err := c.UpdateCustomer(ctx, customerID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12635,8 +12703,8 @@ func (c *ClientWithResponses) UpdateCustomerWithResponse(ctx context.Context, cu
 }
 
 // GetCustomerPaymentMethodsWithResponse request returning *GetCustomerPaymentMethodsResponse
-func (c *ClientWithResponses) GetCustomerPaymentMethodsWithResponse(ctx context.Context, customerId string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*GetCustomerPaymentMethodsResponse, error) {
-	rsp, err := c.GetCustomerPaymentMethods(ctx, customerId, params, reqEditors...)
+func (c *ClientWithResponses) GetCustomerPaymentMethodsWithResponse(ctx context.Context, customerID string, params *GetCustomerPaymentMethodsParams, reqEditors ...RequestEditorFn) (*GetCustomerPaymentMethodsResponse, error) {
+	rsp, err := c.GetCustomerPaymentMethods(ctx, customerID, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12653,21 +12721,21 @@ func (c *ClientWithResponses) GetAllEventsWithResponse(ctx context.Context, para
 }
 
 // GetEventWithResponse request returning *GetEventResponse
-func (c *ClientWithResponses) GetEventWithResponse(ctx context.Context, eventId string, reqEditors ...RequestEditorFn) (*GetEventResponse, error) {
-	rsp, err := c.GetEvent(ctx, eventId, reqEditors...)
+func (c *ClientWithResponses) GetEventWithResponse(ctx context.Context, eventID string, reqEditors ...RequestEditorFn) (*GetEventResponse, error) {
+	rsp, err := c.GetEvent(ctx, eventID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseGetEventResponse(rsp)
 }
 
-// GetAllPaymentFlowWithResponse request returning *GetAllPaymentFlowResponse
-func (c *ClientWithResponses) GetAllPaymentFlowWithResponse(ctx context.Context, params *GetAllPaymentFlowParams, reqEditors ...RequestEditorFn) (*GetAllPaymentFlowResponse, error) {
-	rsp, err := c.GetAllPaymentFlow(ctx, params, reqEditors...)
+// GetAllPaymentFlowsWithResponse request returning *GetAllPaymentFlowsResponse
+func (c *ClientWithResponses) GetAllPaymentFlowsWithResponse(ctx context.Context, params *GetAllPaymentFlowsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentFlowsResponse, error) {
+	rsp, err := c.GetAllPaymentFlows(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetAllPaymentFlowResponse(rsp)
+	return ParseGetAllPaymentFlowsResponse(rsp)
 }
 
 // CreatePaymentFlowWithBodyWithResponse request with arbitrary body returning *CreatePaymentFlowResponse
@@ -12687,26 +12755,26 @@ func (c *ClientWithResponses) CreatePaymentFlowWithResponse(ctx context.Context,
 	return ParseCreatePaymentFlowResponse(rsp)
 }
 
-// RetrievePaymentFlowWithResponse request returning *RetrievePaymentFlowResponse
-func (c *ClientWithResponses) RetrievePaymentFlowWithResponse(ctx context.Context, paymentFlowId string, reqEditors ...RequestEditorFn) (*RetrievePaymentFlowResponse, error) {
-	rsp, err := c.RetrievePaymentFlow(ctx, paymentFlowId, reqEditors...)
+// GetPaymentFlowWithResponse request returning *GetPaymentFlowResponse
+func (c *ClientWithResponses) GetPaymentFlowWithResponse(ctx context.Context, paymentFlowID string, reqEditors ...RequestEditorFn) (*GetPaymentFlowResponse, error) {
+	rsp, err := c.GetPaymentFlow(ctx, paymentFlowID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrievePaymentFlowResponse(rsp)
+	return ParseGetPaymentFlowResponse(rsp)
 }
 
 // UpdatePaymentFlowWithBodyWithResponse request with arbitrary body returning *UpdatePaymentFlowResponse
-func (c *ClientWithResponses) UpdatePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error) {
-	rsp, err := c.UpdatePaymentFlowWithBody(ctx, paymentFlowId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error) {
+	rsp, err := c.UpdatePaymentFlowWithBody(ctx, paymentFlowID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePaymentFlowResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatePaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error) {
-	rsp, err := c.UpdatePaymentFlow(ctx, paymentFlowId, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body UpdatePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentFlowResponse, error) {
+	rsp, err := c.UpdatePaymentFlow(ctx, paymentFlowID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12714,16 +12782,16 @@ func (c *ClientWithResponses) UpdatePaymentFlowWithResponse(ctx context.Context,
 }
 
 // CancelPaymentFlowWithBodyWithResponse request with arbitrary body returning *CancelPaymentFlowResponse
-func (c *ClientWithResponses) CancelPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error) {
-	rsp, err := c.CancelPaymentFlowWithBody(ctx, paymentFlowId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CancelPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error) {
+	rsp, err := c.CancelPaymentFlowWithBody(ctx, paymentFlowID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCancelPaymentFlowResponse(rsp)
 }
 
-func (c *ClientWithResponses) CancelPaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error) {
-	rsp, err := c.CancelPaymentFlow(ctx, paymentFlowId, body, reqEditors...)
+func (c *ClientWithResponses) CancelPaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body CancelPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelPaymentFlowResponse, error) {
+	rsp, err := c.CancelPaymentFlow(ctx, paymentFlowID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12731,16 +12799,16 @@ func (c *ClientWithResponses) CancelPaymentFlowWithResponse(ctx context.Context,
 }
 
 // CapturePaymentFlowWithBodyWithResponse request with arbitrary body returning *CapturePaymentFlowResponse
-func (c *ClientWithResponses) CapturePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error) {
-	rsp, err := c.CapturePaymentFlowWithBody(ctx, paymentFlowId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CapturePaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error) {
+	rsp, err := c.CapturePaymentFlowWithBody(ctx, paymentFlowID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCapturePaymentFlowResponse(rsp)
 }
 
-func (c *ClientWithResponses) CapturePaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error) {
-	rsp, err := c.CapturePaymentFlow(ctx, paymentFlowId, body, reqEditors...)
+func (c *ClientWithResponses) CapturePaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body CapturePaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CapturePaymentFlowResponse, error) {
+	rsp, err := c.CapturePaymentFlow(ctx, paymentFlowID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12748,20 +12816,29 @@ func (c *ClientWithResponses) CapturePaymentFlowWithResponse(ctx context.Context
 }
 
 // ConfirmPaymentFlowWithBodyWithResponse request with arbitrary body returning *ConfirmPaymentFlowResponse
-func (c *ClientWithResponses) ConfirmPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error) {
-	rsp, err := c.ConfirmPaymentFlowWithBody(ctx, paymentFlowId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) ConfirmPaymentFlowWithBodyWithResponse(ctx context.Context, paymentFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error) {
+	rsp, err := c.ConfirmPaymentFlowWithBody(ctx, paymentFlowID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseConfirmPaymentFlowResponse(rsp)
 }
 
-func (c *ClientWithResponses) ConfirmPaymentFlowWithResponse(ctx context.Context, paymentFlowId string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error) {
-	rsp, err := c.ConfirmPaymentFlow(ctx, paymentFlowId, body, reqEditors...)
+func (c *ClientWithResponses) ConfirmPaymentFlowWithResponse(ctx context.Context, paymentFlowID string, body ConfirmPaymentFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*ConfirmPaymentFlowResponse, error) {
+	rsp, err := c.ConfirmPaymentFlow(ctx, paymentFlowID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseConfirmPaymentFlowResponse(rsp)
+}
+
+// GetPaymentFlowRefundsWithResponse request returning *GetPaymentFlowRefundsResponse
+func (c *ClientWithResponses) GetPaymentFlowRefundsWithResponse(ctx context.Context, paymentFlowID string, params *GetPaymentFlowRefundsParams, reqEditors ...RequestEditorFn) (*GetPaymentFlowRefundsResponse, error) {
+	rsp, err := c.GetPaymentFlowRefunds(ctx, paymentFlowID, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetPaymentFlowRefundsResponse(rsp)
 }
 
 // GetAllPaymentMethodConfigurationsWithResponse request returning *GetAllPaymentMethodConfigurationsResponse
@@ -12774,8 +12851,8 @@ func (c *ClientWithResponses) GetAllPaymentMethodConfigurationsWithResponse(ctx 
 }
 
 // GetPaymentMethodConfigurationWithResponse request returning *GetPaymentMethodConfigurationResponse
-func (c *ClientWithResponses) GetPaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationId string, reqEditors ...RequestEditorFn) (*GetPaymentMethodConfigurationResponse, error) {
-	rsp, err := c.GetPaymentMethodConfiguration(ctx, paymentMethodConfigurationId, reqEditors...)
+func (c *ClientWithResponses) GetPaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationID string, reqEditors ...RequestEditorFn) (*GetPaymentMethodConfigurationResponse, error) {
+	rsp, err := c.GetPaymentMethodConfiguration(ctx, paymentMethodConfigurationID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12783,16 +12860,16 @@ func (c *ClientWithResponses) GetPaymentMethodConfigurationWithResponse(ctx cont
 }
 
 // UpdatePaymentMethodConfigurationWithBodyWithResponse request with arbitrary body returning *UpdatePaymentMethodConfigurationResponse
-func (c *ClientWithResponses) UpdatePaymentMethodConfigurationWithBodyWithResponse(ctx context.Context, paymentMethodConfigurationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error) {
-	rsp, err := c.UpdatePaymentMethodConfigurationWithBody(ctx, paymentMethodConfigurationId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentMethodConfigurationWithBodyWithResponse(ctx context.Context, paymentMethodConfigurationID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error) {
+	rsp, err := c.UpdatePaymentMethodConfigurationWithBody(ctx, paymentMethodConfigurationID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePaymentMethodConfigurationResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatePaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationId string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error) {
-	rsp, err := c.UpdatePaymentMethodConfiguration(ctx, paymentMethodConfigurationId, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentMethodConfigurationWithResponse(ctx context.Context, paymentMethodConfigurationID string, body UpdatePaymentMethodConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodConfigurationResponse, error) {
+	rsp, err := c.UpdatePaymentMethodConfiguration(ctx, paymentMethodConfigurationID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12825,9 +12902,18 @@ func (c *ClientWithResponses) CreatePaymentMethodWithResponse(ctx context.Contex
 	return ParseCreatePaymentMethodResponse(rsp)
 }
 
+// GetPaymentMethodByCardWithResponse request returning *GetPaymentMethodByCardResponse
+func (c *ClientWithResponses) GetPaymentMethodByCardWithResponse(ctx context.Context, cardID string, reqEditors ...RequestEditorFn) (*GetPaymentMethodByCardResponse, error) {
+	rsp, err := c.GetPaymentMethodByCard(ctx, cardID, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetPaymentMethodByCardResponse(rsp)
+}
+
 // GetPaymentMethodWithResponse request returning *GetPaymentMethodResponse
-func (c *ClientWithResponses) GetPaymentMethodWithResponse(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*GetPaymentMethodResponse, error) {
-	rsp, err := c.GetPaymentMethod(ctx, paymentMethodId, reqEditors...)
+func (c *ClientWithResponses) GetPaymentMethodWithResponse(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*GetPaymentMethodResponse, error) {
+	rsp, err := c.GetPaymentMethod(ctx, paymentMethodID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12835,16 +12921,16 @@ func (c *ClientWithResponses) GetPaymentMethodWithResponse(ctx context.Context, 
 }
 
 // UpdatePaymentMethodWithBodyWithResponse request with arbitrary body returning *UpdatePaymentMethodResponse
-func (c *ClientWithResponses) UpdatePaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error) {
-	rsp, err := c.UpdatePaymentMethodWithBody(ctx, paymentMethodId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error) {
+	rsp, err := c.UpdatePaymentMethodWithBody(ctx, paymentMethodID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePaymentMethodResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatePaymentMethodWithResponse(ctx context.Context, paymentMethodId string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error) {
-	rsp, err := c.UpdatePaymentMethod(ctx, paymentMethodId, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentMethodWithResponse(ctx context.Context, paymentMethodID string, body UpdatePaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentMethodResponse, error) {
+	rsp, err := c.UpdatePaymentMethod(ctx, paymentMethodID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12852,16 +12938,16 @@ func (c *ClientWithResponses) UpdatePaymentMethodWithResponse(ctx context.Contex
 }
 
 // AttachPaymentMethodWithBodyWithResponse request with arbitrary body returning *AttachPaymentMethodResponse
-func (c *ClientWithResponses) AttachPaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error) {
-	rsp, err := c.AttachPaymentMethodWithBody(ctx, paymentMethodId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) AttachPaymentMethodWithBodyWithResponse(ctx context.Context, paymentMethodID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error) {
+	rsp, err := c.AttachPaymentMethodWithBody(ctx, paymentMethodID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseAttachPaymentMethodResponse(rsp)
 }
 
-func (c *ClientWithResponses) AttachPaymentMethodWithResponse(ctx context.Context, paymentMethodId string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error) {
-	rsp, err := c.AttachPaymentMethod(ctx, paymentMethodId, body, reqEditors...)
+func (c *ClientWithResponses) AttachPaymentMethodWithResponse(ctx context.Context, paymentMethodID string, body AttachPaymentMethodJSONRequestBody, reqEditors ...RequestEditorFn) (*AttachPaymentMethodResponse, error) {
+	rsp, err := c.AttachPaymentMethod(ctx, paymentMethodID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12869,8 +12955,8 @@ func (c *ClientWithResponses) AttachPaymentMethodWithResponse(ctx context.Contex
 }
 
 // DetachPaymentMethodWithResponse request returning *DetachPaymentMethodResponse
-func (c *ClientWithResponses) DetachPaymentMethodWithResponse(ctx context.Context, paymentMethodId string, reqEditors ...RequestEditorFn) (*DetachPaymentMethodResponse, error) {
-	rsp, err := c.DetachPaymentMethod(ctx, paymentMethodId, reqEditors...)
+func (c *ClientWithResponses) DetachPaymentMethodWithResponse(ctx context.Context, paymentMethodID string, reqEditors ...RequestEditorFn) (*DetachPaymentMethodResponse, error) {
+	rsp, err := c.DetachPaymentMethod(ctx, paymentMethodID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12903,48 +12989,48 @@ func (c *ClientWithResponses) CreatePaymentRefundWithResponse(ctx context.Contex
 	return ParseCreatePaymentRefundResponse(rsp)
 }
 
-// RetrievePaymentRefundWithResponse request returning *RetrievePaymentRefundResponse
-func (c *ClientWithResponses) RetrievePaymentRefundWithResponse(ctx context.Context, paymentRefundId string, reqEditors ...RequestEditorFn) (*RetrievePaymentRefundResponse, error) {
-	rsp, err := c.RetrievePaymentRefund(ctx, paymentRefundId, reqEditors...)
+// GetPaymentRefundWithResponse request returning *GetPaymentRefundResponse
+func (c *ClientWithResponses) GetPaymentRefundWithResponse(ctx context.Context, paymentRefundID string, reqEditors ...RequestEditorFn) (*GetPaymentRefundResponse, error) {
+	rsp, err := c.GetPaymentRefund(ctx, paymentRefundID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrievePaymentRefundResponse(rsp)
+	return ParseGetPaymentRefundResponse(rsp)
 }
 
 // UpdatePaymentRefundWithBodyWithResponse request with arbitrary body returning *UpdatePaymentRefundResponse
-func (c *ClientWithResponses) UpdatePaymentRefundWithBodyWithResponse(ctx context.Context, paymentRefundId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error) {
-	rsp, err := c.UpdatePaymentRefundWithBody(ctx, paymentRefundId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentRefundWithBodyWithResponse(ctx context.Context, paymentRefundID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error) {
+	rsp, err := c.UpdatePaymentRefundWithBody(ctx, paymentRefundID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePaymentRefundResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatePaymentRefundWithResponse(ctx context.Context, paymentRefundId string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error) {
-	rsp, err := c.UpdatePaymentRefund(ctx, paymentRefundId, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePaymentRefundWithResponse(ctx context.Context, paymentRefundID string, body UpdatePaymentRefundJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePaymentRefundResponse, error) {
+	rsp, err := c.UpdatePaymentRefund(ctx, paymentRefundID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePaymentRefundResponse(rsp)
 }
 
-// GetAllPaymentTransactionWithResponse request returning *GetAllPaymentTransactionResponse
-func (c *ClientWithResponses) GetAllPaymentTransactionWithResponse(ctx context.Context, params *GetAllPaymentTransactionParams, reqEditors ...RequestEditorFn) (*GetAllPaymentTransactionResponse, error) {
-	rsp, err := c.GetAllPaymentTransaction(ctx, params, reqEditors...)
+// GetAllPaymentTransactionsWithResponse request returning *GetAllPaymentTransactionsResponse
+func (c *ClientWithResponses) GetAllPaymentTransactionsWithResponse(ctx context.Context, params *GetAllPaymentTransactionsParams, reqEditors ...RequestEditorFn) (*GetAllPaymentTransactionsResponse, error) {
+	rsp, err := c.GetAllPaymentTransactions(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetAllPaymentTransactionResponse(rsp)
+	return ParseGetAllPaymentTransactionsResponse(rsp)
 }
 
-// RetrievePaymentTransactionWithResponse request returning *RetrievePaymentTransactionResponse
-func (c *ClientWithResponses) RetrievePaymentTransactionWithResponse(ctx context.Context, paymentTransactionId string, reqEditors ...RequestEditorFn) (*RetrievePaymentTransactionResponse, error) {
-	rsp, err := c.RetrievePaymentTransaction(ctx, paymentTransactionId, reqEditors...)
+// GetPaymentTransactionWithResponse request returning *GetPaymentTransactionResponse
+func (c *ClientWithResponses) GetPaymentTransactionWithResponse(ctx context.Context, paymentTransactionID string, reqEditors ...RequestEditorFn) (*GetPaymentTransactionResponse, error) {
+	rsp, err := c.GetPaymentTransaction(ctx, paymentTransactionID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrievePaymentTransactionResponse(rsp)
+	return ParseGetPaymentTransactionResponse(rsp)
 }
 
 // GetAllPricesWithResponse request returning *GetAllPricesResponse
@@ -12974,8 +13060,8 @@ func (c *ClientWithResponses) CreatePriceWithResponse(ctx context.Context, body 
 }
 
 // GetPriceWithResponse request returning *GetPriceResponse
-func (c *ClientWithResponses) GetPriceWithResponse(ctx context.Context, priceId string, reqEditors ...RequestEditorFn) (*GetPriceResponse, error) {
-	rsp, err := c.GetPrice(ctx, priceId, reqEditors...)
+func (c *ClientWithResponses) GetPriceWithResponse(ctx context.Context, priceID string, reqEditors ...RequestEditorFn) (*GetPriceResponse, error) {
+	rsp, err := c.GetPrice(ctx, priceID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -12983,16 +13069,16 @@ func (c *ClientWithResponses) GetPriceWithResponse(ctx context.Context, priceId 
 }
 
 // UpdatePriceWithBodyWithResponse request with arbitrary body returning *UpdatePriceResponse
-func (c *ClientWithResponses) UpdatePriceWithBodyWithResponse(ctx context.Context, priceId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error) {
-	rsp, err := c.UpdatePriceWithBody(ctx, priceId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePriceWithBodyWithResponse(ctx context.Context, priceID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error) {
+	rsp, err := c.UpdatePriceWithBody(ctx, priceID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdatePriceResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatePriceWithResponse(ctx context.Context, priceId string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error) {
-	rsp, err := c.UpdatePrice(ctx, priceId, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePriceWithResponse(ctx context.Context, priceID string, body UpdatePriceJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePriceResponse, error) {
+	rsp, err := c.UpdatePrice(ctx, priceID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13026,8 +13112,8 @@ func (c *ClientWithResponses) CreateProductWithResponse(ctx context.Context, bod
 }
 
 // DeleteProductWithResponse request returning *DeleteProductResponse
-func (c *ClientWithResponses) DeleteProductWithResponse(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error) {
-	rsp, err := c.DeleteProduct(ctx, productId, reqEditors...)
+func (c *ClientWithResponses) DeleteProductWithResponse(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error) {
+	rsp, err := c.DeleteProduct(ctx, productID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13035,8 +13121,8 @@ func (c *ClientWithResponses) DeleteProductWithResponse(ctx context.Context, pro
 }
 
 // GetProductWithResponse request returning *GetProductResponse
-func (c *ClientWithResponses) GetProductWithResponse(ctx context.Context, productId string, reqEditors ...RequestEditorFn) (*GetProductResponse, error) {
-	rsp, err := c.GetProduct(ctx, productId, reqEditors...)
+func (c *ClientWithResponses) GetProductWithResponse(ctx context.Context, productID string, reqEditors ...RequestEditorFn) (*GetProductResponse, error) {
+	rsp, err := c.GetProduct(ctx, productID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13044,29 +13130,29 @@ func (c *ClientWithResponses) GetProductWithResponse(ctx context.Context, produc
 }
 
 // UpdateProductWithBodyWithResponse request with arbitrary body returning *UpdateProductResponse
-func (c *ClientWithResponses) UpdateProductWithBodyWithResponse(ctx context.Context, productId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
-	rsp, err := c.UpdateProductWithBody(ctx, productId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateProductWithBodyWithResponse(ctx context.Context, productID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
+	rsp, err := c.UpdateProductWithBody(ctx, productID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateProductResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateProductWithResponse(ctx context.Context, productId string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
-	rsp, err := c.UpdateProduct(ctx, productId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateProductWithResponse(ctx context.Context, productID string, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
+	rsp, err := c.UpdateProduct(ctx, productID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateProductResponse(rsp)
 }
 
-// GetAllSetupFlowWithResponse request returning *GetAllSetupFlowResponse
-func (c *ClientWithResponses) GetAllSetupFlowWithResponse(ctx context.Context, params *GetAllSetupFlowParams, reqEditors ...RequestEditorFn) (*GetAllSetupFlowResponse, error) {
-	rsp, err := c.GetAllSetupFlow(ctx, params, reqEditors...)
+// GetAllSetupFlowsWithResponse request returning *GetAllSetupFlowsResponse
+func (c *ClientWithResponses) GetAllSetupFlowsWithResponse(ctx context.Context, params *GetAllSetupFlowsParams, reqEditors ...RequestEditorFn) (*GetAllSetupFlowsResponse, error) {
+	rsp, err := c.GetAllSetupFlows(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetAllSetupFlowResponse(rsp)
+	return ParseGetAllSetupFlowsResponse(rsp)
 }
 
 // CreateSetupFlowWithBodyWithResponse request with arbitrary body returning *CreateSetupFlowResponse
@@ -13086,26 +13172,26 @@ func (c *ClientWithResponses) CreateSetupFlowWithResponse(ctx context.Context, b
 	return ParseCreateSetupFlowResponse(rsp)
 }
 
-// RetrieveSetupFlowWithResponse request returning *RetrieveSetupFlowResponse
-func (c *ClientWithResponses) RetrieveSetupFlowWithResponse(ctx context.Context, setupFlowId string, reqEditors ...RequestEditorFn) (*RetrieveSetupFlowResponse, error) {
-	rsp, err := c.RetrieveSetupFlow(ctx, setupFlowId, reqEditors...)
+// GetSetupFlowWithResponse request returning *GetSetupFlowResponse
+func (c *ClientWithResponses) GetSetupFlowWithResponse(ctx context.Context, setupFlowID string, reqEditors ...RequestEditorFn) (*GetSetupFlowResponse, error) {
+	rsp, err := c.GetSetupFlow(ctx, setupFlowID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrieveSetupFlowResponse(rsp)
+	return ParseGetSetupFlowResponse(rsp)
 }
 
 // UpdateSetupFlowWithBodyWithResponse request with arbitrary body returning *UpdateSetupFlowResponse
-func (c *ClientWithResponses) UpdateSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error) {
-	rsp, err := c.UpdateSetupFlowWithBody(ctx, setupFlowId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error) {
+	rsp, err := c.UpdateSetupFlowWithBody(ctx, setupFlowID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateSetupFlowResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateSetupFlowWithResponse(ctx context.Context, setupFlowId string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error) {
-	rsp, err := c.UpdateSetupFlow(ctx, setupFlowId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateSetupFlowWithResponse(ctx context.Context, setupFlowID string, body UpdateSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateSetupFlowResponse, error) {
+	rsp, err := c.UpdateSetupFlow(ctx, setupFlowID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13113,37 +13199,20 @@ func (c *ClientWithResponses) UpdateSetupFlowWithResponse(ctx context.Context, s
 }
 
 // CancelSetupFlowWithBodyWithResponse request with arbitrary body returning *CancelSetupFlowResponse
-func (c *ClientWithResponses) CancelSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error) {
-	rsp, err := c.CancelSetupFlowWithBody(ctx, setupFlowId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CancelSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error) {
+	rsp, err := c.CancelSetupFlowWithBody(ctx, setupFlowID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCancelSetupFlowResponse(rsp)
 }
 
-func (c *ClientWithResponses) CancelSetupFlowWithResponse(ctx context.Context, setupFlowId string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error) {
-	rsp, err := c.CancelSetupFlow(ctx, setupFlowId, body, reqEditors...)
+func (c *ClientWithResponses) CancelSetupFlowWithResponse(ctx context.Context, setupFlowID string, body CancelSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*CancelSetupFlowResponse, error) {
+	rsp, err := c.CancelSetupFlow(ctx, setupFlowID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCancelSetupFlowResponse(rsp)
-}
-
-// ConfirmSetupFlowWithBodyWithResponse request with arbitrary body returning *ConfirmSetupFlowResponse
-func (c *ClientWithResponses) ConfirmSetupFlowWithBodyWithResponse(ctx context.Context, setupFlowId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ConfirmSetupFlowResponse, error) {
-	rsp, err := c.ConfirmSetupFlowWithBody(ctx, setupFlowId, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseConfirmSetupFlowResponse(rsp)
-}
-
-func (c *ClientWithResponses) ConfirmSetupFlowWithResponse(ctx context.Context, setupFlowId string, body ConfirmSetupFlowJSONRequestBody, reqEditors ...RequestEditorFn) (*ConfirmSetupFlowResponse, error) {
-	rsp, err := c.ConfirmSetupFlow(ctx, setupFlowId, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseConfirmSetupFlowResponse(rsp)
 }
 
 // GetAllStatementsWithResponse request returning *GetAllStatementsResponse
@@ -13155,18 +13224,18 @@ func (c *ClientWithResponses) GetAllStatementsWithResponse(ctx context.Context, 
 	return ParseGetAllStatementsResponse(rsp)
 }
 
-// RetrieveStatementWithResponse request returning *RetrieveStatementResponse
-func (c *ClientWithResponses) RetrieveStatementWithResponse(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*RetrieveStatementResponse, error) {
-	rsp, err := c.RetrieveStatement(ctx, statementId, reqEditors...)
+// GetStatementWithResponse request returning *GetStatementResponse
+func (c *ClientWithResponses) GetStatementWithResponse(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*GetStatementResponse, error) {
+	rsp, err := c.GetStatement(ctx, statementID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrieveStatementResponse(rsp)
+	return ParseGetStatementResponse(rsp)
 }
 
 // CreateStatementUrlWithResponse request returning *CreateStatementUrlResponse
-func (c *ClientWithResponses) CreateStatementUrlWithResponse(ctx context.Context, statementId string, reqEditors ...RequestEditorFn) (*CreateStatementUrlResponse, error) {
-	rsp, err := c.CreateStatementUrl(ctx, statementId, reqEditors...)
+func (c *ClientWithResponses) CreateStatementUrlWithResponse(ctx context.Context, statementID string, reqEditors ...RequestEditorFn) (*CreateStatementUrlResponse, error) {
+	rsp, err := c.CreateStatementUrl(ctx, statementID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13200,8 +13269,8 @@ func (c *ClientWithResponses) CreateTaxRateWithResponse(ctx context.Context, bod
 }
 
 // GetTaxRateWithResponse request returning *GetTaxRateResponse
-func (c *ClientWithResponses) GetTaxRateWithResponse(ctx context.Context, taxRateId string, reqEditors ...RequestEditorFn) (*GetTaxRateResponse, error) {
-	rsp, err := c.GetTaxRate(ctx, taxRateId, reqEditors...)
+func (c *ClientWithResponses) GetTaxRateWithResponse(ctx context.Context, taxRateID string, reqEditors ...RequestEditorFn) (*GetTaxRateResponse, error) {
+	rsp, err := c.GetTaxRate(ctx, taxRateID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13209,38 +13278,38 @@ func (c *ClientWithResponses) GetTaxRateWithResponse(ctx context.Context, taxRat
 }
 
 // UpdateTaxRateWithBodyWithResponse request with arbitrary body returning *UpdateTaxRateResponse
-func (c *ClientWithResponses) UpdateTaxRateWithBodyWithResponse(ctx context.Context, taxRateId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error) {
-	rsp, err := c.UpdateTaxRateWithBody(ctx, taxRateId, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateTaxRateWithBodyWithResponse(ctx context.Context, taxRateID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error) {
+	rsp, err := c.UpdateTaxRateWithBody(ctx, taxRateID, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateTaxRateResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateTaxRateWithResponse(ctx context.Context, taxRateId string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error) {
-	rsp, err := c.UpdateTaxRate(ctx, taxRateId, body, reqEditors...)
+func (c *ClientWithResponses) UpdateTaxRateWithResponse(ctx context.Context, taxRateID string, body UpdateTaxRateJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateTaxRateResponse, error) {
+	rsp, err := c.UpdateTaxRate(ctx, taxRateID, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateTaxRateResponse(rsp)
 }
 
-// GetAllTermWithResponse request returning *GetAllTermResponse
-func (c *ClientWithResponses) GetAllTermWithResponse(ctx context.Context, params *GetAllTermParams, reqEditors ...RequestEditorFn) (*GetAllTermResponse, error) {
-	rsp, err := c.GetAllTerm(ctx, params, reqEditors...)
+// GetAllTermsWithResponse request returning *GetAllTermsResponse
+func (c *ClientWithResponses) GetAllTermsWithResponse(ctx context.Context, params *GetAllTermsParams, reqEditors ...RequestEditorFn) (*GetAllTermsResponse, error) {
+	rsp, err := c.GetAllTerms(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetAllTermResponse(rsp)
+	return ParseGetAllTermsResponse(rsp)
 }
 
-// RetrieveTermWithResponse request returning *RetrieveTermResponse
-func (c *ClientWithResponses) RetrieveTermWithResponse(ctx context.Context, termId string, reqEditors ...RequestEditorFn) (*RetrieveTermResponse, error) {
-	rsp, err := c.RetrieveTerm(ctx, termId, reqEditors...)
+// GetTermWithResponse request returning *GetTermResponse
+func (c *ClientWithResponses) GetTermWithResponse(ctx context.Context, termID string, reqEditors ...RequestEditorFn) (*GetTermResponse, error) {
+	rsp, err := c.GetTerm(ctx, termID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRetrieveTermResponse(rsp)
+	return ParseGetTermResponse(rsp)
 }
 
 // ParseGetAllBalancesResponse parses an HTTP response from a GetAllBalancesWithResponse call
@@ -13262,36 +13331,36 @@ func ParseGetAllBalancesResponse(rsp *http.Response) (*GetAllBalancesResponse, e
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrieveBalanceResponse parses an HTTP response from a RetrieveBalanceWithResponse call
-func ParseRetrieveBalanceResponse(rsp *http.Response) (*RetrieveBalanceResponse, error) {
+// ParseGetBalanceResponse parses an HTTP response from a GetBalanceWithResponse call
+func ParseGetBalanceResponse(rsp *http.Response) (*GetBalanceResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrieveBalanceResponse{
+	response := &GetBalanceResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13302,21 +13371,21 @@ func ParseRetrieveBalanceResponse(rsp *http.Response) (*RetrieveBalanceResponse,
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13342,21 +13411,21 @@ func ParseCreateBalanceUrlResponse(rsp *http.Response) (*CreateBalanceUrlRespons
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13382,21 +13451,21 @@ func ParseGetAllCheckoutSessionsResponse(rsp *http.Response) (*GetAllCheckoutSes
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13422,21 +13491,21 @@ func ParseCreateCheckoutSessionResponse(rsp *http.Response) (*CreateCheckoutSess
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13462,21 +13531,21 @@ func ParseGetCheckoutSessionResponse(rsp *http.Response) (*GetCheckoutSessionRes
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13502,21 +13571,68 @@ func ParseUpdateCheckoutSessionResponse(rsp *http.Response) (*UpdateCheckoutSess
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetAllCheckoutSessionLineItemsResponse parses an HTTP response from a GetAllCheckoutSessionLineItemsWithResponse call
+func ParseGetAllCheckoutSessionLineItemsResponse(rsp *http.Response) (*GetAllCheckoutSessionLineItemsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetAllCheckoutSessionLineItemsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CheckoutSessionLineItemListResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.NotFound = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13542,21 +13658,21 @@ func ParseGetAllCustomersResponse(rsp *http.Response) (*GetAllCustomersResponse,
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13582,21 +13698,28 @@ func ParseCreateCustomerResponse(rsp *http.Response) (*CreateCustomerResponse, e
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13622,21 +13745,21 @@ func ParseDeleteCustomerResponse(rsp *http.Response) (*DeleteCustomerResponse, e
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13662,21 +13785,21 @@ func ParseGetCustomerResponse(rsp *http.Response) (*GetCustomerResponse, error) 
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13702,21 +13825,21 @@ func ParseUpdateCustomerResponse(rsp *http.Response) (*UpdateCustomerResponse, e
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13742,28 +13865,28 @@ func ParseGetCustomerPaymentMethodsResponse(rsp *http.Response) (*GetCustomerPay
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13789,14 +13912,21 @@ func ParseGetAllEventsResponse(rsp *http.Response) (*GetAllEventsResponse, error
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13822,36 +13952,36 @@ func ParseGetEventResponse(rsp *http.Response) (*GetEventResponse, error) {
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseGetAllPaymentFlowResponse parses an HTTP response from a GetAllPaymentFlowWithResponse call
-func ParseGetAllPaymentFlowResponse(rsp *http.Response) (*GetAllPaymentFlowResponse, error) {
+// ParseGetAllPaymentFlowsResponse parses an HTTP response from a GetAllPaymentFlowsWithResponse call
+func ParseGetAllPaymentFlowsResponse(rsp *http.Response) (*GetAllPaymentFlowsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetAllPaymentFlowResponse{
+	response := &GetAllPaymentFlowsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13862,21 +13992,21 @@ func ParseGetAllPaymentFlowResponse(rsp *http.Response) (*GetAllPaymentFlowRespo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13902,43 +14032,43 @@ func ParseCreatePaymentFlowResponse(rsp *http.Response) (*CreatePaymentFlowRespo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrievePaymentFlowResponse parses an HTTP response from a RetrievePaymentFlowWithResponse call
-func ParseRetrievePaymentFlowResponse(rsp *http.Response) (*RetrievePaymentFlowResponse, error) {
+// ParseGetPaymentFlowResponse parses an HTTP response from a GetPaymentFlowWithResponse call
+func ParseGetPaymentFlowResponse(rsp *http.Response) (*GetPaymentFlowResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrievePaymentFlowResponse{
+	response := &GetPaymentFlowResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13949,21 +14079,21 @@ func ParseRetrievePaymentFlowResponse(rsp *http.Response) (*RetrievePaymentFlowR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -13989,28 +14119,28 @@ func ParseUpdatePaymentFlowResponse(rsp *http.Response) (*UpdatePaymentFlowRespo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14036,28 +14166,28 @@ func ParseCancelPaymentFlowResponse(rsp *http.Response) (*CancelPaymentFlowRespo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14083,28 +14213,28 @@ func ParseCapturePaymentFlowResponse(rsp *http.Response) (*CapturePaymentFlowRes
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14130,28 +14260,75 @@ func ParseConfirmPaymentFlowResponse(rsp *http.Response) (*ConfirmPaymentFlowRes
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetPaymentFlowRefundsResponse parses an HTTP response from a GetPaymentFlowRefundsWithResponse call
+func ParseGetPaymentFlowRefundsResponse(rsp *http.Response) (*GetPaymentFlowRefundsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetPaymentFlowRefundsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaymentRefundListResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.NotFound = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14177,21 +14354,21 @@ func ParseGetAllPaymentMethodConfigurationsResponse(rsp *http.Response) (*GetAll
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14217,14 +14394,14 @@ func ParseGetPaymentMethodConfigurationResponse(rsp *http.Response) (*GetPayment
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14250,14 +14427,14 @@ func ParseUpdatePaymentMethodConfigurationResponse(rsp *http.Response) (*UpdateP
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14283,21 +14460,21 @@ func ParseGetAllPaymentMethodsResponse(rsp *http.Response) (*GetAllPaymentMethod
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14323,21 +14500,61 @@ func ParseCreatePaymentMethodResponse(rsp *http.Response) (*CreatePaymentMethodR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetPaymentMethodByCardResponse parses an HTTP response from a GetPaymentMethodByCardWithResponse call
+func ParseGetPaymentMethodByCardResponse(rsp *http.Response) (*GetPaymentMethodByCardResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetPaymentMethodByCardResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaymentMethodResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.NotFound = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14363,14 +14580,21 @@ func ParseGetPaymentMethodResponse(rsp *http.Response) (*GetPaymentMethodRespons
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14396,14 +14620,21 @@ func ParseUpdatePaymentMethodResponse(rsp *http.Response) (*UpdatePaymentMethodR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14429,28 +14660,28 @@ func ParseAttachPaymentMethodResponse(rsp *http.Response) (*AttachPaymentMethodR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14476,21 +14707,21 @@ func ParseDetachPaymentMethodResponse(rsp *http.Response) (*DetachPaymentMethodR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14516,14 +14747,21 @@ func ParseGetAllPaymentRefundsResponse(rsp *http.Response) (*GetAllPaymentRefund
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14549,43 +14787,43 @@ func ParseCreatePaymentRefundResponse(rsp *http.Response) (*CreatePaymentRefundR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrievePaymentRefundResponse parses an HTTP response from a RetrievePaymentRefundWithResponse call
-func ParseRetrievePaymentRefundResponse(rsp *http.Response) (*RetrievePaymentRefundResponse, error) {
+// ParseGetPaymentRefundResponse parses an HTTP response from a GetPaymentRefundWithResponse call
+func ParseGetPaymentRefundResponse(rsp *http.Response) (*GetPaymentRefundResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrievePaymentRefundResponse{
+	response := &GetPaymentRefundResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -14596,21 +14834,21 @@ func ParseRetrievePaymentRefundResponse(rsp *http.Response) (*RetrievePaymentRef
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14636,36 +14874,36 @@ func ParseUpdatePaymentRefundResponse(rsp *http.Response) (*UpdatePaymentRefundR
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseGetAllPaymentTransactionResponse parses an HTTP response from a GetAllPaymentTransactionWithResponse call
-func ParseGetAllPaymentTransactionResponse(rsp *http.Response) (*GetAllPaymentTransactionResponse, error) {
+// ParseGetAllPaymentTransactionsResponse parses an HTTP response from a GetAllPaymentTransactionsWithResponse call
+func ParseGetAllPaymentTransactionsResponse(rsp *http.Response) (*GetAllPaymentTransactionsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetAllPaymentTransactionResponse{
+	response := &GetAllPaymentTransactionsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -14676,29 +14914,36 @@ func ParseGetAllPaymentTransactionResponse(rsp *http.Response) (*GetAllPaymentTr
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrievePaymentTransactionResponse parses an HTTP response from a RetrievePaymentTransactionWithResponse call
-func ParseRetrievePaymentTransactionResponse(rsp *http.Response) (*RetrievePaymentTransactionResponse, error) {
+// ParseGetPaymentTransactionResponse parses an HTTP response from a GetPaymentTransactionWithResponse call
+func ParseGetPaymentTransactionResponse(rsp *http.Response) (*GetPaymentTransactionResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrievePaymentTransactionResponse{
+	response := &GetPaymentTransactionResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -14709,21 +14954,21 @@ func ParseRetrievePaymentTransactionResponse(rsp *http.Response) (*RetrievePayme
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14749,21 +14994,21 @@ func ParseGetAllPricesResponse(rsp *http.Response) (*GetAllPricesResponse, error
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14789,14 +15034,14 @@ func ParseCreatePriceResponse(rsp *http.Response) (*CreatePriceResponse, error) 
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14822,14 +15067,14 @@ func ParseGetPriceResponse(rsp *http.Response) (*GetPriceResponse, error) {
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14855,14 +15100,14 @@ func ParseUpdatePriceResponse(rsp *http.Response) (*UpdatePriceResponse, error) 
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14888,21 +15133,21 @@ func ParseGetAllProductsResponse(rsp *http.Response) (*GetAllProductsResponse, e
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14928,14 +15173,14 @@ func ParseCreateProductResponse(rsp *http.Response) (*CreateProductResponse, err
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14961,14 +15206,14 @@ func ParseDeleteProductResponse(rsp *http.Response) (*DeleteProductResponse, err
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -14994,14 +15239,14 @@ func ParseGetProductResponse(rsp *http.Response) (*GetProductResponse, error) {
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15027,29 +15272,29 @@ func ParseUpdateProductResponse(rsp *http.Response) (*UpdateProductResponse, err
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseGetAllSetupFlowResponse parses an HTTP response from a GetAllSetupFlowWithResponse call
-func ParseGetAllSetupFlowResponse(rsp *http.Response) (*GetAllSetupFlowResponse, error) {
+// ParseGetAllSetupFlowsResponse parses an HTTP response from a GetAllSetupFlowsWithResponse call
+func ParseGetAllSetupFlowsResponse(rsp *http.Response) (*GetAllSetupFlowsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetAllSetupFlowResponse{
+	response := &GetAllSetupFlowsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -15060,14 +15305,21 @@ func ParseGetAllSetupFlowResponse(rsp *http.Response) (*GetAllSetupFlowResponse,
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15093,43 +15345,43 @@ func ParseCreateSetupFlowResponse(rsp *http.Response) (*CreateSetupFlowResponse,
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrieveSetupFlowResponse parses an HTTP response from a RetrieveSetupFlowWithResponse call
-func ParseRetrieveSetupFlowResponse(rsp *http.Response) (*RetrieveSetupFlowResponse, error) {
+// ParseGetSetupFlowResponse parses an HTTP response from a GetSetupFlowWithResponse call
+func ParseGetSetupFlowResponse(rsp *http.Response) (*GetSetupFlowResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrieveSetupFlowResponse{
+	response := &GetSetupFlowResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -15140,21 +15392,21 @@ func ParseRetrieveSetupFlowResponse(rsp *http.Response) (*RetrieveSetupFlowRespo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15180,28 +15432,28 @@ func ParseUpdateSetupFlowResponse(rsp *http.Response) (*UpdateSetupFlowResponse,
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15227,75 +15479,28 @@ func ParseCancelSetupFlowResponse(rsp *http.Response) (*CancelSetupFlowResponse,
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseConfirmSetupFlowResponse parses an HTTP response from a ConfirmSetupFlowWithResponse call
-func ParseConfirmSetupFlowResponse(rsp *http.Response) (*ConfirmSetupFlowResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ConfirmSetupFlowResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SetupFlowResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ErrorResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest ErrorResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON404 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest ErrorResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15321,36 +15526,36 @@ func ParseGetAllStatementsResponse(rsp *http.Response) (*GetAllStatementsRespons
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrieveStatementResponse parses an HTTP response from a RetrieveStatementWithResponse call
-func ParseRetrieveStatementResponse(rsp *http.Response) (*RetrieveStatementResponse, error) {
+// ParseGetStatementResponse parses an HTTP response from a GetStatementWithResponse call
+func ParseGetStatementResponse(rsp *http.Response) (*GetStatementResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrieveStatementResponse{
+	response := &GetStatementResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -15361,21 +15566,21 @@ func ParseRetrieveStatementResponse(rsp *http.Response) (*RetrieveStatementRespo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15401,21 +15606,21 @@ func ParseCreateStatementUrlResponse(rsp *http.Response) (*CreateStatementUrlRes
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15441,21 +15646,21 @@ func ParseGetAllTaxRatesResponse(rsp *http.Response) (*GetAllTaxRatesResponse, e
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON400 = &dest
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15481,14 +15686,14 @@ func ParseCreateTaxRateResponse(rsp *http.Response) (*CreateTaxRateResponse, err
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15514,14 +15719,14 @@ func ParseGetTaxRateResponse(rsp *http.Response) (*GetTaxRateResponse, error) {
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15547,29 +15752,29 @@ func ParseUpdateTaxRateResponse(rsp *http.Response) (*UpdateTaxRateResponse, err
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseGetAllTermResponse parses an HTTP response from a GetAllTermWithResponse call
-func ParseGetAllTermResponse(rsp *http.Response) (*GetAllTermResponse, error) {
+// ParseGetAllTermsResponse parses an HTTP response from a GetAllTermsWithResponse call
+func ParseGetAllTermsResponse(rsp *http.Response) (*GetAllTermsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetAllTermResponse{
+	response := &GetAllTermsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -15580,29 +15785,36 @@ func ParseGetAllTermResponse(rsp *http.Response) (*GetAllTermResponse, error) {
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.BadRequest = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseRetrieveTermResponse parses an HTTP response from a RetrieveTermWithResponse call
-func ParseRetrieveTermResponse(rsp *http.Response) (*RetrieveTermResponse, error) {
+// ParseGetTermResponse parses an HTTP response from a GetTermWithResponse call
+func ParseGetTermResponse(rsp *http.Response) (*GetTermResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RetrieveTermResponse{
+	response := &GetTermResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -15613,21 +15825,21 @@ func ParseRetrieveTermResponse(rsp *http.Response) (*RetrieveTermResponse, error
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.Result = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON404 = &dest
+		response.NotFound = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest ErrorResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.ApplicationproblemJSON422 = &dest
+		response.UnprocessableEntity = &dest
 
 	}
 
@@ -15637,308 +15849,295 @@ func ParseRetrieveTermResponse(rsp *http.Response) (*RetrieveTermResponse, error
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
+	"//8AAAD//yXMRnjV8AIA",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
