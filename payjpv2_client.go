@@ -13,7 +13,7 @@ import (
 
 const (
 	// BINDINGS_VERSION is the version of the Go SDK bindings, will be set by the Makefile
-	BINDINGS_VERSION = "1.0.0"
+	BINDINGS_VERSION = "1.0.4"
 	// DEFAULT_BASE_URL is the default base URL for the PAY.JP API
 	DEFAULT_BASE_URL = "https://api.pay.jp"
 )
