@@ -13,6 +13,7 @@ type ErrorFieldMapping struct {
 // ErrorFieldMappings is the list of error field mappings used by ParseAPIError
 var ErrorFieldMappings = []ErrorFieldMapping{
 	{"BadRequest", http.StatusBadRequest},
+	{"PaymentRequired", http.StatusPaymentRequired},
 	{"NotFound", http.StatusNotFound},
 	{"UnprocessableEntity", http.StatusUnprocessableEntity},
 }
