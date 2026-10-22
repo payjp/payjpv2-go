@@ -16,4 +16,5 @@ var ErrorFieldMappings = []ErrorFieldMapping{
 	{"PaymentRequired", http.StatusPaymentRequired},
 	{"NotFound", http.StatusNotFound},
 	{"UnprocessableEntity", http.StatusUnprocessableEntity},
+	{"TooManyRequests", http.StatusTooManyRequests},
 }
